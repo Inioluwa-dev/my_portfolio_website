@@ -1,0 +1,139 @@
+.aboutSection {
+  background: #111112;
+  min-height: 80vh;
+  padding: 5rem 0 4rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.aboutTitle {
+  color: #b16cea;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.aboutContentWrapper {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: center;
+  width: 100%;
+  max-width: 1400px;
+}
+
+.aboutCard {
+  background: rgba(255,255,255,0.08);
+  border-radius: 30px;
+  padding: 2rem 2.5rem 0 2.5rem;
+  flex: 1;
+  min-width: 350px;
+  max-width: 700px;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.12);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.aboutCardTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+
+.aboutText {
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+
+.skillsGrid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.2rem 1.5rem;
+}
+
+.skillBadge:hover, .skillBadgeBootstrap:hover {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 4px 18px rgba(90, 141, 238, 0.18);
+}
+
+@keyframes badgePop {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) translateY(30px);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1.05) translateY(-4px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.skillBadge {
+  background: rgba(255,255,255,0.13);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border-radius: 2rem;
+  padding: 0.7rem 2.2rem;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 2px 12px rgba(90, 141, 238, 0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  display: inline-block;
+  text-align: center;
+}
+
+.learningSection {
+  margin: 1.5rem 0 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.learningTitle {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.learningBadge {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+@media (max-width: 1100px) {
+  .aboutContentWrapper {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+  .aboutCard {
+    max-width: 95vw;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .aboutSection {
+    padding: 2rem 0 2rem 0;
+  }
+  .aboutTitle {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  .aboutCard {
+    padding: 1.2rem 0.7rem 1rem 0.7rem;
+  }
+  .skillBadge, .learningBadge {
+    font-size: 1rem;
+    padding: 0.5rem 1.2rem;
+  }
+}

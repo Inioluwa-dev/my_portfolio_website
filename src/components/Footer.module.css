@@ -1,0 +1,49 @@
+/* Pill-shaped, centered, responsive footer styles */
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #111112;
+  padding-bottom: 30px;
+}
+
+.footerPill {
+  background: #232325;
+  color: #e0e0e0;
+  border-radius: 1.7rem;
+  border: 1.5px solid #444;
+  box-shadow: none;
+  padding: 1.2rem 2.2rem;
+  font-size: 1.08rem;
+  width: 90vw;
+  max-width: 1200px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footerHeart {
+  color: #ff3c3c;
+  font-size: 1.2em;
+  margin: 0 0.3em;
+  vertical-align: middle;
+}
+
+@media (max-width: 900px) {
+  .footerPill {
+    font-size: 0.98rem;
+    padding: 0.8rem 1.2rem;
+    max-width: 98vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .footerPill {
+    font-size: 0.92rem;
+    padding: 0.6rem 0.7rem;
+    border-radius: 1.2rem;
+    max-width: 99vw;
+  }
+}

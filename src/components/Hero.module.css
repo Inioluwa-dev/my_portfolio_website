@@ -1,0 +1,313 @@
+/* Additional animated balls */
+.heroBgCircle3 {
+  position: absolute;
+  top: 60%;
+  left: 70%;
+  width: 80px;
+  height: 80px;
+  background: #b16cea44;
+  border-radius: 50%;
+  z-index: 1;
+  filter: blur(2px);
+  animation: moveBall3 8s ease-in-out infinite alternate;
+}
+.heroBgCircle4 {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 60px;
+  height: 60px;
+  background: #5a8dee44;
+  border-radius: 50%;
+  z-index: 1;
+  filter: blur(2px);
+  animation: moveBall4 9s ease-in-out infinite alternate;
+}
+@keyframes moveBall3 {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.1); }
+  100% { transform: translateY(20px) scale(0.95); }
+}
+@keyframes moveBall4 {
+  0% { transform: translateX(0) scale(1); }
+  50% { transform: translateX(-30px) scale(1.08); }
+  100% { transform: translateX(20px) scale(0.92); }
+}
+/* Use space-around and more generous left/right padding for exact look */
+/* Full viewport height for background */
+.heroSection {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 5rem 2rem 7rem;
+  min-height: 80vh;
+  position: relative;
+  background: #111112;
+}
+
+.heroLeft {
+  max-width: 1200px;
+  z-index: 2;
+}
+
+.heroTitle {
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: #b16cea;
+  margin-bottom: 1.2rem;
+  line-height: 1.1;
+}
+.heroTitle span {
+  background: linear-gradient(90deg, #5a8dee 0%, #b16cea 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.heroSubtitle {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 1.2rem;
+}
+
+.heroDesc {
+  color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 3.2rem;
+  line-height: 1.6;
+  max-width: 680px;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.heroBtnPrimary {
+  background: linear-gradient(90deg, #5a8dee 0%, #b16cea 100%);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.8rem 2.2rem;
+  border-radius: 2rem;
+  text-decoration: none;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 16px rgba(90, 141, 238, 0.12);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.heroBtnPrimary:hover {
+  background: linear-gradient(90deg, #b16cea 0%, #5a8dee 100%);
+  box-shadow: 0 4px 24px rgba(177, 108, 234, 0.18);
+}
+
+.heroBtnSecondary {
+  background: linear-gradient(90deg, #b16cea 0%, #5a8dee 100%);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.8rem 2.2rem;
+  border-radius: 2rem;
+  text-decoration: none;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 16px rgba(177, 108, 234, 0.12);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.heroBtnSecondary:hover {
+  background: linear-gradient(90deg, #5a8dee 0%, #b16cea 100%);
+  box-shadow: 0 4px 24px rgba(90, 141, 238, 0.18);
+}
+
+/* Center the right card vertically with the left content */
+.heroRight {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  min-height: 100%;
+}
+
+.heroCard {
+  background: rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  min-width: 600px;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.12);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* Custom </> icon styling */
+.heroCustomIcon {
+  font-size: 3.5rem;
+  color: #fff;
+  margin-bottom: 1.2rem;
+  font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+  font-weight: 700;
+  letter-spacing: 2px;
+  display: block;
+  text-align: center;
+}
+
+.heroCardTitle {
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.heroCardDesc {
+  color: #fff;
+  font-size: 1.05rem;
+  text-align: center;
+}
+
+.heroBgCircle1 {
+  position: absolute;
+  top: 80px;
+  left: 40%;
+  width: 120px;
+  height: 120px;
+  background: #b16cea33;
+  border-radius: 50%;
+  z-index: 1;
+  filter: blur(2px);
+  animation: moveBall1 6s ease-in-out infinite alternate;
+}
+ .heroBgCircle2 {
+   position: absolute;
+   bottom: 40px;
+   left: 10%;
+   width: 100px;
+   height: 100px;
+   background: #5a8dee33;
+   border-radius: 50%;
+   z-index: 1;
+   filter: blur(2px);
+   animation: moveBall2 7s ease-in-out infinite alternate;
+ }
+
+@keyframes moveBall1 {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(30px) scale(1.1); }
+  100% { transform: translateY(-20px) scale(0.95); }
+}
+@keyframes moveBall2 {
+  0% { transform: translateX(0) scale(1); }
+  50% { transform: translateX(40px) scale(1.08); }
+  100% { transform: translateX(-20px) scale(0.92); }
+}
+
+@keyframes moveBall2 {
+  0% { transform: translateX(0) scale(1); }
+  50% { transform: translateX(40px) scale(1.08); }
+  100% { transform: translateX(-20px) scale(0.92); }
+}
+
+@media (max-width: 980px) {
+  .heroSection {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem 1rem 1rem;
+  }
+  .heroLeft {
+    max-width: 340px;
+    width: 340px;
+    font-size: 0.98rem;
+    margin-right: 1.2rem;
+    padding-left: 2.5rem;
+  }
+  .heroRight {
+    margin-top: 0;
+    width: 340px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
+  .heroCard {
+    min-width: 340px;
+    max-width: 340px;
+    width: 340px;
+    padding: 1.2rem 0.7rem 1rem 0.7rem;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .heroTitle {
+    font-size: 2.1rem;
+  }
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+  .heroDesc {
+    font-size: 0.98rem;
+    margin-bottom: 2.5rem;
+    max-width: 95vw;
+  }
+  .heroBtnPrimary, .heroBtnSecondary {
+    font-size: 0.98rem !important;
+    padding: 0.6rem 1rem !important;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 700px) {
+  .heroSection {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1.2rem 0.5rem 1rem 0.5rem;
+  }
+  .heroLeft {
+    margin-right: 0;
+    max-width: 100%;
+    width: 100%;
+    padding-left: 0;
+    margin-bottom: 1.2rem;
+  }
+  .heroRight {
+    margin-top: 0;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
+  .heroTitle {
+    font-size: 2.1rem;
+  }
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+  .heroCard {
+    min-width: 220px;
+    max-width: 100%;
+    width: 100%;
+    padding: 1.2rem 0.5rem 1rem 0.5rem;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .heroBtnPrimary, .heroBtnSecondary {
+    font-size: 0.92rem !important;
+    padding: 0.5rem 0.7rem !important;
+    white-space: nowrap;
+  }
+  .heroBgCircle1 {
+    width: 70px;
+    height: 70px;
+    left: 60%;
+    top: 40px;
+  }
+  .heroBgCircle2 {
+    width: 60px;
+    height: 60px;
+    left: 20%;
+    bottom: 20px;
+  }
+}

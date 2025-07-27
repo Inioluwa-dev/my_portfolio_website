@@ -1,0 +1,121 @@
+
+/* Single .navbar-header block */
+.navbar-header {
+  background: #181818;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  backdrop-filter: blur(12px);
+  padding: 1.5rem 0 1.5rem 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Single .navbar-scrolled block */
+.navbar-scrolled {
+  background: rgba(30, 30, 30, 0.6);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  transition: background 0.3s, backdrop-filter 0.3s;
+}
+
+.navbar-scrolled {
+  background: rgba(30, 30, 30, 0.6);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  transition: background 0.3s, backdrop-filter 0.3s;
+}
+.navbar-title {
+  font-weight: bold;
+  font-size: 2rem;
+  background: linear-gradient(90deg, #5a8dee 0%, #b16cea 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding-right: 10rem;
+}
+
+/* Navbar links - white color and better hover */
+.navbar-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.navbar-link:hover {
+  color: #b16cea;
+  background: rgba(90, 141, 238, 0.08);
+}
+
+.navbar-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .navbar-header {
+    padding: 1.5rem 0 1.5rem 2.5rem;
+  }
+  .navbar-links {
+    padding-right: 2.5rem;
+  }
+  .navbar-links {
+    display: none;
+  }
+  .navbar-toggle {
+    display: block;
+  }
+  .navbar-collapse {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: #232323;
+    border-radius: 0 20px 20px 0;
+    padding: 2rem 1.5rem;
+    gap: 1.2rem;
+    position: fixed;
+    top: 72px; /* height of navbar-header, adjust if needed */
+    left: 0;
+    height: calc(100vh - 72px);
+    width: 270px;
+    z-index: 999;
+    box-shadow: 2px 0 16px rgba(0,0,0,0.12);
+    animation: slideIn 0.2s ease;
+  }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@media (max-width: 600px) {
+  .navbar-header {
+    padding: 1rem 1rem;
+  }
+  .navbar-title {
+    font-size: 1.3rem;
+  }
+  .navbar-link {
+    font-size: 1rem;
+  }
+}
