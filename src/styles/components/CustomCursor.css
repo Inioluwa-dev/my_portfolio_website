@@ -1,0 +1,59 @@
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: all 0.1s ease;
+  mix-blend-mode: difference;
+}
+
+.cursor-trail {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(99, 102, 241, 0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9997;
+  transform: translate(-50%, -50%);
+  transition: all 0.15s ease;
+}
+
+.custom-cursor.hovering {
+  width: 40px;
+  height: 40px;
+  background: rgba(99, 102, 241, 0.2);
+  border: 2px solid #6366f1;
+}
+
+.custom-cursor.clicking {
+  width: 15px;
+  height: 15px;
+}
+
+.cursor-trail.hovering {
+  width: 60px;
+  height: 60px;
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+/* Hide default cursor on interactive elements */
+a, button, .cursor-hover, [role="button"] {
+  cursor: none;
+}
+
+/* Hide custom cursor on mobile */
+@media (max-width: 768px) {
+  .custom-cursor,
+  .cursor-trail {
+    display: none;
+  }
+  
+  a, button, .cursor-hover, [role="button"] {
+    cursor: pointer;
+  }
+}

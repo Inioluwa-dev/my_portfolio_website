@@ -1,0 +1,243 @@
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #0a0a0b 0%, #111112 50%, #1a1a1b 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.loading-content {
+  text-align: center;
+  z-index: 2;
+  position: relative;
+}
+
+.loading-logo {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.logo-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  position: relative;
+  z-index: 3;
+  animation: logoFloat 3s ease-in-out infinite;
+}
+
+.logo-text {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  font-family: 'Fira Code', monospace;
+}
+
+.loading-rings {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ring {
+  position: absolute;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  animation: ringRotate 2s linear infinite;
+}
+
+.ring-1 {
+  width: 140px;
+  height: 140px;
+  border-top-color: #6366f1;
+  animation-duration: 2s;
+}
+
+.ring-2 {
+  width: 160px;
+  height: 160px;
+  border-right-color: #8b5cf6;
+  animation-duration: 3s;
+  animation-direction: reverse;
+}
+
+.ring-3 {
+  width: 180px;
+  height: 180px;
+  border-bottom-color: #06b6d4;
+  animation-duration: 4s;
+}
+
+.loading-text h2 {
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.loading-subtitle {
+  color: #a1a1aa;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  min-height: 1.5rem;
+  animation: textFade 0.6s ease-in-out;
+}
+
+.loading-progress {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: progressShine 1.5s ease-in-out infinite;
+}
+
+.progress-text {
+  color: #a1a1aa;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.loading-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #6366f1;
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+.particle-1 { top: 20%; left: 10%; animation: particleFloat1 4s ease-in-out infinite; }
+.particle-2 { top: 30%; left: 80%; animation: particleFloat2 5s ease-in-out infinite; }
+.particle-3 { top: 60%; left: 15%; animation: particleFloat3 3s ease-in-out infinite; }
+.particle-4 { top: 80%; left: 70%; animation: particleFloat1 6s ease-in-out infinite; }
+.particle-5 { top: 15%; left: 60%; animation: particleFloat2 4s ease-in-out infinite; }
+.particle-6 { top: 70%; left: 90%; animation: particleFloat3 5s ease-in-out infinite; }
+.particle-7 { top: 40%; left: 5%; animation: particleFloat1 3s ease-in-out infinite; }
+.particle-8 { top: 90%; left: 30%; animation: particleFloat2 4s ease-in-out infinite; }
+.particle-9 { top: 25%; left: 40%; animation: particleFloat3 6s ease-in-out infinite; }
+.particle-10 { top: 55%; left: 85%; animation: particleFloat1 5s ease-in-out infinite; }
+.particle-11 { top: 10%; left: 75%; animation: particleFloat2 3s ease-in-out infinite; }
+.particle-12 { top: 75%; left: 20%; animation: particleFloat3 4s ease-in-out infinite; }
+.particle-13 { top: 35%; left: 95%; animation: particleFloat1 5s ease-in-out infinite; }
+.particle-14 { top: 85%; left: 50%; animation: particleFloat2 6s ease-in-out infinite; }
+.particle-15 { top: 45%; left: 25%; animation: particleFloat3 3s ease-in-out infinite; }
+.particle-16 { top: 65%; left: 65%; animation: particleFloat1 4s ease-in-out infinite; }
+.particle-17 { top: 5%; left: 35%; animation: particleFloat2 5s ease-in-out infinite; }
+.particle-18 { top: 95%; left: 80%; animation: particleFloat3 6s ease-in-out infinite; }
+.particle-19 { top: 50%; left: 10%; animation: particleFloat1 3s ease-in-out infinite; }
+.particle-20 { top: 20%; left: 90%; animation: particleFloat2 4s ease-in-out infinite; }
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes ringRotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes textFade {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes progressShine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes particleFloat1 {
+  0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.6; }
+  25% { transform: translateY(-20px) translateX(10px); opacity: 1; }
+  50% { transform: translateY(-10px) translateX(-5px); opacity: 0.8; }
+  75% { transform: translateY(-30px) translateX(15px); opacity: 0.4; }
+}
+
+@keyframes particleFloat2 {
+  0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.4; }
+  33% { transform: translateY(-15px) translateX(-10px); opacity: 0.8; }
+  66% { transform: translateY(-25px) translateX(5px); opacity: 1; }
+}
+
+@keyframes particleFloat3 {
+  0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.5; }
+  50% { transform: translateY(-20px) translateX(-15px); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .loading-content {
+    padding: 0 1rem;
+  }
+  
+  .logo-circle {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .logo-text {
+    font-size: 1.5rem;
+  }
+  
+  .loading-text h2 {
+    font-size: 1.5rem;
+  }
+  
+  .loading-progress {
+    width: 250px;
+  }
+  
+  .ring-1 { width: 120px; height: 120px; }
+  .ring-2 { width: 140px; height: 140px; }
+  .ring-3 { width: 160px; height: 160px; }
+}
