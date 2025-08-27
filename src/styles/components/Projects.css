@@ -1188,7 +1188,7 @@
   }
   
   .filter-container {
-    justify-content: center;
+    display: none;
   }
   
   .project-modal__header {
