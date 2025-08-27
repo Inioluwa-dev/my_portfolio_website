@@ -25,7 +25,7 @@ const About = () => {
   const tabs = [
     { id: 'overview', label: 'Overview', icon: FiUser },
     { id: 'skills', label: 'Skills', icon: FiCode },
-    { id: 'experience', label: 'Journey', icon: FiTrendingUp }
+    { id: 'experience', label: 'Experience', icon: FiTrendingUp }
   ];
 
   const highlights = [
@@ -135,6 +135,11 @@ const About = () => {
   ];
 
   useEffect(() => {
+    // Always visible on mobile
+    if (window.innerWidth <= 768) {
+      setIsVisible(true);
+      return;
+    }
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

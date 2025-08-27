@@ -328,6 +328,10 @@ const Services = () => {
   ];
 
   useEffect(() => {
+    if (window.innerWidth <= 768) {
+      setIsVisible(true);
+      return;
+    }
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

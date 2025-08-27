@@ -11,6 +11,7 @@ import {
   FiYoutube
 } from 'react-icons/fi';
 import '../../styles/components/Hero.css';
+import CvPdf from '../../assets/mr-heritage.pdf';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -199,10 +200,10 @@ const Hero = () => {
               </button>
               
               <a 
-                href="/src/assets/mr_h.png" 
+                href={CvPdf}
                 className="hero__cta hero__cta--outline"
-                download="Olayoriju_Inioluwa_Photo.png"
-                aria-label="Download photo"
+                download="mr-heritage.pdf"
+                aria-label="Download CV"
               >
                 <FiDownload className="hero__cta-icon" />
                 <span className="hero__cta-text">Download CV</span>

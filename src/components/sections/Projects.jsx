@@ -44,7 +44,7 @@ const Projects = () => {
       title: 'Kefi - Social Media Platform',
       category: 'fullstack',
       featured: true,
-      image: 'src/assets/kefi.png',
+      image: '/kefi.png',
       description: 'A comprehensive social media platform built with Django backend and React frontend, featuring user authentication, posts, comments, and real-time interactions.',
       shortDescription: 'Full-featured social media platform with Django backend and React frontend.',
       technologies: ['Django', 'Python', 'React', 'JavaScript', 'MySQL'],
@@ -89,7 +89,7 @@ const Projects = () => {
       title: 'Konverter - Data Conversion Tool',
       category: 'backend',
       featured: true,
-      image: 'src/assets/konverter.png',
+      image: '/konverter.png',
       description: 'A powerful utility tool for converting CSV to JSON and vice versa, with additional features for minifying and unminifying data. Built with Python and Django.',
       shortDescription: 'Data conversion utility with CSV/JSON support and minification features.',
       technologies: ['Python', 'Django', 'JavaScript', 'HTML', 'CSS', 'SQLite'],
@@ -134,7 +134,7 @@ const Projects = () => {
       title: 'Word Daily',
       category: 'fullstack',
       featured: false,
-      image: 'src/assets/word.png',
+      image: '/word.png',
       description: 'A daily word learning application that provides users with a new word every day, sends notifications, and maintains a comprehensive list and archive of words.',
       shortDescription: 'Daily word learning app with notifications and word archive.',
       technologies: ['Django', 'Python', 'JavaScript', 'HTML', 'CSS', 'PostgreSQL'],
@@ -179,7 +179,7 @@ const Projects = () => {
       title: 'Tech Citi Intelligence Quiz',
       category: 'frontend',
       featured: false,
-      image: 'src/assets/quiz.png',
+      image: '/quiz.png',
       description: 'An intelligence assessment platform that provides series of tests to determine users\' major intelligence areas. A collaborative project with Tech Citi team.',
       shortDescription: 'Intelligence assessment platform with comprehensive testing and analysis.',
       technologies: ['HTML', 'CSS', 'Bootstrap', 'JavaScript'],
@@ -224,7 +224,7 @@ const Projects = () => {
       title: 'Aqua Steps',
       category: 'frontend',
       featured: false,
-      image: 'src/assets/steps.png',
+      image: '/steps.png',
       description: 'A demo project for a non-existent company, designed to sharpen frontend development skills. Features a cool, modern website design with responsive layout.',
       shortDescription: 'Demo company website showcasing modern design and responsive layout.',
       technologies: ['HTML', 'CSS', 'Bootstrap', 'JavaScript'],
@@ -269,7 +269,7 @@ const Projects = () => {
       title: 'Portfolio Website',
       category: 'frontend',
       featured: false,
-      image: 'src/assets/portfolio.png',
+      image: '/portfolio.png',
       description: 'A modern, responsive portfolio website built with React and modern CSS, showcasing development skills and projects.',
       shortDescription: 'Modern portfolio website with React and responsive design.',
       technologies: ['React', 'JavaScript', 'HTML', 'CSS', 'Tailwind CSS', 'Bootstrap'],
@@ -319,6 +319,10 @@ const Projects = () => {
   ];
 
   useEffect(() => {
+    if (window.innerWidth <= 768) {
+      setIsVisible(true);
+      return;
+    }
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

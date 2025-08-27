@@ -15,6 +15,7 @@ import {
   FiYoutube
 } from 'react-icons/fi';
 import '../../styles/layout/Footer.css';
+import CvPdf from '../../assets/mr-heritage.pdf';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -234,8 +235,8 @@ const Footer = () => {
                   <span>Get In Touch</span>
                 </button>
                 <a 
-                  href="/src/assets/mr_h.png" 
-                  download="Olayoriju_Inioluwa_Photo.png"
+                  href={CvPdf}
+                  download="mr-heritage.pdf"
                   className="newsletter-btn newsletter-btn--secondary"
                 >
                   <FiDownload />

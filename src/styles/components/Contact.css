@@ -790,6 +790,52 @@
   line-height: 1.5;
 }
 
+/* Form Success Message */
+.form-success-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  backdrop-filter: blur(16px);
+}
+
+.form-success-message svg {
+  color: #10b981;
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-success-message h3 {
+  font-size: 1.75rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.form-success-message p {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+.form-success-message .form-submit {
+  width: auto;
+  background: var(--color-success);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+}
+
+.form-success-message .form-submit::before {
+  background: none; /* Disable the default purple gradient overlay */
+}
+
+.form-success-message .form-submit:hover {
+  background: #0f9d71; /* A slightly darker green */
+  color: var(--color-white);
+}
 /* ===== CTA SECTION ===== */
 .contact__cta {
   display: flex;
