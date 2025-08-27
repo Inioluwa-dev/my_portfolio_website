@@ -45,9 +45,9 @@ const Projects = () => {
       category: 'fullstack',
       featured: true,
       image: '/kefi.png',
-      description: 'A comprehensive social media platform built with Django backend and React frontend, featuring user authentication, posts, comments, and real-time interactions.',
-      shortDescription: 'Full-featured social media platform with Django backend and React frontend.',
-      technologies: ['Django', 'Python', 'React', 'JavaScript', 'MySQL'],
+      description: 'A comprehensive social media platform built with a powerful Django backend. It utilizes Python, JavaScript, and a MySQL database to manage user authentication, posts, comments, and real-time interactions.',
+      shortDescription: 'Full-featured social media platform with a Django backend, using Python, JavaScript, and MySQL.',
+      technologies: ['Python', 'Django', 'JavaScript', 'MySQL'],
       github: 'https://github.com/Inioluwa_dev/Kefi_Beta_V1', // TODO: Add specific repository URLs when ready
       demo: 'https://kefi.onrender.com', // TODO: Add your Kefi live demo URL
       status: 'Completed',
@@ -90,9 +90,9 @@ const Projects = () => {
       category: 'backend',
       featured: true,
       image: '/konverter.png',
-      description: 'A powerful utility tool for converting CSV to JSON and vice versa, with additional features for minifying and unminifying data. Built with Python and Django.',
-      shortDescription: 'Data conversion utility with CSV/JSON support and minification features.',
-      technologies: ['Python', 'Django', 'JavaScript', 'HTML', 'CSS', 'SQLite'],
+      description: 'A powerful utility tool for converting CSV to JSON and vice versa, with additional features for minifying and unminifying data. Built with a modern React frontend, leveraging JavaScript, Bootstrap, and other external libraries for a seamless user experience.',
+      shortDescription: 'Data conversion utility built with React and Bootstrap, with CSV/JSON support and minification features.',
+      technologies: ['React', 'JavaScript', 'Bootstrap', 'External js-libraries'],
       github: 'https://github.com/Inioluwa_dev/Konverter', // TODO: Add specific repository URLs when ready
       demo: 'https://kon-verter.web.app', // TODO: Add your Konverter live demo URL
       status: 'Completed',
@@ -132,17 +132,17 @@ const Projects = () => {
     {
       id: 3,
       title: 'Word Daily',
-      category: 'fullstack',
+      category: 'frontend',
       featured: false,
       image: '/word.png',
-      description: 'A daily word learning application that provides users with a new word every day, sends notifications, and maintains a comprehensive list and archive of words.',
-      shortDescription: 'Daily word learning app with notifications and word archive.',
-      technologies: ['Django', 'Python', 'JavaScript', 'HTML', 'CSS', 'PostgreSQL'],
+      description: 'A daily word learning application built with React, JavaScript, and Bootstrap. It provides users with a new word every day, sends notifications, and maintains a comprehensive list and archive of words.',
+      shortDescription: 'Daily word learning app built with React and Bootstrap, featuring notifications and a word archive.',
+      technologies: ['React','JavaScript', 'Bootstrap'],
       github: 'https://github.com/Inioluwa_dev/Word-Daily', // TODO: Add specific repository URLs when ready
       demo: 'https://word-daily0.web.app', // TODO: Add your Word Daily live demo URL
       status: 'Completed',
       year: '2024',
-      duration: '2 months',
+      duration: '1 week',
       team: 'Solo Project',
       client: 'Personal Project',
       rating: 4.9,
@@ -180,8 +180,8 @@ const Projects = () => {
       category: 'frontend',
       featured: false,
       image: '/quiz.png',
-      description: 'An intelligence assessment platform that provides series of tests to determine users\' major intelligence areas. A collaborative project with Tech Citi team.',
-      shortDescription: 'Intelligence assessment platform with comprehensive testing and analysis.',
+      description: 'An intelligence assessment platform built with HTML, CSS, JavaScript, and Bootstrap. It provides a series of tests to determine users\' major intelligence areas. A collaborative project with the Tech Citi team.',
+      shortDescription: 'Intelligence assessment platform built with HTML, CSS, and Bootstrap, featuring comprehensive testing and analysis.',
       technologies: ['HTML', 'CSS', 'Bootstrap', 'JavaScript'],
       github: 'https://github.com/Inioluwa_dev/tech_citi_intelligence_quiz', // TODO: Add specific repository URLs when ready
       demo: 'https://tech-citi.web.app', // TODO: Add your Tech Citi project live URL
@@ -225,14 +225,14 @@ const Projects = () => {
       category: 'frontend',
       featured: false,
       image: '/steps.png',
-      description: 'A demo project for a non-existent company, designed to sharpen frontend development skills. Features a cool, modern website design with responsive layout.',
-      shortDescription: 'Demo company website showcasing modern design and responsive layout.',
+      description: 'A demo project for a non-existent company, built with HTML, CSS, and Bootstrap to sharpen frontend development skills. It features a modern website design with a responsive layout and interactive elements powered by JavaScript.',
+      shortDescription: 'Demo company website built with HTML, CSS, and Bootstrap, showcasing modern design and responsive layout.',
       technologies: ['HTML', 'CSS', 'Bootstrap', 'JavaScript'],
       github: 'https://github.com/Inioluwa_dev/AquaSteps', // TODO: Add specific repository URLs when ready
       demo: 'https://aqua-steps.web.app', // TODO: Add your Aqua Steps live URL
       status: 'Completed',
       year: '2024',
-      duration: '3 weeks',
+      duration: '2 weeks',
       team: 'Solo Project',
       client: 'Demo Project',
       rating: 4.7,
@@ -270,8 +270,8 @@ const Projects = () => {
       category: 'frontend',
       featured: false,
       image: '/portfolio.png',
-      description: 'A modern, responsive portfolio website built with React and modern CSS, showcasing development skills and projects.',
-      shortDescription: 'Modern portfolio website with React and responsive design.',
+      description: 'This portfolio website, built with React, JavaScript, and styled with a mix of Tailwind CSS and Bootstrap, showcases my development skills and projects in a modern, responsive design.',
+      shortDescription: 'My personal portfolio website built with React, Tailwind CSS, and Bootstrap.',
       technologies: ['React', 'JavaScript', 'HTML', 'CSS', 'Tailwind CSS', 'Bootstrap'],
       github: 'https://github.com/Inioluwa_dev/my_portfolio_website', // TODO: Add specific repository URLs when ready
       demo: 'https://mr-heritage.web.app', // TODO: Add your portfolio live URL
@@ -616,7 +616,7 @@ const Projects = () => {
                   <FiZap />
                 </button>
                 <a 
-                  href="https://github.com/yourusername" 
+                  href="https://github.com/Inioluwa-dev" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="cta-btn cta-btn--secondary"
