@@ -6,7 +6,7 @@ import {
 } from "../../data/skills";
 import SEO from "../seo/SEO";
 import "../../styles/components/About.css";
-import mrHPhoto from "/images/mr_h.png";
+import mrHPhoto from "/images/mr_heritage.png";
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);

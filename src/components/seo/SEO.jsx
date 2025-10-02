@@ -1,26 +1,28 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import React from "react";
+import { Helmet } from "react-helmet-async";
 
 const SEO = ({
   title = "Olayoriju Inioluwa | Mr Heritage - Full Stack Developer",
   description = "Full Stack Developer specializing in Python/Django backend development and modern frontend technologies. Explore my portfolio, projects, and services.",
   keywords = "Olayoriju Inioluwa, Inioluwa, inioluwa_dev, Comibyte, Olayoriju, Mr Heritage, Full Stack Developer, Python, Django, React, Backend Developer, Portfolio, Web Development, Lagos Nigeria",
-  image = "/Mr Heritage Profile.png",
+  image = "/images/mr_heritage.png",
   url = "https://mr-heritage.name.ng",
   type = "website",
   structuredData = null,
   canonical = null,
   noindex = false,
-  nofollow = false
+  nofollow = false,
 }) => {
-  const fullTitle = title.includes("Mr Heritage") ? title : `${title} | Mr Heritage Portfolio`;
+  const fullTitle = title.includes("Mr Heritage")
+    ? title
+    : `${title} | Mr Heritage Portfolio`;
   const fullUrl = canonical || url;
-  const fullImage = image.startsWith('http') ? image : `${url}${image}`;
+  const fullImage = image.startsWith("http") ? image : `${url}${image}`;
 
   const robotsContent = [];
-  if (noindex) robotsContent.push('noindex');
-  if (nofollow) robotsContent.push('nofollow');
-  if (!noindex && !nofollow) robotsContent.push('index', 'follow');
+  if (noindex) robotsContent.push("noindex");
+  if (nofollow) robotsContent.push("nofollow");
+  if (!noindex && !nofollow) robotsContent.push("index", "follow");
 
   return (
     <Helmet>
@@ -29,7 +31,7 @@ const SEO = ({
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <meta name="author" content="Olayoriju Inioluwa (Mr Heritage)" />
-      <meta name="robots" content={robotsContent.join(', ')} />
+      <meta name="robots" content={robotsContent.join(", ")} />
       <link rel="canonical" href={fullUrl} />
 
       {/* Open Graph / Facebook */}
@@ -57,7 +59,7 @@ const SEO = ({
       <meta name="revisit-after" content="7 days" />
       <meta name="distribution" content="global" />
       <meta name="rating" content="general" />
-      
+
       {/* Name variations for better searchability */}
       <meta name="alternate-name" content="Inioluwa" />
       <meta name="alternate-name" content="inioluwa_dev" />
@@ -68,9 +70,19 @@ const SEO = ({
       <meta name="nickname" content="inioluwa_dev" />
 
       {/* Favicon */}
-      <link rel="icon" type="image/png" sizes="32x32" href="/Mr Heritage Profile.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="/Mr Heritage Profile.png" />
-      <link rel="apple-touch-icon" href="/Mr Heritage Profile.png" />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="/images/mr_heritage.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="/images/mr_heritage.png"
+      />
+      <link rel="apple-touch-icon" href="/images/mr_heritage.png" />
 
       {/* Structured Data */}
       {structuredData && (
