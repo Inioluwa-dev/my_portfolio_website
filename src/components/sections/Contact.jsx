@@ -17,6 +17,7 @@ import {
   FiArrowRight,
   FiYoutube
 } from 'react-icons/fi';
+import SEO from '../seo/SEO';
 import '../../styles/components/Contact.css';
 
 const Contact = () => {
@@ -358,8 +359,54 @@ const Contact = () => {
     </form>
   );
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Mr Heritage - Full Stack Developer",
+    "description": "Get in touch with Olayoriju Inioluwa (Mr Heritage) for web development services, technical consulting, and collaboration opportunities.",
+    "url": "https://mr-heritage.name.ng/",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Olayoriju Inioluwa",
+      "alternateName": ["Mr Heritage", "Inioluwa", "inioluwa_dev", "Comibyte"],
+      "jobTitle": "Full Stack Developer",
+      "email": "misterhge@gmail.com",
+      "url": "https://mr-heritage.name.ng",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Lagos",
+        "addressCountry": "Nigeria"
+      },
+      "sameAs": [
+        "https://github.com/Inioluwa-dev",
+        "https://youtube.com/@Inioluwa-dev"
+      ],
+      "knowsAbout": [
+        "Python",
+        "Django",
+        "React",
+        "JavaScript",
+        "Backend Development",
+        "Full Stack Development",
+        "Web Development"
+      ],
+      "hasOccupation": {
+        "@type": "Occupation",
+        "name": "Full Stack Developer",
+        "description": "Specializing in Python/Django backend development with modern frontend technologies"
+      }
+    }
+  };
+
   return (
     <section id="contact" className="contact" ref={contactRef}>
+      <SEO
+        title="Contact Mr Heritage - Full Stack Developer"
+        description="Get in touch with Olayoriju Inioluwa (Mr Heritage) for web development services, technical consulting, and collaboration opportunities. Available for freelance projects and full-time positions."
+        keywords="Contact Mr Heritage, Olayoriju Inioluwa Contact, Inioluwa Contact, inioluwa_dev Contact, Comibyte Contact, Olayoriju Contact, Full Stack Developer Contact, Web Development Services, Technical Consulting, Freelance Developer, Lagos Nigeria Developer"
+        url="https://mr-heritage.name.ng/"
+        structuredData={structuredData}
+      />
       <div className="contact__background">
         <div className="contact__gradient contact__gradient--1"></div>
         <div className="contact__gradient contact__gradient--2"></div>

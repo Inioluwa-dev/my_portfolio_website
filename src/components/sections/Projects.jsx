@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { 
-  FiGithub, 
+import React, { useState, useEffect, useRef } from "react";
+import { projects } from "../../data/projects";
+import {
+  FiGithub,
   FiExternalLink,
   FiSearch,
   FiFilter,
@@ -13,22 +14,23 @@ import {
   FiCheck,
   FiZap,
   FiTrendingUp,
-  FiAward
-} from 'react-icons/fi';
-import '../../styles/components/Projects.css';
+  FiAward,
+} from "react-icons/fi";
+import SEO from "../seo/SEO";
+import "../../styles/components/Projects.css";
 
 const Projects = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
-  const [activeFilter, setActiveFilter] = useState('all');
-  const [searchTerm, setSearchTerm] = useState('');
+  const [activeFilter, setActiveFilter] = useState("all");
+  const [searchTerm, setSearchTerm] = useState("");
   const projectsRef = useRef(null);
 
   const projectCategories = [
-    { id: 'all', label: 'All Projects', count: 6 },
-    { id: 'fullstack', label: 'Full-Stack', count: 2 },
-    { id: 'frontend', label: 'Frontend', count: 4 },
-    { id: 'backend', label: 'Backend/API', count: 1 }
+    { id: "all", label: "All Projects", count: 8 },
+    { id: "fullstack", label: "Full-Stack", count: 2 },
+    { id: "frontend", label: "Frontend", count: 5 },
+    { id: "backend", label: "Backend/API", count: 1 },
   ];
 
   // Real Projects (to be linked when ready):
@@ -38,284 +40,13 @@ const Projects = () => {
   // - Tech Citi Intelligence Quiz: Intelligence assessment platform (HTML/CSS/JS)
   // - Aqua Steps: Demo company website (HTML/CSS/Bootstrap)
   // - Portfolio: This website (React + Modern CSS)
-  const projects = [
-    {
-      id: 1,
-      title: 'Kefi - Social Media Platform',
-      category: 'fullstack',
-      featured: true,
-      image: '/kefi.png',
-      description: 'A comprehensive social media platform built with a powerful Django backend. It utilizes Python, JavaScript, and a MySQL database to manage user authentication, posts, comments, and real-time interactions.',
-      shortDescription: 'Full-featured social media platform with a Django backend, using Python, JavaScript, and MySQL.',
-      technologies: ['Python', 'Django', 'JavaScript', 'MySQL'],
-      github: 'https://github.com/Inioluwa_dev/Kefi_Beta_V1', // TODO: Add specific repository URLs when ready
-      demo: 'https://kefi.onrender.com', // TODO: Add your Kefi live demo URL
-      status: 'Completed',
-      year: '2024',
-      duration: '3 months',
-      team: 'Solo Project',
-      client: 'Personal Project',
-      rating: 5.0,
-      features: [
-        'User authentication and profiles',
-        'Post creation and sharing',
-        'Real-time comments and likes',
-        'User following system',
-        'News feed with algorithms',
-        'Image and media uploads',
-        'Responsive design',
-        'Admin dashboard'
-      ],
-      challenges: [
-        'Implementing real-time features',
-        'Optimizing database queries for social interactions',
-        'Creating scalable architecture',
-        'Building intuitive user interface'
-      ],
-      results: [
-        'Successfully deployed and tested',
-        'Demonstrates full-stack development skills',
-        'Showcases Django and React expertise',
-        'Ready for production use'
-      ],
-      testimonial: {
-        text: "A well-architected social media platform that demonstrates strong backend and frontend development skills.",
-        author: "Self Assessment",
-        role: "Full Stack Developer"
-      }
-    },
-    {
-      id: 2,
-      title: 'Konverter - Data Conversion Tool',
-      category: 'backend',
-      featured: true,
-      image: '/konverter.png',
-      description: 'A powerful utility tool for converting CSV to JSON and vice versa, with additional features for minifying and unminifying data. Built with a modern React frontend, leveraging JavaScript, Bootstrap, and other external libraries for a seamless user experience.',
-      shortDescription: 'Data conversion utility built with React and Bootstrap, with CSV/JSON support and minification features.',
-      technologies: ['React', 'JavaScript', 'Bootstrap', 'External js-libraries'],
-      github: 'https://github.com/Inioluwa_dev/Konverter', // TODO: Add specific repository URLs when ready
-      demo: 'https://kon-verter.web.app', // TODO: Add your Konverter live demo URL
-      status: 'Completed',
-      year: '2024',
-      duration: '2 months',
-      team: 'Solo Project',
-      client: 'Personal Project',
-      rating: 5.0,
-      features: [
-        'CSV to JSON conversion',
-        'JSON to CSV conversion',
-        'Data minification',
-        'Data unminification',
-        'File upload and download',
-        'Batch processing',
-        'Data validation',
-        'Clean user interface'
-      ],
-      challenges: [
-        'Handling large file uploads efficiently',
-        'Implementing data validation',
-        'Creating intuitive conversion logic',
-        'Optimizing performance for large datasets'
-      ],
-      results: [
-        'Successfully processes various data formats',
-        'Demonstrates backend API development',
-        'Showcases Python/Django expertise',
-        'Useful utility for developers'
-      ],
-      testimonial: {
-        text: "A practical tool that solves real data conversion problems with clean, efficient code.",
-        author: "Self Assessment",
-        role: "Backend Developer"
-      }
-    },
-    {
-      id: 3,
-      title: 'Word Daily',
-      category: 'frontend',
-      featured: false,
-      image: '/word.png',
-      description: 'A daily word learning application built with React, JavaScript, and Bootstrap. It provides users with a new word every day, sends notifications, and maintains a comprehensive list and archive of words.',
-      shortDescription: 'Daily word learning app built with React and Bootstrap, featuring notifications and a word archive.',
-      technologies: ['React','JavaScript', 'Bootstrap'],
-      github: 'https://github.com/Inioluwa_dev/Word-Daily', // TODO: Add specific repository URLs when ready
-      demo: 'https://word-daily0.web.app', // TODO: Add your Word Daily live demo URL
-      status: 'Completed',
-      year: '2024',
-      duration: '1 week',
-      team: 'Solo Project',
-      client: 'Personal Project',
-      rating: 4.9,
-      features: [
-        'Daily word delivery system',
-        'Push notifications',
-        'Word list management',
-        'Word archive functionality',
-        'User progress tracking',
-        'Responsive design',
-        'Admin word management',
-        'Search and filtering'
-      ],
-      challenges: [
-        'Implementing daily word scheduling',
-        'Setting up push notification system',
-        'Creating efficient word storage and retrieval',
-        'Building user-friendly word management'
-      ],
-      results: [
-        'Successfully delivers daily words',
-        'User engagement through notifications',
-        'Comprehensive word database',
-        'Ready for production use'
-      ],
-      testimonial: {
-        text: "An innovative learning tool that makes vocabulary building a daily habit through smart notifications.",
-        author: "Self Assessment",
-        role: "Full Stack Developer"
-      }
-    },
-    {
-      id: 4,
-      title: 'Tech Citi Intelligence Quiz',
-      category: 'frontend',
-      featured: false,
-      image: '/quiz.png',
-      description: 'An intelligence assessment platform built with HTML, CSS, JavaScript, and Bootstrap. It provides a series of tests to determine users\' major intelligence areas. A collaborative project with the Tech Citi team.',
-      shortDescription: 'Intelligence assessment platform built with HTML, CSS, and Bootstrap, featuring comprehensive testing and analysis.',
-      technologies: ['HTML', 'CSS', 'Bootstrap', 'JavaScript'],
-      github: 'https://github.com/Inioluwa_dev/tech_citi_intelligence_quiz', // TODO: Add specific repository URLs when ready
-      demo: 'https://tech-citi.web.app', // TODO: Add your Tech Citi project live URL
-      status: 'Completed',
-      year: '2024',
-      duration: '1 month',
-      team: 'Team Project',
-      client: 'Tech Citi',
-      rating: 4.8,
-      features: [
-        'Multiple intelligence test series',
-        'Intelligence area analysis',
-        'Result interpretation',
-        'Responsive design',
-        'User progress tracking',
-        'Test history',
-        'Detailed reporting',
-        'Mobile-friendly interface'
-      ],
-      challenges: [
-        'Designing comprehensive intelligence tests',
-        'Creating accurate scoring algorithms',
-        'Building responsive interface',
-        'Collaborating with team members'
-      ],
-      results: [
-        'Successfully completed team project',
-        'Demonstrates frontend development skills',
-        'Showcases collaboration abilities',
-        'Professional project delivery'
-      ],
-      testimonial: {
-        text: "A well-executed team project that demonstrates strong frontend skills and collaboration abilities.",
-        author: "Team Assessment",
-        role: "Frontend Developer"
-      }
-    },
-    {
-      id: 5,
-      title: 'Aqua Steps',
-      category: 'frontend',
-      featured: false,
-      image: '/steps.png',
-      description: 'A demo project for a non-existent company, built with HTML, CSS, and Bootstrap to sharpen frontend development skills. It features a modern website design with a responsive layout and interactive elements powered by JavaScript.',
-      shortDescription: 'Demo company website built with HTML, CSS, and Bootstrap, showcasing modern design and responsive layout.',
-      technologies: ['HTML', 'CSS', 'Bootstrap', 'JavaScript'],
-      github: 'https://github.com/Inioluwa_dev/AquaSteps', // TODO: Add specific repository URLs when ready
-      demo: 'https://aqua-steps.web.app', // TODO: Add your Aqua Steps live URL
-      status: 'Completed',
-      year: '2024',
-      duration: '2 weeks',
-      team: 'Solo Project',
-      client: 'Demo Project',
-      rating: 4.7,
-      features: [
-        'Modern website design',
-        'Responsive layout',
-        'Interactive elements',
-        'Professional styling',
-        'Mobile optimization',
-        'Smooth animations',
-        'Clean code structure',
-        'Hosted and accessible'
-      ],
-      challenges: [
-        'Creating professional company website design',
-        'Implementing responsive design principles',
-        'Adding interactive elements',
-        'Ensuring cross-browser compatibility'
-      ],
-      results: [
-        'Successfully hosted and accessible',
-        'Demonstrates modern design skills',
-        'Showcases responsive development',
-        'Professional presentation'
-      ],
-      testimonial: {
-        text: "A beautifully designed demo website that showcases modern frontend development skills and design principles.",
-        author: "Self Assessment",
-        role: "Frontend Developer"
-      }
-    },
-    {
-      id: 6,
-      title: 'Portfolio Website',
-      category: 'frontend',
-      featured: false,
-      image: '/portfolio.png',
-      description: 'This portfolio website, built with React, JavaScript, and styled with a mix of Tailwind CSS and Bootstrap, showcases my development skills and projects in a modern, responsive design.',
-      shortDescription: 'My personal portfolio website built with React, Tailwind CSS, and Bootstrap.',
-      technologies: ['React', 'JavaScript', 'HTML', 'CSS', 'Tailwind CSS', 'Bootstrap'],
-      github: 'https://github.com/Inioluwa_dev/my_portfolio_website', // TODO: Add specific repository URLs when ready
-      demo: 'https://mr-heritage.web.app', // TODO: Add your portfolio live URL
-      status: 'Completed',
-      year: '2024',
-      duration: '1 month',
-      team: 'Solo Project',
-      client: 'Personal Branding',
-      rating: 5.0,
-      features: [
-        'Responsive design',
-        'Modern animations',
-        'Project showcase',
-        'Skills demonstration',
-        'Contact forms',
-        'Dark/light theme',
-        'Performance optimized',
-        'SEO friendly'
-      ],
-      challenges: [
-        'Creating smooth animations',
-        'Ensuring responsive design',
-        'Optimizing performance',
-        'Maintaining clean code structure'
-      ],
-      results: [
-        'Professional portfolio presentation',
-        'Demonstrates frontend skills',
-        'Responsive across all devices',
-        'Fast loading times'
-      ],
-      testimonial: {
-        text: "A beautifully designed portfolio that effectively showcases development skills and projects.",
-        author: "Self Assessment",
-        role: "Frontend Developer"
-      }
-    }
-  ];
+  // Now imported from ../../data/projects.js
 
   const stats = [
-    { number: '2', label: 'Featured Projects', icon: FiCode },
-    { number: '100%', label: 'Completion Rate', icon: FiCheck },
-    { number: '4.9', label: 'Average Rating', icon: FiStar },
-    { number: '6', label: 'Total Projects', icon: FiTrendingUp }
+    { number: "3", label: "Featured Projects", icon: FiCode },
+    { number: "100%", label: "Completion Rate", icon: FiCheck },
+    { number: "5.0", label: "Average Rating", icon: FiStar },
+    { number: "7", label: "Total Projects", icon: FiTrendingUp },
   ];
 
   useEffect(() => {
@@ -343,27 +74,118 @@ const Projects = () => {
     };
   }, []);
 
-  const filteredProjects = projects.filter(project => {
-    const matchesFilter = activeFilter === 'all' || project.category === activeFilter;
-    const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         project.technologies.some(tech => tech.toLowerCase().includes(searchTerm.toLowerCase()));
+  const filteredProjects = projects.filter((project) => {
+    const matchesFilter =
+      activeFilter === "all" ||
+      (Array.isArray(project.category)
+        ? project.category.includes(activeFilter)
+        : project.category === activeFilter);
+    const matchesSearch =
+      project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.technologies.some((tech) =>
+        tech.toLowerCase().includes(searchTerm.toLowerCase())
+      );
     return matchesFilter && matchesSearch;
   });
 
-  const featuredProjects = projects.filter(project => project.featured);
+  const featuredProjects = projects.filter((project) => project.featured);
 
   const openProjectModal = (project) => {
     setSelectedProject(project);
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   };
 
   const closeProjectModal = () => {
     setSelectedProject(null);
-    document.body.style.overflow = 'unset';
+    document.body.style.overflow = "unset";
+  };
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Portfolio Projects - Mr Heritage",
+    description:
+      "Explore my portfolio of web development projects including Kefi social media platform, Konverter data conversion tool, and other full-stack applications built with Python, Django, and React.",
+    url: "https://mr-heritage.name.ng/",
+    mainEntity: {
+      "@type": "ItemList",
+      name: "Portfolio Projects",
+      description:
+        "Collection of web development projects showcasing full-stack development skills",
+      itemListElement: [
+        {
+          "@type": "CreativeWork",
+          name: "Kefi - Social Media Platform",
+          description:
+            "A comprehensive social media platform built with Django backend, Python, JavaScript, and MySQL database.",
+          url: "https://kefi.onrender.com",
+          creator: {
+            "@type": "Person",
+            name: "Olayoriju Inioluwa",
+            alternateName: [
+              "Mr Heritage",
+              "Inioluwa",
+              "inioluwa_dev",
+              "Comibyte",
+            ],
+          },
+          programmingLanguage: ["Python", "Django", "JavaScript", "MySQL"],
+          dateCreated: "2024",
+          genre: "Web Application",
+        },
+        {
+          "@type": "CreativeWork",
+          name: "Konverter - Data Conversion Tool",
+          description:
+            "A powerful utility tool for converting CSV to JSON and vice versa, with minification features built with React.",
+          url: "https://kon-verter.web.app",
+          creator: {
+            "@type": "Person",
+            name: "Olayoriju Inioluwa",
+            alternateName: [
+              "Mr Heritage",
+              "Inioluwa",
+              "inioluwa_dev",
+              "Comibyte",
+            ],
+          },
+          programmingLanguage: ["React", "JavaScript", "Bootstrap"],
+          dateCreated: "2024",
+          genre: "Web Application",
+        },
+        {
+          "@type": "CreativeWork",
+          name: "Harth - AI Background Removal",
+          description:
+            "An AI-powered platform for professional image editing, specializing in background removal. Built with Python backend and React frontend using Tailwind CSS.",
+          url: "https://harth-0.web.app",
+          creator: {
+            "@type": "Person",
+            name: "Olayoriju Inioluwa",
+            alternateName: [
+              "Mr Heritage",
+              "Inioluwa",
+              "inioluwa_dev",
+              "Comibyte",
+            ],
+          },
+          programmingLanguage: ["Python", "React", "Tailwind CSS"],
+          dateCreated: "2025",
+          genre: "Web Application",
+        },
+      ],
+    },
   };
 
   return (
     <section id="projects" className="projects" ref={projectsRef}>
+      <SEO
+        title="Portfolio Projects - Mr Heritage"
+        description="Explore my portfolio of web development projects including Kefi social media platform, Konverter data conversion tool, and other full-stack applications built with Python, Django, and React."
+        keywords="Portfolio Projects, Olayoriju Inioluwa, Inioluwa, inioluwa_dev, Comibyte, Olayoriju, Web Development Projects, Django Projects, React Projects, Full Stack Projects, Kefi Social Media, Konverter Tool, Python Projects, JavaScript Projects"
+        url="https://mr-heritage.name.ng/"
+        structuredData={structuredData}
+      />
       <div className="projects__background">
         <div className="projects__gradient projects__gradient--1"></div>
         <div className="projects__gradient projects__gradient--2"></div>
@@ -371,15 +193,19 @@ const Projects = () => {
       </div>
 
       <div className="projects__container">
-        <div className={`projects__content ${isVisible ? 'projects__content--visible' : ''}`}>
-          
+        <div
+          className={`projects__content ${
+            isVisible ? "projects__content--visible" : ""
+          }`}
+        >
           {/* Section Header */}
           <div className="projects__header">
             <h2 className="projects__title">
               Featured <span className="text-gradient">Projects</span>
             </h2>
             <p className="projects__subtitle">
-              A showcase of my backend development expertise with Python/Django, featuring real projects like Kefi and Konverter
+              A showcase of my backend development expertise with Python/Django,
+              featuring real projects like Kefi and Konverter
             </p>
           </div>
 
@@ -388,10 +214,10 @@ const Projects = () => {
             {stats.map((stat, index) => {
               const IconComponent = stat.icon;
               return (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className="stat-card"
-                  style={{ '--delay': `${index * 0.1}s` }}
+                  style={{ "--delay": `${index * 0.1}s` }}
                 >
                   <div className="stat-card__icon">
                     <IconComponent />
@@ -413,25 +239,25 @@ const Projects = () => {
                 <div
                   key={project.id}
                   className="featured-card"
-                  style={{ '--delay': `${index * 0.2}s` }}
+                  style={{ "--delay": `${index * 0.2}s` }}
                   onClick={() => openProjectModal(project)}
                 >
                   <div className="featured-card__image">
                     <img src={project.image} alt={project.title} />
                     <div className="featured-card__overlay">
                       <div className="featured-card__links">
-                        <a 
-                          href={project.github} 
-                          target="_blank" 
+                        <a
+                          href={project.github}
+                          target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
                           className="project-link"
                         >
                           <FiGithub />
                         </a>
-                        <a 
-                          href={project.demo} 
-                          target="_blank" 
+                        <a
+                          href={project.demo}
+                          target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
                           className="project-link"
@@ -441,7 +267,7 @@ const Projects = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="featured-card__content">
                     <div className="featured-card__header">
                       <h4 className="featured-card__title">{project.title}</h4>
@@ -450,9 +276,11 @@ const Projects = () => {
                         <span>{project.rating}</span>
                       </div>
                     </div>
-                    
-                    <p className="featured-card__description">{project.shortDescription}</p>
-                    
+
+                    <p className="featured-card__description">
+                      {project.shortDescription}
+                    </p>
+
                     <div className="featured-card__meta">
                       <div className="meta-item">
                         <FiCalendar />
@@ -463,18 +291,22 @@ const Projects = () => {
                         <span>{project.team}</span>
                       </div>
                     </div>
-                    
+
                     <div className="featured-card__technologies">
-                      {project.technologies.slice(0, 4).map((tech, techIndex) => (
-                        <span key={techIndex} className="tech-badge">{tech}</span>
-                      ))}
+                      {project.technologies
+                        .slice(0, 4)
+                        .map((tech, techIndex) => (
+                          <span key={techIndex} className="tech-badge">
+                            {tech}
+                          </span>
+                        ))}
                       {project.technologies.length > 4 && (
                         <span className="tech-badge tech-badge--more">
                           +{project.technologies.length - 4}
                         </span>
                       )}
                     </div>
-                    
+
                     <button className="featured-card__cta">
                       <span>View Details</span>
                       <FiArrowRight />
@@ -497,14 +329,16 @@ const Projects = () => {
                 className="search-input"
               />
             </div>
-            
+
             <div className="filter-container">
               <FiFilter className="filter-icon" />
               <div className="filter-buttons">
                 {projectCategories.map((category) => (
                   <button
                     key={category.id}
-                    className={`filter-btn ${activeFilter === category.id ? 'filter-btn--active' : ''}`}
+                    className={`filter-btn ${
+                      activeFilter === category.id ? "filter-btn--active" : ""
+                    }`}
                     onClick={() => setActiveFilter(category.id)}
                   >
                     <span>{category.label}</span>
@@ -521,30 +355,34 @@ const Projects = () => {
               <div
                 key={project.id}
                 className="project-card"
-                style={{ '--delay': `${index * 0.1}s` }}
+                style={{ "--delay": `${index * 0.1}s` }}
                 onClick={() => openProjectModal(project)}
               >
                 <div className="project-card__image">
                   <img src={project.image} alt={project.title} />
                   <div className="project-card__status">
-                    <span className={`status-badge status-badge--${project.status.toLowerCase().replace(' ', '-')}`}>
+                    <span
+                      className={`status-badge status-badge--${project.status
+                        .toLowerCase()
+                        .replace(" ", "-")}`}
+                    >
                       {project.status}
                     </span>
                   </div>
                   <div className="project-card__overlay">
                     <div className="project-card__links">
-                      <a 
-                        href={project.github} 
-                        target="_blank" 
+                      <a
+                        href={project.github}
+                        target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
                         className="project-link"
                       >
                         <FiGithub />
                       </a>
-                      <a 
-                        href={project.demo} 
-                        target="_blank" 
+                      <a
+                        href={project.demo}
+                        target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
                         className="project-link"
@@ -554,14 +392,18 @@ const Projects = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="project-card__content">
                   <h4 className="project-card__title">{project.title}</h4>
-                  <p className="project-card__description">{project.shortDescription}</p>
-                  
+                  <p className="project-card__description">
+                    {project.shortDescription}
+                  </p>
+
                   <div className="project-card__technologies">
                     {project.technologies.slice(0, 3).map((tech, techIndex) => (
-                      <span key={techIndex} className="tech-tag">{tech}</span>
+                      <span key={techIndex} className="tech-tag">
+                        {tech}
+                      </span>
                     ))}
                     {project.technologies.length > 3 && (
                       <span className="tech-tag tech-tag--more">
@@ -580,11 +422,11 @@ const Projects = () => {
               <FiSearch className="no-results-icon" />
               <h3>No projects found</h3>
               <p>Try adjusting your search or filter criteria</p>
-              <button 
+              <button
                 className="reset-btn"
                 onClick={() => {
-                  setSearchTerm('');
-                  setActiveFilter('all');
+                  setSearchTerm("");
+                  setActiveFilter("all");
                 }}
               >
                 Reset Filters
@@ -596,28 +438,30 @@ const Projects = () => {
           <div className="projects__cta">
             <div className="cta-card">
               <h3 className="cta-card__title">
-                Interested in <span className="text-gradient">Working Together</span>?
+                Interested in{" "}
+                <span className="text-gradient">Working Together</span>?
               </h3>
               <p className="cta-card__description">
-                I'm always excited to take on new challenges and create amazing digital experiences. 
-                Let's discuss your next project and bring your ideas to life.
+                I'm always excited to take on new challenges and create amazing
+                digital experiences. Let's discuss your next project and bring
+                your ideas to life.
               </p>
               <div className="cta-card__actions">
-                <button 
+                <button
                   className="cta-btn cta-btn--primary"
                   onClick={() => {
-                    const contactSection = document.getElementById('contact');
+                    const contactSection = document.getElementById("contact");
                     if (contactSection) {
-                      contactSection.scrollIntoView({ behavior: 'smooth' });
+                      contactSection.scrollIntoView({ behavior: "smooth" });
                     }
                   }}
                 >
                   <span>Start a Project</span>
                   <FiZap />
                 </button>
-                <a 
-                  href="https://github.com/Inioluwa-dev" 
-                  target="_blank" 
+                <a
+                  href="https://github.com/Inioluwa-dev"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="cta-btn cta-btn--secondary"
                 >
@@ -634,36 +478,54 @@ const Projects = () => {
       {selectedProject && (
         <div className="project-modal-overlay" onClick={closeProjectModal}>
           <div className="project-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="project-modal__close" onClick={closeProjectModal}>
+            <button
+              className="project-modal__close"
+              onClick={closeProjectModal}
+            >
               <FiX />
             </button>
 
             <div className="project-modal__content">
               <div className="project-modal__header">
                 <div className="project-modal__image">
-                  <img src={selectedProject.image} alt={selectedProject.title} />
+                  <img
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                  />
                 </div>
                 <div className="project-modal__info">
-                  <h2 className="project-modal__title">{selectedProject.title}</h2>
-                  <p className="project-modal__description">{selectedProject.description}</p>
-                  
+                  <h2 className="project-modal__title">
+                    {selectedProject.title}
+                  </h2>
+                  <p className="project-modal__description">
+                    {selectedProject.description}
+                  </p>
+
                   <div className="project-modal__meta">
                     <div className="meta-grid">
                       <div className="meta-item">
                         <span className="meta-label">Year</span>
-                        <span className="meta-value">{selectedProject.year}</span>
+                        <span className="meta-value">
+                          {selectedProject.year}
+                        </span>
                       </div>
                       <div className="meta-item">
                         <span className="meta-label">Duration</span>
-                        <span className="meta-value">{selectedProject.duration}</span>
+                        <span className="meta-value">
+                          {selectedProject.duration}
+                        </span>
                       </div>
                       <div className="meta-item">
                         <span className="meta-label">Team</span>
-                        <span className="meta-value">{selectedProject.team}</span>
+                        <span className="meta-value">
+                          {selectedProject.team}
+                        </span>
                       </div>
                       <div className="meta-item">
                         <span className="meta-label">Client</span>
-                        <span className="meta-value">{selectedProject.client}</span>
+                        <span className="meta-value">
+                          {selectedProject.client}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -687,7 +549,9 @@ const Projects = () => {
                   <h4>Technologies Used</h4>
                   <div className="tech-list">
                     {selectedProject.technologies.map((tech, index) => (
-                      <span key={index} className="tech-badge">{tech}</span>
+                      <span key={index} className="tech-badge">
+                        {tech}
+                      </span>
                     ))}
                   </div>
                 </div>
@@ -724,10 +588,16 @@ const Projects = () => {
                   <div className="modal-section">
                     <h4>Client Testimonial</h4>
                     <div className="testimonial">
-                      <p className="testimonial__text">"{selectedProject.testimonial.text}"</p>
+                      <p className="testimonial__text">
+                        "{selectedProject.testimonial.text}"
+                      </p>
                       <div className="testimonial__author">
-                        <span className="testimonial__name">{selectedProject.testimonial.author}</span>
-                        <span className="testimonial__role">{selectedProject.testimonial.role}</span>
+                        <span className="testimonial__name">
+                          {selectedProject.testimonial.author}
+                        </span>
+                        <span className="testimonial__role">
+                          {selectedProject.testimonial.role}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -735,18 +605,18 @@ const Projects = () => {
               </div>
 
               <div className="project-modal__footer">
-                <a 
-                  href={selectedProject.github} 
-                  target="_blank" 
+                <a
+                  href={selectedProject.github}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="modal-cta modal-cta--secondary"
                 >
                   <FiGithub />
                   <span>View Code</span>
                 </a>
-                <a 
-                  href={selectedProject.demo} 
-                  target="_blank" 
+                <a
+                  href={selectedProject.demo}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="modal-cta modal-cta--primary"
                 >

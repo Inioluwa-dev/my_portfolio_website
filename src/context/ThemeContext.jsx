@@ -12,12 +12,20 @@ export const useTheme = () => {
 
 export const ThemeProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(() => {
-    const saved = localStorage.getItem('theme');
-    return saved ? JSON.parse(saved) : true;
+    try {
+      const saved = localStorage.getItem('theme');
+      if (!saved) return true;
+      if (saved === 'dark') return true;
+      if (saved === 'light') return false;
+      if (saved === 'true' || saved === 'false') return saved === 'true';
+      return JSON.parse(saved);
+    } catch (e) {
+      return true;
+    }
   });
 
   useEffect(() => {
-    localStorage.setItem('theme', JSON.stringify(isDark));
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
   }, [isDark]);
 

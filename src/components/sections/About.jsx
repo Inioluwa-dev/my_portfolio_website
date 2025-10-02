@@ -1,137 +1,106 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { 
-  FiCode, 
-  FiDatabase, 
-  FiServer, 
-  FiSmartphone,
-  FiGlobe,
-  FiTool,
-  FiAward,
-  FiUsers,
-  FiTrendingUp,
-  FiHeart,
-  FiCoffee,
-  FiZap,
-  FiUser
-} from 'react-icons/fi';
-import '../../styles/components/About.css';
-import mrHPhoto from '../../assets/mr_h.png';
+import React, { useState, useEffect, useRef } from "react";
+import * as FiIcons from "react-icons/fi";
+import {
+  skillCategories as sharedSkillCategories,
+  skillsData,
+} from "../../data/skills";
+import SEO from "../seo/SEO";
+import "../../styles/components/About.css";
+import mrHPhoto from "../../assets/mr_h.png";
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeTab, setActiveTab] = useState('overview');
+  const [activeTab, setActiveTab] = useState("overview");
   const aboutRef = useRef(null);
 
   const tabs = [
-    { id: 'overview', label: 'Overview', icon: FiUser },
-    { id: 'skills', label: 'Skills', icon: FiCode },
-    { id: 'experience', label: 'Experience', icon: FiTrendingUp }
+    { id: "overview", label: "Overview", icon: FiIcons.FiUser },
+    { id: "skills", label: "Skills", icon: FiIcons.FiCode },
+    { id: "experience", label: "Experience", icon: FiIcons.FiTrendingUp },
   ];
 
   const highlights = [
     {
-      icon: FiCode,
+      icon: FiIcons.FiCode,
       title: "Clean Code Advocate",
-      description: "I believe in writing maintainable, scalable code that stands the test of time.",
-      color: "#6366f1"
+      description:
+        "I believe in writing maintainable, scalable code that stands the test of time.",
+      color: "#6366f1",
     },
     {
-      icon: FiUsers,
+      icon: FiIcons.FiUsers,
       title: "Collaborative Spirit",
-      description: "Love working with teams to bring innovative ideas to life through technology.",
-      color: "#8b5cf6"
+      description:
+        "Love working with teams to bring innovative ideas to life through technology.",
+      color: "#8b5cf6",
     },
     {
-      icon: FiZap,
+      icon: FiIcons.FiZap,
       title: "Performance Focused",
-      description: "Obsessed with creating fast, efficient applications that users love to interact with.",
-      color: "#06b6d4"
+      description:
+        "Obsessed with creating fast, efficient applications that users love to interact with.",
+      color: "#06b6d4",
     },
     {
-      icon: FiHeart,
+      icon: FiIcons.FiHeart,
       title: "User-Centric Design",
-      description: "Every line of code I write is with the end user's experience in mind.",
-      color: "#10b981"
-    }
+      description:
+        "Every line of code I write is with the end user's experience in mind.",
+      color: "#10b981",
+    },
   ];
 
-  const skillCategories = [
-    {
-      title: "Frontend Development",
-      icon: FiGlobe,
-      color: "#6366f1",
-      skills: [
-        { name: "HTML/CSS", level: 95, description: "Semantic markup & responsive design" },
-        { name: "JavaScript", level: 85, description: "Modern ES6+ features & DOM manipulation" },
-        { name: "React", level: 80, description: "Component architecture & state management" },
-        { name: "Tailwind/Bootstrap", level: 75, description: "Utility-first CSS & responsive frameworks" }
-      ]
-    },
-    {
-      title: "Backend Development",
-      icon: FiServer,
-      color: "#8b5cf6",
-      skills: [
-        { name: "Python", level: 90, description: "Clean, efficient server-side logic" },
-        { name: "Django", level: 88, description: "REST APIs & database modeling" },
-        { name: "Node.js", level: 60, description: "Learning Express.js & real-time applications" },
-        { name: "Databases", level: 85, description: "MySQL, MongoDB & PostgreSQL expertise" }
-      ]
-    },
-    {
-      title: "Tools & Technologies",
-      icon: FiTool,
-      color: "#06b6d4",
-      skills: [
-        { name: "Git", level: 85, description: "Version control & collaboration" },
-        { name: "Cloud Services", level: 80, description: "Backblaze, Aiven, Render, Firebase" },
-        { name: "Deployment", level: 75, description: "Application hosting & database management" },
-        { name: "Mobile Development", level: 70, description: "PWA development & mobile-first design" }
-      ]
-    }
-  ];
+  // Use shared skill categories and data, mapping icon string to icon component
+  const skillCategories = sharedSkillCategories.map((cat) => ({
+    ...cat,
+    icon: FiIcons[cat.icon] || FiIcons.FiCode,
+    skills: skillsData[cat.id] || [],
+  }));
 
   const journey = [
     {
       year: "2024",
       title: "Full Stack Developer",
       company: "Freelance & Personal Projects",
-      description: "Building robust web applications with Python/Django backend and modern frontend technologies. Focused on creating scalable, user-centric solutions.",
+      description:
+        "Building robust web applications with Python/Django backend and modern frontend technologies. Focused on creating scalable, user-centric solutions.",
       achievements: [
         "Developed Kefi social media platform",
         "Built Konverter CSV/JSON tool with minify features",
-        "Deployed multiple applications using cloud services"
-      ]
+        "Deployed multiple applications using cloud services",
+      ],
     },
     {
       year: "2023",
       title: "Backend Developer",
       company: "Academy & Learning",
-      description: "Attended coding academy to gain comprehensive knowledge in software development, focusing on backend technologies and best practices.",
+      description:
+        "Attended coding academy to gain comprehensive knowledge in software development, focusing on backend technologies and best practices.",
       achievements: [
         "Completed intensive coding bootcamp",
         "Mastered Python and Django framework",
-        "Learned database design and optimization"
-      ]
+        "Learned database design and optimization",
+      ],
     },
     {
       year: "2022",
       title: "Self-Taught Developer",
       company: "Mobile Learning Journey",
-      description: "Started coding journey on mobile phone, learning online through various resources and building foundational programming skills.",
+      description:
+        "Started coding journey on mobile phone, learning online through various resources and building foundational programming skills.",
       achievements: [
         "Learned HTML, CSS, and JavaScript basics",
         "Built first projects on mobile device",
-        "Developed passion for web development"
-      ]
-    }
+        "Developed passion for web development",
+      ],
+    },
   ];
 
   const stats = [
-    { number: "7+", label: "Years Learning", icon: FiAward },
-    { number: "2+", label: "Years Working", icon: FiTrendingUp },
-    { number: "100%", label: "Dedication", icon: FiHeart },
-    { number: "24/7", label: "Learning Mode", icon: FiCoffee }
+    { number: "7+", label: "Years Learning", icon: FiIcons.FiAward },
+    { number: "2+", label: "Years Working", icon: FiIcons.FiTrendingUp },
+    { number: "100%", label: "Dedication", icon: FiIcons.FiHeart },
+    { number: "24/7", label: "Learning Mode", icon: FiIcons.FiCoffee },
   ];
 
   useEffect(() => {
@@ -167,22 +136,32 @@ const About = () => {
       <div className="about__intro">
         <div className="about__intro-header">
           <div className="about__photo about__photo--circle-glow">
-            <img src={mrHPhoto} alt="Olayoriju Inioluwa (Mr Heritage)" className="about__photo-img" />
+            <img
+              src={mrHPhoto}
+              alt="Olayoriju Inioluwa (Mr Heritage)"
+              className="about__photo-img"
+            />
           </div>
           <div className="about__intro-text-content">
             <h3 className="about__intro-title">
-              Hi, I'm <span className="text-gradient">Olayoriju Inioluwa</span> (Mr Heritage)
+              Hi, I'm <span className="text-gradient">Olayoriju Inioluwa</span>{" "}
+              (Mr Heritage)
             </h3>
             <h4 className="about__intro-role">Full Stack Developer</h4>
             <p className="about__intro-text">
-              I'm a passionate Full Stack Developer from Lagos, Nigeria, who loves turning complex problems into simple, beautiful solutions. 
-              With a strong foundation in Python/Django backend development and modern frontend technologies, I create applications 
-              that not only look great but perform exceptionally well.
+              I'm a passionate Full Stack Developer from Lagos, Nigeria, who
+              loves turning complex problems into simple, beautiful solutions.
+              With a strong foundation in Python/Django backend development and
+              modern frontend technologies, I create applications that not only
+              look great but perform exceptionally well.
             </p>
             <p className="about__intro-text">
-              My journey into tech started at a young age when I began coding on my mobile phone. I learned online before attending 
-              an academy to gain comprehensive knowledge. When I'm not coding, you'll find me pursuing my passions in photography, 
-              music, poetry, and writing. I believe in continuous learning and becoming the best version of myself each day.
+              My journey into tech started at a young age when I began coding on
+              my mobile phone. I learned online before attending an academy to
+              gain comprehensive knowledge. When I'm not coding, you'll find me
+              pursuing my passions in photography, music, poetry, and writing. I
+              believe in continuous learning and becoming the best version of
+              myself each day.
             </p>
           </div>
         </div>
@@ -192,17 +171,22 @@ const About = () => {
         {highlights.map((highlight, index) => {
           const IconComponent = highlight.icon;
           return (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="highlight-card highlight-card--animated"
-              style={{ '--highlight-color': highlight.color, '--delay': `${index * 0.1}s` }}
+              style={{
+                "--highlight-color": highlight.color,
+                "--delay": `${index * 0.1}s`,
+              }}
             >
               <div className="highlight-card__icon highlight-card__icon--pulse">
                 <IconComponent />
               </div>
               <div className="highlight-card__content">
                 <h4 className="highlight-card__title">{highlight.title}</h4>
-                <p className="highlight-card__description">{highlight.description}</p>
+                <p className="highlight-card__description">
+                  {highlight.description}
+                </p>
               </div>
             </div>
           );
@@ -218,7 +202,12 @@ const About = () => {
                 <IconComponent />
               </div>
               <div className="stat-card__content">
-                <span className="stat-card__number stat-card__number--count" data-count={stat.number}>{stat.number}</span>
+                <span
+                  className="stat-card__number stat-card__number--count"
+                  data-count={stat.number}
+                >
+                  {stat.number}
+                </span>
                 <span className="stat-card__label">{stat.label}</span>
               </div>
             </div>
@@ -233,10 +222,10 @@ const About = () => {
       {skillCategories.map((category, categoryIndex) => {
         const IconComponent = category.icon;
         return (
-          <div 
-            key={categoryIndex} 
+          <div
+            key={categoryIndex}
             className="skill-category"
-            style={{ '--category-color': category.color }}
+            style={{ "--category-color": category.color }}
           >
             <div className="skill-category__header">
               <div className="skill-category__icon">
@@ -244,22 +233,21 @@ const About = () => {
               </div>
               <h4 className="skill-category__title">{category.title}</h4>
             </div>
-            
             <div className="skill-category__skills">
               {category.skills.map((skill, skillIndex) => (
-                <div 
-                  key={skillIndex} 
+                <div
+                  key={skillIndex}
                   className="skill-item"
-                  style={{ '--delay': `${skillIndex * 0.1}s` }}
+                  style={{ "--delay": `${skillIndex * 0.1}s` }}
                 >
                   <div className="skill-item__header">
                     <span className="skill-item__name">{skill.name}</span>
                     <span className="skill-item__level">{skill.level}%</span>
                   </div>
                   <div className="skill-item__bar">
-                    <div 
+                    <div
                       className="skill-item__progress"
-                      style={{ '--progress': `${skill.level}%` }}
+                      style={{ "--progress": `${skill.level}%` }}
                     ></div>
                   </div>
                   <p className="skill-item__description">{skill.description}</p>
@@ -276,10 +264,10 @@ const About = () => {
     <div className="about__journey">
       <div className="journey-timeline">
         {journey.map((item, index) => (
-          <div 
-            key={index} 
+          <div
+            key={index}
             className="timeline-item"
-            style={{ '--delay': `${index * 0.2}s` }}
+            style={{ "--delay": `${index * 0.2}s` }}
           >
             <div className="timeline-item__marker">
               <span className="timeline-item__year">{item.year}</span>
@@ -302,27 +290,79 @@ const About = () => {
 
   const renderTabContent = () => {
     switch (activeTab) {
-      case 'overview':
+      case "overview":
         return renderOverview();
-      case 'skills':
+      case "skills":
         return renderSkills();
-      case 'experience':
+      case "experience":
         return renderJourney();
       default:
         return renderOverview();
     }
   };
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About Olayoriju Inioluwa - Mr Heritage",
+    description:
+      "Learn about Olayoriju Inioluwa (Mr Heritage), a passionate Full Stack Developer from Lagos, Nigeria, specializing in Python/Django backend development and modern frontend technologies.",
+    url: "https://mr-heritage.name.ng/",
+    mainEntity: {
+      "@type": "Person",
+      name: "Olayoriju Inioluwa",
+      alternateName: ["Mr Heritage", "Inioluwa", "inioluwa_dev", "Comibyte"],
+      jobTitle: "Full Stack Developer",
+      description:
+        "Passionate Full Stack Developer from Lagos, Nigeria, who loves turning complex problems into simple, beautiful solutions. With a strong foundation in Python/Django backend development and modern frontend technologies.",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Lagos",
+        addressCountry: "Nigeria",
+      },
+      knowsAbout: [
+        "Python",
+        "Django",
+        "React",
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "MySQL",
+        "MongoDB",
+        "PostgreSQL",
+        "Backend Development",
+        "Frontend Development",
+        "Full Stack Development",
+      ],
+      hasOccupation: {
+        "@type": "Occupation",
+        name: "Full Stack Developer",
+        description:
+          "Specializing in Python/Django backend development with modern frontend technologies",
+      },
+    },
+  };
+
   return (
     <section id="about" className="about" ref={aboutRef}>
+      <SEO
+        title="About Me - Olayoriju Inioluwa | Mr Heritage"
+        description="Learn about Olayoriju Inioluwa (Mr Heritage), a passionate Full Stack Developer from Lagos, Nigeria, specializing in Python/Django backend development and modern frontend technologies."
+        keywords="About Mr Heritage, Olayoriju Inioluwa, Inioluwa, inioluwa_dev, Comibyte, Olayoriju, Full Stack Developer, Python Django Developer, Lagos Nigeria, Web Developer, Software Engineer, Backend Developer"
+        url="https://mr-heritage.name.ng/"
+        structuredData={structuredData}
+      />
       <div className="about__background">
         <div className="about__gradient about__gradient--1"></div>
         <div className="about__gradient about__gradient--2"></div>
       </div>
 
       <div className="about__container">
-        <div className={`about__content ${isVisible ? 'about__content--visible' : ''}`}>
-          
+        <div
+          className={`about__content ${
+            isVisible ? "about__content--visible" : ""
+          }`}
+        >
           {/* Section Header */}
           <div className="about__header">
             <h2 className="about__title">
@@ -340,7 +380,9 @@ const About = () => {
               return (
                 <button
                   key={tab.id}
-                  className={`tab-button ${activeTab === tab.id ? 'tab-button--active' : ''}`}
+                  className={`tab-button ${
+                    activeTab === tab.id ? "tab-button--active" : ""
+                  }`}
                   onClick={() => setActiveTab(tab.id)}
                 >
                   <IconComponent className="tab-button__icon" />
@@ -351,9 +393,7 @@ const About = () => {
           </div>
 
           {/* Tab Content */}
-          <div className="about__tab-content">
-            {renderTabContent()}
-          </div>
+          <div className="about__tab-content">{renderTabContent()}</div>
         </div>
       </div>
     </section>

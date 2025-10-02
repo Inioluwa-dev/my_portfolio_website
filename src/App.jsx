@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from './context/ThemeContext';
 import { AnimationProvider } from './context/AnimationContext';
-import Portfolio from './Portfolio';
+import AppRouter from './router/AppRouter';
 import LoadingScreen from './components/layout/LoadingScreen';
 import CustomCursor from './components/ui/CustomCursor';
 import ScrollProgress from './components/layout/ScrollProgress';
+import SEO from './components/seo/SEO';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/global.css';
 
@@ -25,15 +27,18 @@ function App() {
   }
 
   return (
-    <ThemeProvider>
-      <AnimationProvider>
-        <div className="App">
-          <CustomCursor />
-          <ScrollProgress />
-          <Portfolio />
-        </div>
-      </AnimationProvider>
-    </ThemeProvider>
+    <HelmetProvider>
+      <ThemeProvider>
+        <AnimationProvider>
+          <div className="App">
+            <SEO />
+            <CustomCursor />
+            <ScrollProgress />
+          <AppRouter />
+          </div>
+        </AnimationProvider>
+      </ThemeProvider>
+    </HelmetProvider>
   );
 }
 

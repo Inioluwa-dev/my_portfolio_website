@@ -1,246 +1,29 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { 
-  FiCode, 
-  FiServer, 
-  FiDatabase, 
-  FiTool,
-  FiSmartphone,
-  FiGlobe,
-  FiLayers,
-  FiCloud,
-  FiGitBranch,
-  FiMonitor,
-  FiCpu,
-  FiHardDrive
-} from 'react-icons/fi';
-import '../../styles/components/Skills.css';
+import React, { useState, useEffect, useRef } from "react";
+import * as FiIcons from "react-icons/fi";
+import SEO from "../seo/SEO";
+import "../../styles/components/Skills.css";
+import {
+  skillCategories as sharedSkillCategories,
+  skillsData,
+} from "../../data/skills";
 
 const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeCategory, setActiveCategory] = useState('frontend');
+  const [activeCategory, setActiveCategory] = useState("frontend");
   const [hoveredSkill, setHoveredSkill] = useState(null);
   const skillsRef = useRef(null);
 
-  const skillCategories = [
-    {
-      id: 'backend',
-      title: 'Backend Development',
-      icon: FiServer,
-      color: '#8b5cf6',
-      description: 'Building robust server-side applications with Python/Django'
-    },
-    {
-      id: 'database',
-      title: 'Database & Storage',
-      icon: FiDatabase,
-      color: '#06b6d4',
-      description: 'Data modeling and optimization across multiple DB types'
-    },
-    {
-      id: 'frontend',
-      title: 'Frontend Development',
-      icon: FiGlobe,
-      color: '#6366f1',
-      description: 'Creating responsive user interfaces with modern tools'
-    },
-    {
-      id: 'tools',
-      title: 'Tools & DevOps',
-      icon: FiTool,
-      color: '#10b981',
-      description: 'Development workflow and cloud deployment'
-    },
-    {
-      id: 'cloud',
-      title: 'Cloud & Infrastructure',
-      icon: FiCloud,
-      color: '#ef4444',
-      description: 'Scalable cloud solutions and hosting'
-    },
-    {
-      id: 'mobile',
-      title: 'Mobile & PWA',
-      icon: FiSmartphone,
-      color: '#f59e0b',
-      description: 'Progressive web applications and mobile solutions'
-    }
-  ];
-
-  // Real Project Names (to be linked to GitHub):
-  // - Kefi: Social media platform
-  // - Konverter: CSV/JSON converter with minify/unminify features
-  const skillsData = {
-    frontend: [
-      {
-        name: 'HTML',
-        level: 95,
-        icon: '🌐',
-        description: 'Semantic markup and accessibility best practices',
-        experience: '3+ years',
-        projects: 30
-      },
-      {
-        name: 'CSS',
-        level: 90,
-        icon: '🎨',
-        description: 'Responsive design, animations, and modern CSS features',
-        experience: '3+ years',
-        projects: 28
-      },
-      {
-        name: 'JavaScript',
-        level: 85,
-        icon: '🟨',
-        description: 'ES6+, DOM manipulation, and modern JS features',
-        experience: '2+ years',
-        projects: 25
-      },
-      {
-        name: 'React',
-        level: 80,
-        icon: '⚛️',
-        description: 'Component-based architecture and state management',
-        experience: '1+ years',
-        projects: 15
-      },
-      {
-        name: 'Tailwind CSS',
-        level: 70,
-        icon: '💨',
-        description: 'Utility-first CSS framework for rapid development',
-        experience: '1+ year',
-        projects: 10
-      },
-      {
-        name: 'Bootstrap',
-        level: 75,
-        icon: '🎯',
-        description: 'Responsive grid system and component library',
-        experience: '2+ years',
-        projects: 18
-      }
-    ],
-    backend: [
-      {
-        name: 'Python',
-        level: 90,
-        icon: '🐍',
-        description: 'Clean code, data structures, and algorithms',
-        experience: '5+ years',
-        projects: 25
-      },
-      {
-        name: 'Django',
-        level: 88,
-        icon: '🐍',
-        description: 'REST APIs, ORM, authentication, and security',
-        experience: '3+ years',
-        projects: 20
-      },
-      {
-        name: 'Node.js',
-        level: 60,
-        icon: '🟢',
-        description: 'Learning Express.js and backend development',
-        experience: '6 months',
-        projects: 5
-      }
-    ],
-    database: [
-      {
-        name: 'MySQL',
-        level: 85,
-        icon: '🐬',
-        description: 'Relational database design and optimization',
-        experience: '3+ years',
-        projects: 20
-      },
-      {
-        name: 'MongoDB',
-        level: 80,
-        icon: '🍃',
-        description: 'Document-based NoSQL database operations',
-        experience: '2+ years',
-        projects: 15
-      },
-      {
-        name: 'PostgreSQL',
-        level: 75,
-        icon: '🐘',
-        description: 'Advanced queries and database management',
-        experience: '1+ year',
-        projects: 10
-      }
-    ],
-    tools: [
-      {
-        name: 'Git',
-        level: 85,
-        icon: '🐙',
-        description: 'Version control and collaboration workflows',
-        experience: '5+ years',
-        projects: 35
-      },
-      {
-        name: 'Backblaze',
-        level: 80,
-        icon: '☁️',
-        description: 'Cloud storage and backup solutions',
-        experience: '2+ years',
-        projects: 12
-      },
-      {
-        name: 'Aiven',
-        level: 75,
-        icon: '🗄️',
-        description: 'Database hosting and management platform',
-        experience: '1+ year',
-        projects: 8
-      },
-      {
-        name: 'Render',
-        level: 80,
-        icon: '🚀',
-        description: 'Application hosting and deployment',
-        experience: '2+ years',
-        projects: 15
-      },
-      {
-        name: 'Firebase',
-        level: 75,
-        icon: '🔥',
-        description: 'Real-time database and authentication services',
-        experience: '1+ year',
-        projects: 10
-      }
-    ],
-    mobile: [
-      {
-        name: 'PWA',
-        level: 70,
-        icon: '📲',
-        description: 'Progressive Web Apps with offline capabilities',
-        experience: '1+ year',
-        projects: 5
-      }
-    ],
-    cloud: [
-      {
-        name: 'Cloud Infrastructure',
-        level: 75,
-        icon: '☁️',
-        description: 'Database hosting, storage, and deployment solutions',
-        experience: '2+ years',
-        projects: 15
-      }
-    ]
-  };
+  // Use shared skill categories, but map icon string to icon component
+  const skillCategories = sharedSkillCategories.map((cat) => ({
+    ...cat,
+    icon: FiIcons[cat.icon] || FiIcons.FiCode,
+  }));
 
   const overallStats = [
-    { label: 'Technologies Mastered', value: '25+', icon: FiCode },
-    { label: 'Years of Experience', value: '3+', icon: FiCpu },
-    { label: 'Projects Completed', value: '50+', icon: FiMonitor },
-    { label: 'Lines of Code', value: '100K+', icon: FiHardDrive }
+    { label: "Technologies Mastered", value: "25+", icon: FiIcons.FiCode },
+    { label: "Years of Experience", value: "3+", icon: FiIcons.FiCpu },
+    { label: "Projects Completed", value: "50+", icon: FiIcons.FiMonitor },
+    { label: "Lines of Code", value: "100K+", icon: FiIcons.FiHardDrive },
   ];
 
   useEffect(() => {
@@ -269,21 +52,75 @@ const Skills = () => {
   }, []);
 
   const getSkillColor = (level) => {
-    if (level >= 90) return '#10b981'; // Expert - Green
-    if (level >= 80) return '#6366f1'; // Advanced - Blue
-    if (level >= 70) return '#f59e0b'; // Intermediate - Yellow
-    return '#ef4444'; // Beginner - Red
+    if (level >= 90) return "#10b981"; // Expert - Green
+    if (level >= 80) return "#6366f1"; // Advanced - Blue
+    if (level >= 70) return "#f59e0b"; // Intermediate - Yellow
+    return "#ef4444"; // Beginner - Red
   };
 
   const getSkillLabel = (level) => {
-    if (level >= 90) return 'Expert';
-    if (level >= 80) return 'Advanced';
-    if (level >= 70) return 'Intermediate';
-    return 'Beginner';
+    if (level >= 90) return "Expert";
+    if (level >= 80) return "Advanced";
+    if (level >= 70) return "Intermediate";
+    return "Beginner";
+  };
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Technical Skills - Mr Heritage Portfolio",
+    description:
+      "Comprehensive overview of technical skills and expertise in Python, Django, React, JavaScript, and other modern web development technologies.",
+    url: "https://mr-heritage.name.ng/",
+    mainEntity: {
+      "@type": "Person",
+      name: "Olayoriju Inioluwa",
+      alternateName: ["Mr Heritage", "Inioluwa", "inioluwa_dev", "Comibyte"],
+      jobTitle: "Full Stack Developer",
+      knowsAbout: [
+        "Python",
+        "Django",
+        "React",
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "MySQL",
+        "MongoDB",
+        "PostgreSQL",
+        "Node.js",
+        "Git",
+        "Backend Development",
+        "Frontend Development",
+        "Database Design",
+        "API Development",
+        "PWA Development",
+      ],
+      hasOccupation: {
+        "@type": "Occupation",
+        name: "Full Stack Developer",
+        skills: [
+          "Python (90%)",
+          "Django (88%)",
+          "React (80%)",
+          "JavaScript (85%)",
+          "HTML (95%)",
+          "CSS (90%)",
+          "MySQL (85%)",
+          "MongoDB (80%)",
+        ],
+      },
+    },
   };
 
   return (
     <section id="skills" className="skills" ref={skillsRef}>
+      <SEO
+        title="Technical Skills - Mr Heritage Portfolio"
+        description="Explore my comprehensive technical skills in Python, Django, React, JavaScript, and modern web development technologies. 25+ technologies mastered with detailed proficiency levels."
+        keywords="Technical Skills, Olayoriju Inioluwa, Inioluwa, inioluwa_dev, Comibyte, Olayoriju, Python Developer, Django Expert, React Developer, JavaScript, Full Stack Skills, Web Development Technologies, Backend Development, Frontend Development"
+        url="https://mr-heritage.name.ng/"
+        structuredData={structuredData}
+      />
       <div className="skills__background">
         <div className="skills__gradient skills__gradient--1"></div>
         <div className="skills__gradient skills__gradient--2"></div>
@@ -291,15 +128,19 @@ const Skills = () => {
       </div>
 
       <div className="skills__container">
-        <div className={`skills__content ${isVisible ? 'skills__content--visible' : ''}`}>
-          
+        <div
+          className={`skills__content ${
+            isVisible ? "skills__content--visible" : ""
+          }`}
+        >
           {/* Section Header */}
           <div className="skills__header">
             <h2 className="skills__title">
               Technical <span className="text-gradient">Skills</span>
             </h2>
             <p className="skills__subtitle">
-              A comprehensive overview of my technical expertise and proficiency levels
+              A comprehensive overview of my technical expertise and proficiency
+              levels
             </p>
           </div>
 
@@ -308,10 +149,10 @@ const Skills = () => {
             {overallStats.map((stat, index) => {
               const IconComponent = stat.icon;
               return (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className="stat-card"
-                  style={{ '--delay': `${index * 0.1}s` }}
+                  style={{ "--delay": `${index * 0.1}s` }}
                 >
                   <div className="stat-card__icon">
                     <IconComponent />
@@ -332,16 +173,20 @@ const Skills = () => {
               return (
                 <button
                   key={category.id}
-                  className={`category-btn ${activeCategory === category.id ? 'category-btn--active' : ''}`}
+                  className={`category-btn ${
+                    activeCategory === category.id ? "category-btn--active" : ""
+                  }`}
                   onClick={() => setActiveCategory(category.id)}
-                  style={{ '--category-color': category.color }}
+                  style={{ "--category-color": category.color }}
                 >
                   <div className="category-btn__icon">
                     <IconComponent />
                   </div>
                   <div className="category-btn__content">
                     <h3 className="category-btn__title">{category.title}</h3>
-                    <p className="category-btn__description">{category.description}</p>
+                    <p className="category-btn__description">
+                      {category.description}
+                    </p>
                   </div>
                 </button>
               );
@@ -352,10 +197,16 @@ const Skills = () => {
           <div className="skills__grid">
             <div className="skills__grid-header">
               <h3 className="skills__grid-title">
-                {skillCategories.find(cat => cat.id === activeCategory)?.title}
+                {
+                  skillCategories.find((cat) => cat.id === activeCategory)
+                    ?.title
+                }
               </h3>
               <p className="skills__grid-description">
-                {skillCategories.find(cat => cat.id === activeCategory)?.description}
+                {
+                  skillCategories.find((cat) => cat.id === activeCategory)
+                    ?.description
+                }
               </p>
             </div>
 
@@ -364,9 +215,9 @@ const Skills = () => {
                 <div
                   key={index}
                   className="skill-card"
-                  style={{ 
-                    '--delay': `${index * 0.1}s`,
-                    '--skill-color': getSkillColor(skill.level)
+                  style={{
+                    "--delay": `${index * 0.1}s`,
+                    "--skill-color": getSkillColor(skill.level),
                   }}
                   onMouseEnter={() => setHoveredSkill(skill)}
                   onMouseLeave={() => setHoveredSkill(null)}
@@ -382,15 +233,17 @@ const Skills = () => {
                       </div>
                     </div>
                     <div className="skill-card__level">
-                      <span className="skill-card__percentage">{skill.level}%</span>
+                      <span className="skill-card__percentage">
+                        {skill.level}%
+                      </span>
                     </div>
                   </div>
 
                   <div className="skill-card__progress">
                     <div className="skill-card__progress-bg">
-                      <div 
+                      <div
                         className="skill-card__progress-fill"
-                        style={{ '--progress': `${skill.level}%` }}
+                        style={{ "--progress": `${skill.level}%` }}
                       ></div>
                     </div>
                   </div>
@@ -399,12 +252,18 @@ const Skills = () => {
 
                   <div className="skill-card__meta">
                     <div className="skill-card__experience">
-                      <span className="skill-card__meta-label">Experience:</span>
-                      <span className="skill-card__meta-value">{skill.experience}</span>
+                      <span className="skill-card__meta-label">
+                        Experience:
+                      </span>
+                      <span className="skill-card__meta-value">
+                        {skill.experience}
+                      </span>
                     </div>
                     <div className="skill-card__projects">
                       <span className="skill-card__meta-label">Projects:</span>
-                      <span className="skill-card__meta-value">{skill.projects}</span>
+                      <span className="skill-card__meta-value">
+                        {skill.projects}
+                      </span>
                     </div>
                   </div>
 
@@ -433,9 +292,10 @@ const Skills = () => {
                 Continuous <span className="text-gradient">Learning</span>
               </h3>
               <p className="summary-card__description">
-                Technology evolves rapidly, and I'm committed to staying current with the latest 
-                trends, frameworks, and best practices. I regularly contribute to open source 
-                projects and experiment with emerging technologies.
+                Technology evolves rapidly, and I'm committed to staying current
+                with the latest trends, frameworks, and best practices. I
+                regularly contribute to open source projects and experiment with
+                emerging technologies.
               </p>
               <div className="summary-card__badges">
                 <span className="badge">Always Learning</span>

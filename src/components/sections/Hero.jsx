@@ -10,6 +10,7 @@ import {
   FiCoffee,
   FiYoutube
 } from 'react-icons/fi';
+import SEO from '../seo/SEO';
 import '../../styles/components/Hero.css';
 import CvPdf from '../../assets/mr-heritage.pdf';
 
@@ -21,8 +22,7 @@ const Hero = () => {
 
   const roles = [
     "Full Stack Developer",
-    "Python/Django Expert",
-    "Backend Specialist",
+    "Frontend & Backend Expert",
     "Problem Solver",
     "Creative Developer"
   ];
@@ -99,8 +99,50 @@ const Hero = () => {
     }
   };
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Olayoriju Inioluwa",
+    "alternateName": ["Mr Heritage", "Inioluwa", "inioluwa_dev", "Comibyte"],
+    "jobTitle": "Full Stack Developer",
+    "description": "Full Stack Developer specializing in both frontend and backend development. Creating exceptional digital experiences through clean code and innovative design, building seamless user-centric applications.",
+    "url": "https://mr-heritage.name.ng",
+    "image": "https://mr-heritage.name.ng/Mr%20Heritage%20Profile.png",
+    "sameAs": [
+      "https://github.com/Inioluwa-dev",
+      "https://youtube.com/@Inioluwa-dev"
+    ],
+    "knowsAbout": [
+      "Python",
+      "Django",
+      "React",
+      "JavaScript",
+      "Backend Development",
+      "Full Stack Development",
+      "Web Development"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Lagos",
+      "addressCountry": "Nigeria"
+    },
+    "email": "misterhge@gmail.com",
+    "alumniOf": "Coding Academy",
+    "hasOccupation": {
+      "@type": "Occupation",
+      "name": "Full Stack Developer",
+      "description": "Specializing in both frontend and backend development, creating seamless user-centric applications"
+    }
+  };
+
   return (
     <section id="home" className="hero" ref={heroRef}>
+      <SEO
+        title="Olayoriju Inioluwa | Mr Heritage - Full Stack Developer"
+        description="Full Stack Developer specializing in both frontend and backend development. I craft exceptional digital experiences through clean code and innovative design, creating seamless user-centric applications."
+        keywords="Olayoriju Inioluwa, Inioluwa, inioluwa_dev, Comibyte, Olayoriju, Mr Heritage, Full Stack Developer, Python, Django, React, Backend Developer, Portfolio, Web Development, Lagos Nigeria, Software Engineer"
+        structuredData={structuredData}
+      />
       {/* Background Elements */}
       <div className="hero__background">
         <div className="hero__gradient hero__gradient--1"></div>
@@ -159,8 +201,8 @@ const Hero = () => {
             {/* Description */}
             <p className="hero__description">
               I craft exceptional digital experiences through clean code and innovative design. 
-              Specializing in Python/Django backend development with modern frontend technologies, 
-              I transform ideas into scalable, user-centric applications that make a real impact.
+              Specializing in both frontend and backend development, I create seamless, 
+              user-centric applications that bridge the gap between beautiful interfaces and robust server-side solutions.
             </p>
 
             {/* Stats */}
