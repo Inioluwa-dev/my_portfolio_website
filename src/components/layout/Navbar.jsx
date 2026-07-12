@@ -5,45 +5,43 @@ import {
   FiX,
   FiSun,
   FiMoon,
-  FiDownload,
   FiExternalLink,
 } from "react-icons/fi";
 import "../../styles/layout/Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 
-const scrollToSection = (sectionId) => {
-  const element = document.getElementById(sectionId);
-  if (element) {
-    const headerHeight = 80;
-    const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: "smooth",
-    });
-  }
-};
-
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeRoute, setActiveRoute] = useState("/");
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isDark, toggleTheme } = useTheme();
 
   const navigationItems = [
-    { id: "home", label: "Home" },
-    { id: "about", label: "About" },
-    { id: "skills", label: "Skills" },
-    { id: "services", label: "Services" },
-    { id: "projects", label: "Work" },
-    { id: "contact", label: "Contact" },
+    { id: "home", label: "Home", path: "/" },
+    { id: "projects", label: "Projects", path: "/projects" },
+    { id: "blog", label: "Blog", path: "/blog" },
+    { id: "resume", label: "Resume", path: "/resume" },
+    { id: "contact", label: "Contact", path: "/contact" },
   ];
 
   useEffect(() => {
-    setIsScrolled(window.scrollY > 20);
-    const path = location.pathname.replace("/", "") || "home";
-    setActiveSection(path);
+    // Dynamic Scroll Listener
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Trigger initially
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Track active path
+    setActiveRoute(location.pathname);
   }, [location.pathname]);
 
   const closeMobile = () => setIsMobileMenuOpen(false);
@@ -70,8 +68,8 @@ const Navbar = () => {
                 <span className="logo__bracket">/&gt;</span>
               </div>
               <div className="logo__content">
-                <span className="logo__name">Heritage</span>
-                <span className="logo__title">Full Stack Developer</span>
+                <span className="logo__name">Inioluwa</span>
+                <span className="logo__title">Systems & Product Engineer</span>
               </div>
             </Link>
           </div>
@@ -81,58 +79,19 @@ const Navbar = () => {
             <ul className="nav">
               {navigationItems.map((item) => (
                 <li key={item.id} className="nav__item">
-                  {["about", "contact"].includes(item.id) ? (
-                    // If we're already on the home page, perform an in-place smooth scroll.
-                    // If we're on another route, navigate to home and pass state so Home can scroll after mount.
-                    location.pathname === "/" ? (
-                      <a
-                        className={`nav__link ${
-                          activeSection === item.id ? "nav__link--active" : ""
-                        }`}
-                        href={`#${item.id}`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          scrollToSection(item.id);
-                          closeMobile();
-                        }}
-                        aria-current={
-                          activeSection === item.id ? "page" : undefined
-                        }
-                      >
-                        <span className="nav__text">{item.label}</span>
-                        <span className="nav__indicator"></span>
-                      </a>
-                    ) : (
-                      <Link
-                        className={`nav__link ${
-                          activeSection === item.id ? "nav__link--active" : ""
-                        }`}
-                        to={{ pathname: "/" }}
-                        state={{ scrollTo: item.id }}
-                        onClick={closeMobile}
-                        aria-current={
-                          activeSection === item.id ? "page" : undefined
-                        }
-                      >
-                        <span className="nav__text">{item.label}</span>
-                        <span className="nav__indicator"></span>
-                      </Link>
-                    )
-                  ) : (
-                    <Link
-                      className={`nav__link ${
-                        activeSection === item.id ? "nav__link--active" : ""
-                      }`}
-                      to={item.id === "home" ? "/" : `/${item.id}`}
-                      onClick={closeMobile}
-                      aria-current={
-                        activeSection === item.id ? "page" : undefined
-                      }
-                    >
-                      <span className="nav__text">{item.label}</span>
-                      <span className="nav__indicator"></span>
-                    </Link>
-                  )}
+                  <Link
+                    className={`nav__link ${
+                      activeRoute === item.path ? "nav__link--active" : ""
+                    }`}
+                    to={item.path}
+                    onClick={closeMobile}
+                    aria-current={
+                      activeRoute === item.path ? "page" : undefined
+                    }
+                  >
+                    <span className="nav__text">{item.label}</span>
+                    <span className="nav__indicator"></span>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -153,20 +112,6 @@ const Navbar = () => {
                 </div>
               </div>
             </button>
-
-            {/* CTA Button */}
-            <a
-              className="cta-btn"
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection("contact");
-                closeMobile();
-              }}
-            >
-              <span className="cta-btn__text">Let's Talk</span>
-              <FiExternalLink className="cta-btn__icon" />
-            </a>
 
             {/* Mobile Menu Toggle */}
             <button
@@ -218,41 +163,20 @@ const Navbar = () => {
               <ul className="mobile-nav__list">
                 {navigationItems.map((item, index) => (
                   <li key={item.id} className="mobile-nav__item">
-                    {["about", "contact"].includes(item.id) ? (
-                      <a
-                        className={`mobile-nav__link ${
-                          activeSection === item.id
-                            ? "mobile-nav__link--active"
-                            : ""
-                        }`}
-                        href={`#${item.id}`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          scrollToSection(item.id);
-                          closeMobile();
-                        }}
-                        style={{ "--delay": `${index * 0.1}s` }}
-                      >
-                        <span className="mobile-nav__number">0{index + 1}</span>
-                        <span className="mobile-nav__text">{item.label}</span>
-                        <span className="mobile-nav__arrow">→</span>
-                      </a>
-                    ) : (
-                      <Link
-                        className={`mobile-nav__link ${
-                          activeSection === item.id
-                            ? "mobile-nav__link--active"
-                            : ""
-                        }`}
-                        to={item.id === "home" ? "/" : `/${item.id}`}
-                        onClick={closeMobile}
-                        style={{ "--delay": `${index * 0.1}s` }}
-                      >
-                        <span className="mobile-nav__number">0{index + 1}</span>
-                        <span className="mobile-nav__text">{item.label}</span>
-                        <span className="mobile-nav__arrow">→</span>
-                      </Link>
-                    )}
+                    <Link
+                      className={`mobile-nav__link ${
+                        activeRoute === item.path
+                          ? "mobile-nav__link--active"
+                          : ""
+                      }`}
+                      to={item.path}
+                      onClick={closeMobile}
+                      style={{ "--delay": `${index * 0.05}s` }}
+                    >
+                      <span className="mobile-nav__number">0{index + 1}</span>
+                      <span className="mobile-nav__text">{item.label}</span>
+                      <span className="mobile-nav__arrow">→</span>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -282,18 +206,14 @@ const Navbar = () => {
                 </button>
               </div>
 
-              <a
+              <Link
                 className="mobile-cta"
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection("contact");
-                  closeMobile();
-                }}
+                to="/contact"
+                onClick={closeMobile}
               >
                 <span>Start a Project</span>
                 <FiExternalLink />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

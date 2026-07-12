@@ -1,50 +1,137 @@
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
-import Hero from "../components/sections/Hero";
 import Footer from "../components/layout/Footer";
+import Hero from "../components/sections/Hero";
 import About from "../components/sections/About";
-import Contact from "../components/sections/Contact";
+import SEO from "../components/seo/SEO";
+import { projects } from "../data/projects";
+import { Link } from "react-router-dom";
+import { FiArrowRight, FiCode, FiZap, FiMessageSquare } from "react-icons/fi";
+import "../styles/components/Home.css";
 
 const HomePage = () => {
-  const location = useLocation();
-
   useEffect(() => {
-    // If navigation included a target section (e.g., { state: { scrollTo: 'contact' } }), scroll to it.
-    if (location && location.state && location.state.scrollTo) {
-      const id = location.state.scrollTo;
-      const el = document.getElementById(id);
-      if (el) {
-        const headerHeight = 80;
-        const elementPosition = el.getBoundingClientRect().top;
-        const offsetPosition =
-          elementPosition + window.pageYOffset - headerHeight;
-        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    window.scrollTo(0, 0);
+  }, []);
+
+  // Filter featured projects
+  const featured = projects.filter((p) => p.featured);
+
+  const homepageStructuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "name": "Olayoriju Inioluwa",
+        "alternateName": ["Mr Heritage", "Inioluwa", "inioluwa_dev", "Comibyte"],
+        "jobTitle": "Systems & Product Engineer",
+        "description": "Systems & Product Engineer specializing in mathematical optimization, distributed systems, and clean architecture.",
+        "url": "https://mr-heritage.name.ng",
+        "image": "https://mr-heritage.name.ng/images/mr_heritage.png",
+        "sameAs": [
+          "https://github.com/Inioluwa-dev",
+          "https://youtube.com/@Inioluwa-dev"
+        ]
       }
-      // Clear the state so the scroll doesn't repeat on future navigations
-      if (history && history.replaceState) {
-        const newState = Object.assign({}, history.state);
-        if (newState && newState.usr) {
-          // keep existing user state if any
-        }
-        // replace the current history entry without the scrollTo payload
-        history.replaceState(
-          {},
-          document.title,
-          window.location.pathname + window.location.search
-        );
-      }
-    }
-  }, [location]);
+    ]
+  };
 
   return (
     <div className="page page--home">
+      <SEO
+        title="Olayoriju Inioluwa | Mr Heritage - Systems & Product Engineer"
+        description="Building optimized software systems and products. Systems & Product Engineer specializing in Python, Django, distributed backends, and React."
+        keywords="Olayoriju Inioluwa, Mr Heritage, Systems Engineer, Product Engineer, Tech Instructor, Python Developer, FastAPI, Django, React, Portfolio"
+        url="https://mr-heritage.name.ng"
+        structuredData={homepageStructuredData}
+      />
       <Navbar />
+      
       <main>
+        {/* Core Hero Banner */}
         <Hero />
+
+        {/* About Section */}
         <About />
-        <Contact />
+
+        {/* Featured Projects Preview Section */}
+        <section className="featured-section">
+          <div className="container">
+            <div className="featured-header">
+              <h2 className="section-title">
+                Featured <span className="text-gradient">Case Studies</span>
+              </h2>
+              <p className="section-subtitle">
+                A selection of my best backend and full-stack software engineering works.
+              </p>
+            </div>
+
+            <div className="featured-grid">
+              {featured.map((project, idx) => (
+                <div key={project.id} className="featured-project-card card-glass animate-scale-in" style={{ '--delay': `${idx * 0.1}s` }}>
+                  <div className="project-image-wrapper">
+                    <img src={project.image} alt={project.title} />
+                    <span className="project-year-badge">{project.year}</span>
+                  </div>
+                  <div className="project-content-wrapper">
+                    <div className="project-tech-list">
+                      {project.technologies.slice(0, 3).map((tech, i) => (
+                        <span key={i} className="tech-badge-inline">{tech}</span>
+                      ))}
+                    </div>
+                    <h3 className="project-title">{project.title}</h3>
+                    <p className="project-desc">{project.shortDescription}</p>
+                    <div className="project-cta-links">
+                      <Link to={`/projects/${project.id}`} className="read-case-btn">
+                        <span>Read Case Study</span>
+                        <FiArrowRight />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="view-all-cta">
+              <Link to="/projects" className="btn btn-primary btn-lg">
+                <span>View All Projects</span>
+                <FiArrowRight />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Conversational Call To Action */}
+        <section className="home-cta-section">
+          <div className="container">
+            <div className="home-cta-box card-glass">
+              <div className="cta-left">
+                <h2>Have questions about my workflow?</h2>
+                <p>Chat with my virtual clone directly and get instant answers about my programming skills, stack, and availability.</p>
+                <div className="cta-buttons">
+                  <button
+                    onClick={() => window.dispatchEvent(new CustomEvent("open-digital-twin"))}
+                    className="btn btn-primary"
+                  >
+                    <FiMessageSquare />
+                    <span>Talk with my Twin</span>
+                  </button>
+                  <Link to="/contact" className="btn btn-secondary">
+                    <span>Get in Touch</span>
+                    <FiZap />
+                  </Link>
+                </div>
+              </div>
+              <div className="cta-right">
+                <div className="interactive-avatar-glow">
+                  <img src="/images/mr_heritage.png" alt="Inioluwa Avatar" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
+
       <Footer />
     </div>
   );

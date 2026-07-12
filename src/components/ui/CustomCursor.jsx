@@ -52,15 +52,13 @@ const CustomCursor = () => {
       <div
         className={`custom-cursor ${isHovering ? 'hovering' : ''} ${isClicking ? 'clicking' : ''}`}
         style={{
-          left: `${position.x}px`,
-          top: `${position.y}px`,
+          transform: `translate3d(${position.x}px, ${position.y}px, 0) translate(-50%, -50%)`
         }}
       />
       <div
-        className="cursor-trail"
+        className={`cursor-trail ${isHovering ? 'hovering' : ''}`}
         style={{
-          left: `${position.x}px`,
-          top: `${position.y}px`,
+          transform: `translate3d(${position.x}px, ${position.y}px, 0) translate(-50%, -50%)`
         }}
       />
     </>

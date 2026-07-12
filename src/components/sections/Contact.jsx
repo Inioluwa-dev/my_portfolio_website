@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { 
   FiMail, 
   FiPhone,
-  FiMapPin,
   FiGithub,
   FiSend,
   FiUser,
@@ -11,13 +10,10 @@ import {
   FiMessageSquare,
   FiCheck,
   FiClock,
-  FiZap,
-  FiHeart,
   FiCoffee,
   FiArrowRight,
   FiYoutube
 } from 'react-icons/fi';
-import SEO from '../seo/SEO';
 import '../../styles/components/Contact.css';
 
 const Contact = () => {
@@ -45,15 +41,15 @@ const Contact = () => {
       description: 'Drop me a line anytime',
       value: 'misterhge@gmail.com',
       link: 'mailto:misterhge@gmail.com',
-      color: '#6366f1',
+      color: '#570dec',
       available: '24/7'
     },
     {
       icon: FiPhone,
       title: 'Call Me',
       description: 'Let\'s have a conversation',
-      value: '+234 9133770970',
-      link: 'tel:+2349133770970',
+      value: '+234 9053949077',
+      link: 'tel:+2349053949077',
       color: '#10b981',
       available: '9 AM - 6 PM WAT'
     },
@@ -63,7 +59,7 @@ const Contact = () => {
       description: 'Check out my code',
       value: '@Inioluwa-dev',
       link: 'https://github.com/Inioluwa-dev',
-      color: '#333',
+      color: '#afaeae',
       available: 'Daily commits'
     },
     {
@@ -75,13 +71,6 @@ const Contact = () => {
       color: '#ff0000',
       available: 'Weekly content'
     }
-  ];
-
-  const stats = [
-    { number: '24h', label: 'Response Time', icon: FiClock },
-    { number: '100%', label: 'Dedication', icon: FiHeart },
-    { number: '6+', label: 'Projects Delivered', icon: FiCheck },
-    { number: '2+', label: 'Years Working', icon: FiZap }
   ];
 
   const workingHours = [
@@ -104,13 +93,14 @@ const Contact = () => {
       { threshold: 0.1 }
     );
 
-    if (contactRef.current) {
-      observer.observe(contactRef.current);
+    const currentRef = contactRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (contactRef.current) {
-        observer.unobserve(contactRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -183,7 +173,7 @@ const Contact = () => {
         }
         setTimeout(() => setStatus(''), 5000);
       }
-    } catch (error) {
+    } catch {
       setStatus('Oops! There was a problem submitting your form.');
       setTimeout(() => setStatus(''), 5000);
     }
@@ -359,54 +349,8 @@ const Contact = () => {
     </form>
   );
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "name": "Contact Mr Heritage - Full Stack Developer",
-    "description": "Get in touch with Olayoriju Inioluwa (Mr Heritage) for web development services, technical consulting, and collaboration opportunities.",
-    "url": "https://mr-heritage.name.ng/",
-    "mainEntity": {
-      "@type": "Person",
-      "name": "Olayoriju Inioluwa",
-      "alternateName": ["Mr Heritage", "Inioluwa", "inioluwa_dev", "Comibyte"],
-      "jobTitle": "Full Stack Developer",
-      "email": "misterhge@gmail.com",
-      "url": "https://mr-heritage.name.ng",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Lagos",
-        "addressCountry": "Nigeria"
-      },
-      "sameAs": [
-        "https://github.com/Inioluwa-dev",
-        "https://youtube.com/@Inioluwa-dev"
-      ],
-      "knowsAbout": [
-        "Python",
-        "Django",
-        "React",
-        "JavaScript",
-        "Backend Development",
-        "Full Stack Development",
-        "Web Development"
-      ],
-      "hasOccupation": {
-        "@type": "Occupation",
-        "name": "Full Stack Developer",
-        "description": "Specializing in Python/Django backend development with modern frontend technologies"
-      }
-    }
-  };
-
   return (
     <section id="contact" className="contact" ref={contactRef}>
-      <SEO
-        title="Contact Mr Heritage - Full Stack Developer"
-        description="Get in touch with Olayoriju Inioluwa (Mr Heritage) for web development services, technical consulting, and collaboration opportunities. Available for freelance projects and full-time positions."
-        keywords="Contact Mr Heritage, Olayoriju Inioluwa Contact, Inioluwa Contact, inioluwa_dev Contact, Comibyte Contact, Olayoriju Contact, Full Stack Developer Contact, Web Development Services, Technical Consulting, Freelance Developer, Lagos Nigeria Developer"
-        url="https://mr-heritage.name.ng/"
-        structuredData={structuredData}
-      />
       <div className="contact__background">
         <div className="contact__gradient contact__gradient--1"></div>
         <div className="contact__gradient contact__gradient--2"></div>
@@ -427,28 +371,8 @@ const Contact = () => {
             </p>
           </div>
 
-          {/* Stats Section */}
-          <div className="contact__stats">
-            {stats.map((stat, index) => {
-              const IconComponent = stat.icon;
-              return (
-                <div 
-                  key={index} 
-                  className="stat-card"
-                  style={{ '--delay': `${index * 0.1}s` }}
-                >
-                  <div className="stat-card__icon">
-                    <IconComponent />
-                  </div>
-                  <div className="stat-card__content">
-                    <span className="stat-card__number">{stat.number}</span>
-                    <span className="stat-card__label">{stat.label}</span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
+        
+          {/* Main Contact Section */}
           <div className="contact__main">
             
             {/* Contact Methods */}
@@ -539,10 +463,6 @@ const Contact = () => {
                   <div className="cta-feature">
                     <FiCheck />
                     <span>Transparent pricing</span>
-                  </div>
-                  <div className="cta-feature">
-                    <FiCheck />
-                    <span>Ongoing support included</span>
                   </div>
                 </div>
               </div>

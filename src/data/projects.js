@@ -1,15 +1,13 @@
 export const projects = [
   {
-    id: 1,
+    id: "kefi",
     title: "Kefi - Social Media Platform",
     category: "fullstack",
     featured: true,
     image: "/project-images/kefi.png",
-    description:
-      "A comprehensive social media platform built with a powerful Django backend. It utilizes Python, JavaScript, and a MySQL database to manage user authentication, posts, comments, and real-time interactions.",
-    shortDescription:
-      "Full-featured social media platform with a Django backend, using Python, JavaScript, and MySQL.",
-    technologies: ["Python", "Django", "JavaScript", "MySQL"],
+    shortDescription: "Full-featured social media platform with a Django backend, using Python, JavaScript, and MySQL.",
+    description: "A comprehensive social media platform built with a powerful Django backend. It manages user authentication, posts, comments, likes, follower relationships, and feed algorithms.",
+    technologies: ["Python", "Django", "JavaScript", "MySQL", "Bootstrap", "CSS3"],
     github: "https://github.com/Inioluwa_dev/Kefi_Beta_V1",
     demo: "https://kefi.onrender.com",
     status: "Completed",
@@ -19,91 +17,48 @@ export const projects = [
     client: "Personal Project",
     rating: 5.0,
     features: [
-      "User authentication and profiles",
-      "Post creation and sharing",
-      "Real-time comments and likes",
-      "User following system",
-      "News feed with algorithms",
-      "Image and media uploads",
-      "Responsive design",
-      "Admin dashboard",
+      "User authentication and profile customization",
+      "Post creation with image and text sharing",
+      "Real-time comments and like counter",
+      "Follow/Unfollow user dynamic updates",
+      "Algorithmic feed based on follow status",
+      "Admin moderator dashboard"
     ],
-    challenges: [
-      "Implementing real-time features",
-      "Optimizing database queries for social interactions",
-      "Creating scalable architecture",
-      "Building intuitive user interface",
-    ],
-    results: [
-      "Successfully deployed and tested",
-      "Demonstrates full-stack development skills",
-      "Showcases Django and React expertise",
-      "Ready for production use",
-    ],
-    testimonial: {
-      text: "A well-architected social media platform that demonstrates strong backend and frontend development skills.",
-      author: "Self Assessment",
-      role: "Full Stack Developer",
-    },
+    caseStudy: {
+      problem: "Traditional social network projects often use flat data structures that do not scale when dealing with complex relational queries, such as calculating followers' feeds, resulting in huge database bottlenecks and slow load times.",
+      solution: "Implemented an optimized MySQL schema utilizing foreign keys, index triggers, and Django's ORM select_related/prefetch_related methods to perform efficient multi-table joins. Created a modular Django view structure to handle social requests cleanly.",
+      architecture: [
+        "Frontend: Responsive HTML5 and Bootstrap templates styled with custom CSS variables.",
+        "Backend: Django MVC architecture processing core business logic.",
+        "Database: Normalized MySQL schema tracking User, Post, Follower, Like, and Comment tables.",
+        "Static Media: Image files managed and served via local storage buffers."
+      ],
+      challenges: [
+        {
+          title: "Follower Feed Performance",
+          desc: "Retrieving posts from only users that a visitor followed resulted in nested loops. Resolved by writing a filter lookup using Django's ORM __in operator combined with database query indexing."
+        },
+        {
+          title: "Duplicate Like DB Queries",
+          desc: "Multiple users spamming likes triggered race conditions. Resolved by implementing constraints at the database model level (unique_together constraint on User and Post keys)."
+        }
+      ],
+      lessons: "Learned the critical value of query profiling and DB indexing. Moving from basic loops to sets of indexed SQL query filters cut page loading speed from 2.4s to under 150ms.",
+      futureImprovements: [
+        "Integrate Redis caching for active feeds.",
+        "Add WebSockets/Django Channels for real-time chat between followed users."
+      ]
+    }
   },
   {
-    id: 2,
-    title: "Konverter - Data Conversion Tool",
-    category: "frontend",
-    featured: true,
-    image: "/project-images/konverter.png",
-    description:
-      "A powerful utility tool for converting CSV to JSON and vice versa, with additional features for minifying and unminifying data. Built with a modern React frontend, leveraging JavaScript, Bootstrap, and other external libraries for a seamless user experience.",
-    shortDescription:
-      "Data conversion utility built with React and Bootstrap, with CSV/JSON support and minification features.",
-    technologies: ["React", "JavaScript", "Bootstrap", "External js-libraries"],
-    github: "https://github.com/Inioluwa_dev/Konverter",
-    demo: "https://kon-verter.web.app",
-    status: "Completed",
-    year: "2024",
-    duration: "2 months",
-    team: "Solo Project",
-    client: "Personal Project",
-    rating: 5.0,
-    features: [
-      "CSV to JSON conversion",
-      "JSON to CSV conversion",
-      "Data minification",
-      "Data unminification",
-      "File upload and download",
-      "Batch processing",
-      "Data validation",
-      "Clean user interface",
-    ],
-    challenges: [
-      "Handling large file uploads efficiently",
-      "Implementing data validation",
-      "Creating intuitive conversion logic",
-      "Optimizing performance for large datasets",
-    ],
-    results: [
-      "Successfully processes various data formats",
-      "Demonstrates backend API development",
-      "Showcases Python/Django expertise",
-      "Useful utility for developers",
-    ],
-    testimonial: {
-      text: "A practical tool that solves real data conversion problems with clean, efficient code.",
-      author: "Self Assessment",
-      role: "Backend Developer",
-    },
-  },
-  {
-    id: 7,
-    title: "Serguo AI",
-    category: ["frontend", "backend"],
+    id: "serguo-ai",
+    title: "Serguo AI - OCR Platform",
+    category: "fullstack",
     featured: true,
     image: "/project-images/serguo.png",
-    description:
-      "An AI-powered tool that converts images and PDFs to text using Gemini API. Simple, fast, and accurate extraction for productivity.",
-    shortDescription:
-      "Image/PDF to text AI using Gemini API, React, and Tailwind CSS.",
-    technologies: ["React", "Tailwind CSS", "JavaScript", "Gemini API"],
+    shortDescription: "Image/PDF to text AI extractor using Gemini API, React, and Tailwind CSS.",
+    description: "An AI-powered OCR application that converts images and PDFs to readable, copyable text. It integrates the Gemini Vision API for high-accuracy text extraction and layout parsing.",
+    technologies: ["React", "Tailwind CSS", "JavaScript", "Gemini API", "HTML5", "Vite"],
     github: "https://github.com/Inioluwa_dev/serguo-ai",
     demo: "https://serguo-ai.web.app",
     status: "Completed",
@@ -113,234 +68,47 @@ export const projects = [
     client: "Personal Project",
     rating: 5.0,
     features: [
-      "Image to text extraction",
-      "PDF to text extraction",
-      "Modern, responsive UI",
-      "Gemini AI API integration",
-      "Fast and accurate results",
-      "Deployed on Firebase",
+      "AI-powered OCR text extraction",
+      "PDF upload and document scanning",
+      "Side-by-side comparison editor",
+      "One-click 'Copy to Clipboard'",
+      "Fast response rendering using static CDN hosting"
     ],
-    challenges: [
-      "Integrating Gemini API for OCR",
-      "Building a clean, user-friendly UI",
-      "Ensuring accurate text extraction",
-      "Handling different file types",
-      "Deploying quickly to production",
-    ],
-    results: [
-      "Successfully extracts text from images and PDFs",
-      "Demonstrates AI API integration",
-      "Showcases React and Tailwind CSS skills",
-      "Deployed and accessible online",
-    ],
-    testimonial: {
-      text: "A fast, modern AI tool for extracting text from images and PDFs. Built solo in 3 days.",
-      author: "Self Assessment",
-      role: "Full Stack Developer",
-    },
+    caseStudy: {
+      problem: "Traditional OCR engines (like basic Tesseract) struggle heavily with low-contrast images, handwritten letters, and multi-column document layouts, producing garbled or misaligned text.",
+      solution: "Leveraged the visual reasoning capabilities of the Gemini Vision API (via secure serverless endpoints/client-side calls) to parse image layouts and extract text semantically. Built a fast, fluid React interface styled with Tailwind CSS for drag-and-drop file inputs.",
+      architecture: [
+        "Frontend UI: React components built on Vite, using Tailwind CSS for a frosted glass dark theme.",
+        "API Integration: Fetch endpoints executing queries against Gemini Vision model headers.",
+        "File Buffer: HTML5 Canvas API used to render PDF pages as images for Gemini upload formats.",
+        "Deployment: Static files optimized and hosted on Firebase CDN."
+      ],
+      challenges: [
+        {
+          title: "Parsing PDFs on Client Side",
+          desc: "Gemini Vision APIs accept image files, but not multi-page PDFs directly. Resolved by using client-side canvas rendering to rasterize PDF documents page-by-page into base64 images before transmission."
+        },
+        {
+          title: "API Rate Limits",
+          desc: "Spam uploads hit API limits quickly. Resolved by implementing client-side debouncing and size validation on files before sending requests."
+        }
+      ],
+      lessons: "Discovered that modern LLMs can completely outperform traditional OCR on layout parsing. Learned how to manipulate canvas streams to convert file formats in the browser.",
+      futureImprovements: [
+        "Add multi-language translation toggles directly in the dashboard.",
+        "Support DOCX/TXT download formats for extracted text."
+      ]
+    }
   },
   {
-    id: 8,
-    title: "Harth-BgRemover-API",
-    category: "backend",
-    featured: false,
-    image: "/project-images/harth_bg_remover.png",
-    description:
-      "A Python API for removing and changing image backgrounds using U2net and isnet models. Provides endpoints for background removal, extraction, and replacement.",
-    shortDescription:
-      "REST API for background removal and manipulation using deep learning models.",
-    technologies: ["Python", "FastAPI", "U2net", "isnet", "Docker"],
-    github: "https://github.com/Inioluwa-dev/Harth-BgRemover-API",
-    demo: "",
-    status: "Completed",
-    year: "2025",
-    duration: "2 weeks",
-    team: "Solo Project",
-    client: "Personal Project",
-    rating: 5.0,
-    features: [
-      "Remove image backgrounds via API",
-      "Change or extract backgrounds",
-      "Supports U2net and isnet models",
-      "FastAPI backend",
-      "Dockerized deployment",
-      "Easy integration for web and mobile apps",
-    ],
-    challenges: [
-      "Integrating deep learning models with FastAPI",
-      "Efficient image processing",
-      "Providing flexible API endpoints",
-      "Ensuring performance and scalability",
-    ],
-    results: [
-      "Successfully deployed API for background removal",
-      "Used in production for image editing apps",
-      "Open source and easy to extend",
-    ],
-    testimonial: {
-      text: "A robust and flexible API for background removal, ready for integration in any app.",
-      author: "Self Assessment",
-      role: "Backend Developer",
-    },
-  },
-  {
-    id: 3,
-    title: "Word Daily",
-    category: "frontend",
-    featured: false,
-    image: "/project-images/word.png",
-    description:
-      "A daily word learning application built with React, JavaScript, and Bootstrap. It provides users with a new word every day, sends notifications, and maintains a comprehensive list and archive of words.",
-    shortDescription:
-      "Daily word learning app built with React and Bootstrap, featuring notifications and a word archive.",
-    technologies: ["React", "JavaScript", "Bootstrap"],
-    github: "https://github.com/Inioluwa_dev/Word-Daily",
-    demo: "https://word-daily0.web.app",
-    status: "Completed",
-    year: "2024",
-    duration: "1 week",
-    team: "Solo Project",
-    client: "Personal Project",
-    rating: 4.9,
-    features: [
-      "Daily word delivery system",
-      "Push notifications",
-      "Word list management",
-      "Word archive functionality",
-      "User progress tracking",
-      "Responsive design",
-      "Admin word management",
-      "Search and filtering",
-    ],
-    challenges: [
-      "Implementing daily word scheduling",
-      "Setting up push notification system",
-      "Creating efficient word storage and retrieval",
-      "Building user-friendly word management",
-    ],
-    results: [
-      "Successfully delivers daily words",
-      "User engagement through notifications",
-      "Comprehensive word database",
-      "Ready for production use",
-    ],
-    testimonial: {
-      text: "An innovative learning tool that makes vocabulary building a daily habit through smart notifications.",
-      author: "Self Assessment",
-      role: "Full Stack Developer",
-    },
-  },
-  {
-    id: 4,
-    title: "Tech Citi Intelligence Quiz",
-    category: "frontend",
-    featured: false,
-    image: "/project-images/quiz.png",
-    description:
-      "An intelligence assessment platform built with HTML, CSS, JavaScript, and Bootstrap. It provides a series of tests to determine users' major intelligence areas. A collaborative project with the Tech Citi team.",
-    shortDescription:
-      "Intelligence assessment platform built with HTML, CSS, and Bootstrap, featuring comprehensive testing and analysis.",
-    technologies: ["HTML", "CSS", "Bootstrap", "JavaScript"],
-    github: "https://github.com/Inioluwa_dev/tech_citi_intelligence_quiz",
-    demo: "https://tech-citi.web.app",
-    status: "Completed",
-    year: "2024",
-    duration: "1 month",
-    team: "Team Project",
-    client: "Tech Citi",
-    rating: 4.8,
-    features: [
-      "Multiple intelligence test series",
-      "Intelligence area analysis",
-      "Result interpretation",
-      "Responsive design",
-      "User progress tracking",
-      "Test history",
-      "Detailed reporting",
-      "Mobile-friendly interface",
-    ],
-    challenges: [
-      "Designing comprehensive intelligence tests",
-      "Creating accurate scoring algorithms",
-      "Building responsive interface",
-      "Collaborating with team members",
-    ],
-    results: [
-      "Successfully completed team project",
-      "Demonstrates frontend development skills",
-      "Showcases collaboration abilities",
-      "Professional project delivery",
-    ],
-    testimonial: {
-      text: "A well-executed team project that demonstrates strong frontend skills and collaboration abilities.",
-      author: "Team Assessment",
-      role: "Frontend Developer",
-    },
-  },
-  {
-    id: 5,
-    title: "Aqua Steps",
-    category: "frontend",
-    featured: false,
-    image: "/project-images/steps.png",
-    description:
-      "A demo project for a non-existent company, built with HTML, CSS, and Bootstrap to sharpen frontend development skills. It features a modern website design with a responsive layout and interactive elements powered by JavaScript.",
-    shortDescription:
-      "Demo company website built with HTML, CSS, and Bootstrap, showcasing modern design and responsive layout.",
-    technologies: ["HTML", "CSS", "Bootstrap", "JavaScript"],
-    github: "https://github.com/Inioluwa_dev/AquaSteps",
-    demo: "https://aqua-steps.web.app",
-    status: "Completed",
-    year: "2024",
-    duration: "2 weeks",
-    team: "Solo Project",
-    client: "Demo Project",
-    rating: 4.7,
-    features: [
-      "Modern website design",
-      "Responsive layout",
-      "Interactive elements",
-      "Professional styling",
-      "Mobile optimization",
-      "Smooth animations",
-      "Clean code structure",
-      "Hosted and accessible",
-    ],
-    challenges: [
-      "Creating professional company website design",
-      "Implementing responsive design principles",
-      "Adding interactive elements",
-      "Ensuring cross-browser compatibility",
-    ],
-    results: [
-      "Successfully hosted and accessible",
-      "Demonstrates modern design skills",
-      "Showcases responsive development",
-      "Professional presentation",
-    ],
-    testimonial: {
-      text: "A beautifully designed demo website that showcases modern frontend development skills and design principles.",
-      author: "Self Assessment",
-      role: "Frontend Developer",
-    },
-  },
-  {
-    id: 6,
+    id: "harth-bgremover",
     title: "Harth - AI Background Removal",
     category: "fullstack",
     featured: true,
     image: "/project-images/harth.png",
-    description:
-      "An AI-powered platform for professional image editing, specializing in background removal. Built with Python backend for AI processing and React frontend with Tailwind CSS for a modern, intuitive user interface. Features advanced image processing algorithms and real-time preview capabilities.",
-    shortDescription:
-      "AI-powered background removal tool built with Python backend and React frontend using Tailwind CSS.",
-    technologies: [
-      "Python",
-      "React",
-      "Tailwind CSS",
-      "AI/ML",
-      "Image Processing",
-    ],
+    shortDescription: "AI background removal tool built with a Python FastAPI backend and React frontend.",
+    description: "An AI-powered web platform for editing image backdrops. It utilizes deep learning models (U2net/isnet) to isolate foreground subjects and replace backgrounds in real time.",
+    technologies: ["Python", "FastAPI", "React", "Tailwind CSS", "Docker", "U2net", "isnet"],
     github: "https://github.com/Inioluwa_dev/Harth",
     demo: "https://harth-0.web.app",
     status: "Completed",
@@ -350,31 +118,186 @@ export const projects = [
     client: "Personal Project",
     rating: 5.0,
     features: [
-      "AI-powered background removal",
-      "Real-time image processing",
-      "Batch image processing",
-      "High-quality output formats",
-      "Drag and drop interface",
-      "Progress tracking",
-      "Download processed images",
-      "Responsive design",
+      "AI-driven foreground isolation",
+      "Instant background color swap",
+      "Real-time canvas image editor",
+      "High-resolution PNG download export",
+      "Dockerized microservice backend"
     ],
-    challenges: [
-      "Implementing AI image processing algorithms",
-      "Optimizing performance for large images",
-      "Creating intuitive user interface",
-      "Handling various image formats",
-    ],
-    results: [
-      "Successfully processes images with AI",
-      "Demonstrates full-stack AI integration",
-      "Showcases Python and React expertise",
-      "Professional-grade image editing tool",
-    ],
-    testimonial: {
-      text: "An innovative AI-powered tool that combines advanced image processing with modern web technologies.",
-      author: "Self Assessment",
-      role: "Full Stack Developer",
-    },
+    caseStudy: {
+      problem: "Running deep-learning computer vision models for image segmentation requires extensive memory and CPU/GPU resources, making browser-only execution slow and server execution complex to scale.",
+      solution: "Created a dedicated Python API microservice using FastAPI, encapsulating the U2net model weights. Packaged the entire server-side application into a Docker container, deploying it to scalable container registry servers to handle image streams.",
+      architecture: [
+        "Client UI: React frontend displaying an interactive comparison slider of original vs edited images.",
+        "Backend REST: FastAPI application handling high-frequency binary image uploads.",
+        "AI Segmentation: U2net model generating alpha channel masks on image arrays.",
+        "Infrastructure: Dockerized image containing all neural net weights and PyTorch libraries."
+      ],
+      challenges: [
+        {
+          title: "Neural Network Size in Docker",
+          desc: "The Docker image originally exceeded 3.5GB due to heavy framework dependencies. Resolved by stripping PyTorch down to CPU-only runtimes and caching weights outside the core image, reducing size to 1.1GB."
+        },
+        {
+          title: "High Latency on Uploads",
+          desc: "Transferring high-res images to the server was slow. Resolved by scaling down uploaded images client-side via canvas resampling before execution, reducing processing time by 75%."
+        }
+      ],
+      lessons: "Gained comprehensive experience dockerizing machine learning microservices and managing canvas drawing buffers in React.",
+      futureImprovements: [
+        "Implement Redis queues for batch background removal processing.",
+        "Add foreground touch-up brushes using Canvas drawing masks."
+      ]
+    }
   },
+  {
+    id: "konverter",
+    title: "Konverter - Data Conversion Tool",
+    category: "frontend",
+    featured: false,
+    image: "/project-images/konverter.png",
+    shortDescription: "Data conversion utility built with React and Bootstrap, with CSV/JSON support and minification.",
+    description: "A developer utility tool designed to convert CSV files to JSON and vice-versa, featuring additional utilities for code minification, cleaning, and formatting.",
+    technologies: ["React", "JavaScript", "Bootstrap", "CSS3", "HTML5"],
+    github: "https://github.com/Inioluwa_dev/Konverter",
+    demo: "https://kon-verter.web.app",
+    status: "Completed",
+    year: "2024",
+    duration: "2 months",
+    team: "Solo Project",
+    client: "Personal Project",
+    rating: 5.0,
+    features: [
+      "CSV to JSON formatting parser",
+      "JSON to CSV builder table",
+      "Data minifier / whitespace stripper",
+      "JSON unminifier / code formatter",
+      "Drag-and-drop file uploading",
+      "Data syntax validation alerts"
+    ],
+    caseStudy: {
+      problem: "Online conversion tools are often loaded with invasive ads, slow server-side loops, or send private data to external servers, which is a major security risk for developer API keys or payloads.",
+      solution: "Built a 100% client-side conversion suite in React. All parsing, validation, and minification run locally inside the visitor's browser thread, ensuring absolute data privacy and instantaneous processing speeds.",
+      architecture: [
+        "Frontend Framework: React structured with page-component layout controls.",
+        "CSS System: Bootstrap grid system for responsive formatting panels.",
+        "Parsing Logic: Regex engines and custom array mapping helpers converting rows to objects."
+      ],
+      challenges: [
+        {
+          title: "Parsing malformed CSVs",
+          desc: "CSVs containing unescaped commas inside quote blocks broke standard string splitting. Resolved by writing a custom line-scanning parser that respects quote encapsulations."
+        },
+        {
+          title: "Handling Huge Payloads",
+          desc: "Large 50MB files froze the browser UI thread. Resolved by incorporating file chunking and rendering a progress spinner during execution."
+        }
+      ],
+      lessons: "Deepened knowledge of regex, CSV RFC-4180 standards, and client-side performance limitations.",
+      futureImprovements: [
+        "Add XML and YAML conversion support.",
+        "Integrate a visual Schema mapping canvas."
+      ]
+    }
+  },
+  {
+    id: "upreadr",
+    title: "UpReadr - The Distraction-Free Reading Engine",
+    category: "frontend",
+    featured: true,
+    image: "/project-images/upreadr.png",
+    shortDescription: "A distraction-free reading engine designed to transform PDFs into pristine, elegant digital books natively and locally in your browser.",
+    description: "A local-first web application that converts sprawling PDF textbooks or articles into beautifully typeset, readable ebook layouts. All processing runs 100% locally in-browser to preserve privacy and allow full offline reading.",
+    technologies: ["React", "IndexedDB", "JavaScript", "HTML5", "CSS3", "Service Workers"],
+    github: null,
+    demo: "https://upreadr.vercel.app",
+    status: "Completed",
+    year: "2026",
+    duration: "1 month",
+    team: "Solo Project",
+    client: "Personal Project",
+    rating: 5.0,
+    features: [
+      "Client-side PDF rendering and layout conversion",
+      "Elegant typography customization (fonts, spacing, text sizing)",
+      "Local-first library storage via IndexedDB",
+      "Offline-enabled Progressive Web App (PWA) using Service Workers",
+      "Progress tracking and automated bookmarks"
+    ],
+    caseStudy: {
+      problem: "Standard PDF viewers are cluttered, show content in fixed static pages, and lack readability controls like font resizing, themes, or custom layouts, which hinders deep focus and makes study exhausting.",
+      solution: "Developed a local-first browser reader in React. It parses PDFs page-by-page, rendering them into a clean, distraction-free environment with adjustable typography, reading themes (light, dark, sepia), and local library state preservation.",
+      architecture: [
+        "Frontend: React with modular components for the reading dashboard, settings panel, and book list.",
+        "Local Storage: IndexedDB via Dexie.js to store user books, read progress, and application settings.",
+        "Offline PWA: Service Workers to cache assets and allow 100% offline reading and app usage.",
+        "PDF Rendering: Customized pdfjs-dist hooks to extract and rasterize PDF pages directly in client-side memory."
+      ],
+      challenges: [
+        {
+          title: "Browser Storage Size Limits",
+          desc: "Large PDFs can exceed standard localStorage limits (5MB) or hit IndexedDB quota warnings. Resolved by storing PDF binary blobs directly in IndexedDB instead of Base64 strings, optimizing storage buffers."
+        },
+        {
+          title: "Smooth Reader Scrolling Performance",
+          desc: "Rendering a full 200-page PDF at once caused major lag. Resolved by implementing virtualized lists that only render pages currently visible in the viewport, maintaining 60fps."
+        }
+      ],
+      lessons: "Learned how to design high-performance, local-first PWAs and optimize browser memory when handling large binary files.",
+      futureImprovements: [
+        "Integrate automated text-to-speech (TTS) utilizing Web Speech API.",
+        "Support EPUB parsing in addition to PDF files."
+      ]
+    }
+  },
+  {
+    id: "book-tracker",
+    title: "Coursemate Book Tracker",
+    category: "frontend",
+    featured: false,
+    image: "/project-images/book-tracker.png",
+    shortDescription: "A local-first book allocation and payments tracker built for class governors to manage purchases, payments, profits, and global dues.",
+    description: "A student book manager and financial tracking tool for department class governors. It allows them to catalog shared books, log payments, track profit margins, and calculate expected class dues with full offline capability.",
+    technologies: ["JavaScript", "IndexedDB", "CSS3", "HTML5", "Supabase"],
+    github: null,
+    demo: "https://ini-book-tracker.vercel.app",
+    status: "Completed",
+    year: "2026",
+    duration: "1 month",
+    team: "Solo Project",
+    client: "Personal Project",
+    rating: 5.0,
+    features: [
+      "Department classmate database management",
+      "Shared book inventory and pricing configuration",
+      "Automatic profit margin and expected revenue calculation",
+      "Supabase cloud sync backup options",
+      "CSV data exporting capability"
+    ],
+    caseStudy: {
+      problem: "Class governors must manually keep track of book purchases, student payments, outstanding balances, and class dues across dozens of students, which is prone to accounting errors and data loss on spreadsheets.",
+      solution: "Created a lightweight student bookkeeping web app. Designed a clean, tabbed interface to manage students, calculate book costs, track profits, and monitor global class dues settings, storing all records locally.",
+      architecture: [
+        "Frontend: Structured vanilla HTML5, CSS custom properties, and modular JavaScript components.",
+        "Database: Local-first IndexedDB utilizing a custom schema to track Student, Book, and Due tables.",
+        "Cloud Integration: Optional cloud backup synchronization integrated with Supabase REST endpoints."
+      ],
+      challenges: [
+        {
+          title: "Ensuring Local Data Safety",
+          desc: "Since all data runs in-browser, clearing browser cookies could delete governor records. Resolved by building a sitemapped cloud sync dashboard to push/pull backups dynamically using Supabase database triggers."
+        },
+        {
+          title: "Complex Multi-Table Financial Calculations",
+          desc: "Aggregating total costs, total revenues, and profit margins on the fly across dynamically assigned student listings caused UI freezes. Resolved by optimizing database queries to compute aggregates in unified reduce calls."
+        }
+      ],
+      lessons: "Gained experience in vanilla JS application architecture, structured data flows, and designing robust schemas for IndexedDB systems.",
+      futureImprovements: [
+        "Implement automatic WhatsApp notifications for classmates regarding pending dues.",
+        "Add multi-currency configuration options."
+      ]
+    }
+  }
 ];
+export const getProjectById = (id) => projects.find((p) => p.id === id);

@@ -25,7 +25,7 @@
 .skills__gradient--1 {
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, #6366f1 0%, #8b5cf6 70%);
+  background: var(--radial-gradient-1);
   top: -10%;
   left: -15%;
   animation-delay: 0s;
@@ -34,7 +34,7 @@
 .skills__gradient--2 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, #10b981 0%, #06b6d4 70%);
+  background: radial-gradient(circle, var(--text-secondary) 0%, var(--text-secondary) 70%);
   top: 50%;
   right: -20%;
   animation-delay: 5s;
@@ -86,7 +86,7 @@
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -127,18 +127,18 @@
 .stat-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  border-color: #6366f1;
+  border-color: var(--accent-primary);
 }
 
 .stat-card__icon {
   width: 64px;
   height: 64px;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: var(--accent-gradient);
   border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: var(--text-inverse);
   font-size: 1.75rem;
   flex-shrink: 0;
   box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);
@@ -194,7 +194,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: var(--category-color, #6366f1);
+  background: var(--category-color, var(--accent-primary));
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -208,13 +208,13 @@
 .category-btn--active {
   transform: translateY(-4px);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
-  border-color: var(--category-color, #6366f1);
+  border-color: var(--category-color, var(--accent-primary));
 }
 
 .category-btn__icon {
   width: 56px;
   height: 56px;
-  background: var(--category-color, #6366f1);
+  background: var(--category-color, var(--accent-primary));
   border-radius: 14px;
   display: flex;
   align-items: center;
@@ -301,7 +301,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: var(--skill-color, #6366f1);
+  background: var(--skill-color, var(--accent-primary));
   transform: scaleX(0);
   transition: transform 0.4s ease;
 }
@@ -313,7 +313,7 @@
 .skill-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  border-color: var(--skill-color, #6366f1);
+  border-color: var(--skill-color, var(--accent-primary));
 }
 
 .skill-card__header {
@@ -343,7 +343,7 @@
 
 .skill-card:hover .skill-card__icon {
   transform: scale(1.1);
-  background: var(--skill-color, #6366f1);
+  background: var(--skill-color, var(--accent-primary));
 }
 
 .skill-card__details {
@@ -362,7 +362,7 @@
 .skill-card__label {
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--skill-color, #6366f1);
+  color: var(--skill-color, var(--accent-primary));
   text-transform: uppercase;
   letter-spacing: 0.05em;
   background: rgba(99, 102, 241, 0.1);
@@ -380,7 +380,7 @@
 .skill-card__percentage {
   font-size: 1.5rem;
   font-weight: 800;
-  color: var(--skill-color, #6366f1);
+  color: var(--skill-color, var(--accent-primary));
   line-height: 1;
 }
 
@@ -397,7 +397,7 @@
 
 .skill-card__progress-fill {
   height: 100%;
-  background: var(--skill-color, #6366f1);
+  background: var(--skill-color, var(--accent-primary));
   border-radius: 4px;
   width: var(--progress, 0%);
   animation: progressFill 1.5s ease-out 0.5s forwards;
@@ -521,7 +521,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #6366f1, #8b5cf6, #06b6d4, #10b981);
+  background: var(--accent-gradient);
 }
 
 .summary-card__title {
@@ -547,7 +547,7 @@
 
 .badge {
   padding: 0.5rem 1rem;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: var(--accent-gradient);
   color: white;
   border-radius: 50px;
   font-size: 0.875rem;

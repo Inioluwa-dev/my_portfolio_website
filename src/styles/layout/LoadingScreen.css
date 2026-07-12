@@ -4,12 +4,22 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(135deg, #0a0a0b 0%, #111112 50%, #1a1a1b 100%);
+  background: #000000;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
   overflow: hidden;
+}
+
+.loading-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .loading-content {
@@ -27,7 +37,8 @@
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: #000000;
+  border: 2px solid var(--accent-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,10 +49,10 @@
 }
 
 .logo-text {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: bold;
   color: white;
-  font-family: 'Fira Code', monospace;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .loading-rings {
@@ -61,23 +72,16 @@
 .ring-1 {
   width: 140px;
   height: 140px;
-  border-top-color: #6366f1;
+  border-top-color: var(--accent-primary);
   animation-duration: 2s;
 }
 
 .ring-2 {
   width: 160px;
   height: 160px;
-  border-right-color: #8b5cf6;
+  border-right-color: var(--accent-secondary);
   animation-duration: 3s;
   animation-direction: reverse;
-}
-
-.ring-3 {
-  width: 180px;
-  height: 180px;
-  border-bottom-color: #06b6d4;
-  animation-duration: 4s;
 }
 
 .loading-text h2 {
@@ -85,7 +89,7 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -115,7 +119,7 @@
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  background: var(--accent-gradient);
   border-radius: 2px;
   transition: width 0.3s ease;
   position: relative;
@@ -151,7 +155,7 @@
   position: absolute;
   width: 4px;
   height: 4px;
-  background: #6366f1;
+  background: var(--accent-primary);
   border-radius: 50%;
   opacity: 0.6;
 }

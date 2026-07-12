@@ -40,22 +40,23 @@ const Skills = () => {
       { threshold: 0.1 }
     );
 
-    if (skillsRef.current) {
-      observer.observe(skillsRef.current);
+    const currentRef = skillsRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (skillsRef.current) {
-        observer.unobserve(skillsRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
 
   const getSkillColor = (level) => {
-    if (level >= 90) return "#10b981"; // Expert - Green
-    if (level >= 80) return "#6366f1"; // Advanced - Blue
-    if (level >= 70) return "#f59e0b"; // Intermediate - Yellow
-    return "#ef4444"; // Beginner - Red
+    if (level >= 90) return "var(--accent-primary)";
+    if (level >= 80) return "var(--text-secondary)";
+    if (level >= 70) return "var(--text-tertiary)";
+    return "var(--border-primary)";
   };
 
   const getSkillLabel = (level) => {
@@ -76,7 +77,7 @@ const Skills = () => {
       "@type": "Person",
       name: "Olayoriju Inioluwa",
       alternateName: ["Mr Heritage", "Inioluwa", "inioluwa_dev", "Comibyte"],
-      jobTitle: "Full Stack Developer",
+      jobTitle: "Systems & Product Engineer",
       knowsAbout: [
         "Python",
         "Django",
@@ -97,7 +98,7 @@ const Skills = () => {
       ],
       hasOccupation: {
         "@type": "Occupation",
-        name: "Full Stack Developer",
+        name: "Systems & Product Engineer",
         skills: [
           "Python (90%)",
           "Django (88%)",
@@ -117,7 +118,7 @@ const Skills = () => {
       <SEO
         title="Technical Skills - Mr Heritage Portfolio"
         description="Explore my comprehensive technical skills in Python, Django, React, JavaScript, and modern web development technologies. 25+ technologies mastered with detailed proficiency levels."
-        keywords="Technical Skills, Olayoriju Inioluwa, Inioluwa, inioluwa_dev, Comibyte, Olayoriju, Python Developer, Django Expert, React Developer, JavaScript, Full Stack Skills, Web Development Technologies, Backend Development, Frontend Development"
+        keywords="Technical Skills, Olayoriju Inioluwa, Inioluwa, inioluwa_dev, Comibyte, Olayoriju, Systems Engineer, Product Engineer, Python Developer, Django Expert, React Developer, JavaScript, Web Development Technologies, Backend Development, Frontend Development"
         url="https://mr-heritage.name.ng/"
         structuredData={structuredData}
       />

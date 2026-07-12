@@ -2,9 +2,9 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 
 const SEO = ({
-  title = "Olayoriju Inioluwa | Mr Heritage - Full Stack Developer",
-  description = "Full Stack Developer specializing in Python/Django backend development and modern frontend technologies. Explore my portfolio, projects, and services.",
-  keywords = "Olayoriju Inioluwa, Inioluwa, inioluwa_dev, Comibyte, Olayoriju, Mr Heritage, Full Stack Developer, Python, Django, React, Backend Developer, Portfolio, Web Development, Lagos Nigeria",
+  title = "Olayoriju Inioluwa | Mr Heritage - Systems & Product Engineer",
+  description = "Systems & Product Engineer specializing in mathematical optimization, distributed backend systems, and clean architecture. Explore my portfolio, projects, and services.",
+  keywords = "Olayoriju Inioluwa, Inioluwa, inioluwa_dev, Comibyte, Olayoriju, Mr Heritage, Systems Engineer, Product Engineer, Tech Instructor, Python, Django, React, Backend Developer, Portfolio, Web Development, Lagos Nigeria",
   image = "/images/mr_heritage.png",
   url = "https://mr-heritage.name.ng",
   type = "website",

@@ -16,7 +16,6 @@ import {
   FiTrendingUp,
   FiAward,
 } from "react-icons/fi";
-import SEO from "../seo/SEO";
 import "../../styles/components/Projects.css";
 
 const Projects = () => {
@@ -32,15 +31,6 @@ const Projects = () => {
     { id: "frontend", label: "Frontend", count: 5 },
     { id: "backend", label: "Backend/API", count: 1 },
   ];
-
-  // Real Projects (to be linked when ready):
-  // - Kefi: Social media platform (Django + React)
-  // - Konverter: Data conversion tool (Python + Django)
-  // - Word Daily: Daily word learning app (Django + Frontend)
-  // - Tech Citi Intelligence Quiz: Intelligence assessment platform (HTML/CSS/JS)
-  // - Aqua Steps: Demo company website (HTML/CSS/Bootstrap)
-  // - Portfolio: This website (React + Modern CSS)
-  // Now imported from ../../data/projects.js
 
   const stats = [
     { number: "3", label: "Featured Projects", icon: FiCode },
@@ -63,13 +53,14 @@ const Projects = () => {
       { threshold: 0.1 }
     );
 
-    if (projectsRef.current) {
-      observer.observe(projectsRef.current);
+    const currentRef = projectsRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (projectsRef.current) {
-        observer.unobserve(projectsRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -90,102 +81,30 @@ const Projects = () => {
 
   const featuredProjects = projects.filter((project) => project.featured);
 
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.classList.add("modal-open");
+      document.documentElement.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+      document.documentElement.classList.remove("modal-open");
+    }
+    return () => {
+      document.body.classList.remove("modal-open");
+      document.documentElement.classList.remove("modal-open");
+    };
+  }, [selectedProject]);
+
   const openProjectModal = (project) => {
     setSelectedProject(project);
-    document.body.style.overflow = "hidden";
   };
 
   const closeProjectModal = () => {
     setSelectedProject(null);
-    document.body.style.overflow = "unset";
-  };
-
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    name: "Portfolio Projects - Mr Heritage",
-    description:
-      "Explore my portfolio of web development projects including Kefi social media platform, Konverter data conversion tool, and other full-stack applications built with Python, Django, and React.",
-    url: "https://mr-heritage.name.ng/",
-    mainEntity: {
-      "@type": "ItemList",
-      name: "Portfolio Projects",
-      description:
-        "Collection of web development projects showcasing full-stack development skills",
-      itemListElement: [
-        {
-          "@type": "CreativeWork",
-          name: "Kefi - Social Media Platform",
-          description:
-            "A comprehensive social media platform built with Django backend, Python, JavaScript, and MySQL database.",
-          url: "https://kefi.onrender.com",
-          creator: {
-            "@type": "Person",
-            name: "Olayoriju Inioluwa",
-            alternateName: [
-              "Mr Heritage",
-              "Inioluwa",
-              "inioluwa_dev",
-              "Comibyte",
-            ],
-          },
-          programmingLanguage: ["Python", "Django", "JavaScript", "MySQL"],
-          dateCreated: "2024",
-          genre: "Web Application",
-        },
-        {
-          "@type": "CreativeWork",
-          name: "Konverter - Data Conversion Tool",
-          description:
-            "A powerful utility tool for converting CSV to JSON and vice versa, with minification features built with React.",
-          url: "https://kon-verter.web.app",
-          creator: {
-            "@type": "Person",
-            name: "Olayoriju Inioluwa",
-            alternateName: [
-              "Mr Heritage",
-              "Inioluwa",
-              "inioluwa_dev",
-              "Comibyte",
-            ],
-          },
-          programmingLanguage: ["React", "JavaScript", "Bootstrap"],
-          dateCreated: "2024",
-          genre: "Web Application",
-        },
-        {
-          "@type": "CreativeWork",
-          name: "Harth - AI Background Removal",
-          description:
-            "An AI-powered platform for professional image editing, specializing in background removal. Built with Python backend and React frontend using Tailwind CSS.",
-          url: "https://harth-0.web.app",
-          creator: {
-            "@type": "Person",
-            name: "Olayoriju Inioluwa",
-            alternateName: [
-              "Mr Heritage",
-              "Inioluwa",
-              "inioluwa_dev",
-              "Comibyte",
-            ],
-          },
-          programmingLanguage: ["Python", "React", "Tailwind CSS"],
-          dateCreated: "2025",
-          genre: "Web Application",
-        },
-      ],
-    },
   };
 
   return (
     <section id="projects" className="projects" ref={projectsRef}>
-      <SEO
-        title="Portfolio Projects - Mr Heritage"
-        description="Explore my portfolio of web development projects including Kefi social media platform, Konverter data conversion tool, and other full-stack applications built with Python, Django, and React."
-        keywords="Portfolio Projects, Olayoriju Inioluwa, Inioluwa, inioluwa_dev, Comibyte, Olayoriju, Web Development Projects, Django Projects, React Projects, Full Stack Projects, Kefi Social Media, Konverter Tool, Python Projects, JavaScript Projects"
-        url="https://mr-heritage.name.ng/"
-        structuredData={structuredData}
-      />
       <div className="projects__background">
         <div className="projects__gradient projects__gradient--1"></div>
         <div className="projects__gradient projects__gradient--2"></div>
@@ -209,27 +128,6 @@ const Projects = () => {
             </p>
           </div>
 
-          {/* Stats Section */}
-          <div className="projects__stats">
-            {stats.map((stat, index) => {
-              const IconComponent = stat.icon;
-              return (
-                <div
-                  key={index}
-                  className="stat-card"
-                  style={{ "--delay": `${index * 0.1}s` }}
-                >
-                  <div className="stat-card__icon">
-                    <IconComponent />
-                  </div>
-                  <div className="stat-card__content">
-                    <span className="stat-card__number">{stat.number}</span>
-                    <span className="stat-card__label">{stat.label}</span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
 
           {/* Featured Projects Showcase */}
           <div className="projects__featured">
@@ -246,24 +144,30 @@ const Projects = () => {
                     <img src={project.image} alt={project.title} />
                     <div className="featured-card__overlay">
                       <div className="featured-card__links">
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="project-link"
-                        >
-                          <FiGithub />
-                        </a>
-                        <a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="project-link"
-                        >
-                          <FiExternalLink />
-                        </a>
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="project-link"
+                            aria-label="View Source Code"
+                          >
+                            <FiGithub />
+                          </a>
+                        )}
+                        {project.demo && (
+                          <a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="project-link"
+                            aria-label="View Live Demo"
+                          >
+                            <FiExternalLink />
+                          </a>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -371,24 +275,30 @@ const Projects = () => {
                   </div>
                   <div className="project-card__overlay">
                     <div className="project-card__links">
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="project-link"
-                      >
-                        <FiGithub />
-                      </a>
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="project-link"
-                      >
-                        <FiExternalLink />
-                      </a>
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="project-link"
+                          aria-label="View Source Code"
+                        >
+                          <FiGithub />
+                        </a>
+                      )}
+                      {project.demo && (
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="project-link"
+                          aria-label="View Live Demo"
+                        >
+                          <FiExternalLink />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -476,8 +386,8 @@ const Projects = () => {
 
       {/* Project Modal */}
       {selectedProject && (
-        <div className="project-modal-overlay" onClick={closeProjectModal}>
-          <div className="project-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="project-modal-overlay">
+          <div className="project-modal">
             <button
               className="project-modal__close"
               onClick={closeProjectModal}
@@ -605,24 +515,28 @@ const Projects = () => {
               </div>
 
               <div className="project-modal__footer">
-                <a
-                  href={selectedProject.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="modal-cta modal-cta--secondary"
-                >
-                  <FiGithub />
-                  <span>View Code</span>
-                </a>
-                <a
-                  href={selectedProject.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="modal-cta modal-cta--primary"
-                >
-                  <FiExternalLink />
-                  <span>Live Demo</span>
-                </a>
+                {selectedProject.github && (
+                  <a
+                    href={selectedProject.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="modal-cta modal-cta--secondary"
+                  >
+                    <FiGithub />
+                    <span>View Code</span>
+                  </a>
+                )}
+                {selectedProject.demo && (
+                  <a
+                    href={selectedProject.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="modal-cta modal-cta--primary"
+                  >
+                    <FiExternalLink />
+                    <span>Live Demo</span>
+                  </a>
+                )}
               </div>
             </div>
           </div>

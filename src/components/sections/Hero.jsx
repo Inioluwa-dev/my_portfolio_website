@@ -10,26 +10,30 @@ import {
   FiCoffee,
   FiYoutube
 } from 'react-icons/fi';
-import SEO from '../seo/SEO';
 import '../../styles/components/Hero.css';
 import CvPdf from '../../assets/mr-heritage.pdf';
+import MathParticles from '../ui/MathParticles';
+
+const roles = [
+  "Systems Engineer",
+  "Product Engineer",
+  "Tech Instructor",
+  "Mathematician",
+];
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [currentRole, setCurrentRole] = useState(0);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const heroRef = useRef(null);
 
-  const roles = [
-    "Full Stack Developer",
-    "Frontend & Backend Expert",
-    "Problem Solver",
-    "Creative Developer"
-  ];
+  // Typewriter state
+  const [typedText, setTypedText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+  const [typingSpeed, setTypingSpeed] = useState(120);
 
   const stats = [
-    { number: "7+", label: "Years Learning", icon: FiCoffee },
-    { number: "2+", label: "Years Working", icon: FiCalendar },
+    { number: "8+", label: "Years Learning", icon: FiCoffee },
+    { number: "3+", label: "Years Working", icon: FiCalendar },
     { number: "100%", label: "Dedication", icon: FiArrowRight }
   ];
 
@@ -56,34 +60,34 @@ const Hero = () => {
 
   useEffect(() => {
     setIsVisible(true);
+  }, []);
 
-    // Role rotation
-    const roleInterval = setInterval(() => {
-      setCurrentRole((prev) => (prev + 1) % roles.length);
-    }, 3000);
+  useEffect(() => {
+    const handleType = () => {
+      const idx = loopNum % roles.length;
+      const fullText = roles[idx];
 
-    // Mouse tracking for parallax
-    const handleMouseMove = (e) => {
-      if (heroRef.current) {
-        const rect = heroRef.current.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        setMousePosition({ x, y });
+      if (isDeleting) {
+        setTypedText(fullText.substring(0, typedText.length - 1));
+        setTypingSpeed(25); // faster deletion
+      } else {
+        setTypedText(fullText.substring(0, typedText.length + 1));
+        setTypingSpeed(70); // standard typing speed
+      }
+
+      if (!isDeleting && typedText === fullText) {
+        // Pause at end of typing
+        setTimeout(() => setIsDeleting(true), 1200);
+      } else if (isDeleting && typedText === "") {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+        setTypingSpeed(250); // pause before starting next word
       }
     };
 
-    const heroElement = heroRef.current;
-    if (heroElement) {
-      heroElement.addEventListener('mousemove', handleMouseMove);
-    }
-
-    return () => {
-      clearInterval(roleInterval);
-      if (heroElement) {
-        heroElement.removeEventListener('mousemove', handleMouseMove);
-      }
-    };
-  }, [roles.length]);
+    const timer = setTimeout(handleType, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [typedText, isDeleting, loopNum, typingSpeed]);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -99,69 +103,16 @@ const Hero = () => {
     }
   };
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Olayoriju Inioluwa",
-    "alternateName": ["Mr Heritage", "Inioluwa", "inioluwa_dev", "Comibyte"],
-    "jobTitle": "Full Stack Developer",
-    "description": "Full Stack Developer specializing in both frontend and backend development. Creating exceptional digital experiences through clean code and innovative design, building seamless user-centric applications.",
-    "url": "https://mr-heritage.name.ng",
-    "image": "https://mr-heritage.name.ng/Mr%20Heritage%20Profile.png",
-    "sameAs": [
-      "https://github.com/Inioluwa-dev",
-      "https://youtube.com/@Inioluwa-dev"
-    ],
-    "knowsAbout": [
-      "Python",
-      "Django",
-      "React",
-      "JavaScript",
-      "Backend Development",
-      "Full Stack Development",
-      "Web Development"
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Lagos",
-      "addressCountry": "Nigeria"
-    },
-    "email": "misterhge@gmail.com",
-    "alumniOf": "Coding Academy",
-    "hasOccupation": {
-      "@type": "Occupation",
-      "name": "Full Stack Developer",
-      "description": "Specializing in both frontend and backend development, creating seamless user-centric applications"
-    }
-  };
+
 
   return (
     <section id="home" className="hero" ref={heroRef}>
-      <SEO
-        title="Olayoriju Inioluwa | Mr Heritage - Full Stack Developer"
-        description="Full Stack Developer specializing in both frontend and backend development. I craft exceptional digital experiences through clean code and innovative design, creating seamless user-centric applications."
-        keywords="Olayoriju Inioluwa, Inioluwa, inioluwa_dev, Comibyte, Olayoriju, Mr Heritage, Full Stack Developer, Python, Django, React, Backend Developer, Portfolio, Web Development, Lagos Nigeria, Software Engineer"
-        structuredData={structuredData}
-      />
       {/* Background Elements */}
       <div className="hero__background">
+        <MathParticles />
         <div className="hero__gradient hero__gradient--1"></div>
         <div className="hero__gradient hero__gradient--2"></div>
         <div className="hero__gradient hero__gradient--3"></div>
-        
-        {/* Floating Elements */}
-        <div className="hero__floating">
-          {[...Array(12)].map((_, i) => (
-            <div 
-              key={i} 
-              className={`hero__particle hero__particle--${i + 1}`}
-              style={{
-                '--mouse-x': `${mousePosition.x}%`,
-                '--mouse-y': `${mousePosition.y}%`
-              }}
-            />
-          ))}
-        </div>
       </div>
 
       <div className="hero__container">
@@ -191,18 +142,18 @@ const Hero = () => {
               
               <div className="hero__role">
                 <span className="hero__role-prefix">I'm a </span>
-                <span className="hero__role-text" key={currentRole}>
-                  {roles[currentRole]}
+                <span className="hero__role-text">
+                  {typedText}
                 </span>
                 <span className="hero__role-cursor">|</span>
               </div>
             </div>
 
-            {/* Description */}
             <p className="hero__description">
-              I craft exceptional digital experiences through clean code and innovative design. 
-              Specializing in both frontend and backend development, I create seamless, 
-              user-centric applications that bridge the gap between beautiful interfaces and robust server-side solutions.
+              I design and build robust, high-performance systems and products. 
+              Applying mathematical optimization and clean engineering principles, 
+              I develop scalable backend architectures, efficient data pipelines, 
+              and highly responsive user interfaces.
             </p>
 
             {/* Stats */}
@@ -316,7 +267,7 @@ const Hero = () => {
                   <span className="hero__code-text">
                     <span className="hero__code-property">  role</span>
                     <span className="hero__code-punctuation">: </span>
-                    <span className="hero__code-string">'Full Stack Developer'</span>
+                    <span className="hero__code-string">'Systems & Product Engineer'</span>
                     <span className="hero__code-punctuation">,</span>
                   </span>
                 </div>
@@ -340,7 +291,7 @@ const Hero = () => {
                   <span className="hero__code-text">
                     <span className="hero__code-property">  passion</span>
                     <span className="hero__code-punctuation">: </span>
-                    <span className="hero__code-string">'Backend Development'</span>
+                    <span className="hero__code-string">'Distributed Systems & Math Optimization'</span>
                   </span>
                 </div>
                 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from './context/ThemeContext';
-import { AnimationProvider } from './context/AnimationContext';
 import AppRouter from './router/AppRouter';
 import LoadingScreen from './components/layout/LoadingScreen';
 import CustomCursor from './components/ui/CustomCursor';
@@ -29,14 +28,12 @@ function App() {
   return (
     <HelmetProvider>
       <ThemeProvider>
-        <AnimationProvider>
-          <div className="App">
-            <SEO />
-            <CustomCursor />
-            <ScrollProgress />
+        <div className="App">
+          <SEO />
+          <CustomCursor />
+          <ScrollProgress />
           <AppRouter />
-          </div>
-        </AnimationProvider>
+        </div>
       </ThemeProvider>
     </HelmetProvider>
   );

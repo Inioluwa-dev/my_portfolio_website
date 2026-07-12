@@ -1,50 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { 
   FiMail, 
   FiPhone,
   FiMapPin,
-  FiLinkedin,
   FiGithub,
-  FiTwitter,
-  FiInstagram,
-  FiArrowUp,
-  FiHeart,
   FiCode,
-  FiExternalLink,
-  FiDownload,
   FiYoutube
 } from 'react-icons/fi';
 import '../../styles/layout/Footer.css';
-import CvPdf from '../../assets/mr-heritage.pdf';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const [showBackToTop, setShowBackToTop] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      setShowBackToTop(scrollTop > 300);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const quickLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Services', href: '#services' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' }
-  ];
-
-  const services = [
-    { name: 'Web Development', href: '#services' },
-    { name: 'Mobile Apps', href: '#services' },
-    { name: 'API Development', href: '#services' },
-    { name: 'UI/UX Design', href: '#services' },
-    { name: 'Consulting', href: '#services' }
+    { name: 'Projects', path: '/projects' },
+    { name: 'Blog', path: '/blog' },
+    { name: 'Resume', path: '/resume' },
+    { name: 'Contact', path: '/contact' }
   ];
 
   const socialLinks = [
@@ -64,7 +38,7 @@ const Footer = () => {
       name: 'Email',
       icon: FiMail,
       href: 'mailto:misterhge@gmail.com',
-      color: '#6366f1'
+      color: '#737373'
     }
   ];
 
@@ -96,20 +70,8 @@ const Footer = () => {
     });
   };
 
-  const scrollToSection = (href) => {
-    if (href.startsWith('#')) {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      window.open(href, '_blank');
-    }
-  };
-
   return (
-    <>
-      <footer className="footer">
+    <footer className="footer">
         <div className="footer__background">
           <div className="footer__gradient footer__gradient--1"></div>
           <div className="footer__gradient footer__gradient--2"></div>
@@ -126,7 +88,7 @@ const Footer = () => {
                 <div className="logo-icon">
                   <FiCode />
                 </div>
-                <span className="logo-text">Olayoriju</span>
+                <span className="logo-text">Inioluwa</span>
               </div>
               <p className="footer__tagline">
                 Crafting digital experiences with passion and precision. 
@@ -154,35 +116,31 @@ const Footer = () => {
 
             {/* Quick Links */}
             <div className="footer__section">
-              <h4 className="footer__section-title">Quick Links</h4>
+              <h4 className="footer__section-title">Navigation</h4>
               <ul className="footer__links">
                 {quickLinks.map((link, index) => (
                   <li key={index}>
-                    <button
-                      onClick={() => scrollToSection(link.href)}
+                    <Link
+                      to={link.path}
                       className="footer__link"
+                      onClick={scrollToTop}
                     >
                       {link.name}
-                    </button>
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Services */}
+            {/* Specialties Section */}
             <div className="footer__section">
-              <h4 className="footer__section-title">Services</h4>
+              <h4 className="footer__section-title">Specialties</h4>
               <ul className="footer__links">
-                {services.map((service, index) => (
-                  <li key={index}>
-                    <button
-                      onClick={() => scrollToSection(service.href)}
-                      className="footer__link"
-                    >
-                      {service.name}
-                    </button>
-                  </li>
-                ))}
+                <li><Link to="/resume" className="footer__link" onClick={scrollToTop}>React Frontend</Link></li>
+                <li><Link to="/resume" className="footer__link" onClick={scrollToTop}>FastAPI Backend</Link></li>
+                <li><Link to="/resume" className="footer__link" onClick={scrollToTop}>Python/Django API</Link></li>
+                <li><Link to="/projects" className="footer__link" onClick={scrollToTop}>Case Studies</Link></li>
+                <li><Link to="/blog" className="footer__link" onClick={scrollToTop}>Technical Blog</Link></li>
               </ul>
             </div>
 
@@ -215,61 +173,8 @@ const Footer = () => {
 
           </div>
 
-          {/* Newsletter Section */}
-          <div className="footer__newsletter">
-            <div className="newsletter-card">
-              <div className="newsletter-card__content">
-                <h3 className="newsletter-card__title">
-                  Stay Updated
-                </h3>
-                <p className="newsletter-card__description">
-                  Get notified about new projects, articles, and opportunities.
-                </p>
-              </div>
-              <div className="newsletter-card__actions">
-                <button 
-                  className="newsletter-btn newsletter-btn--primary"
-                  onClick={() => scrollToSection('#contact')}
-                >
-                  <FiMail />
-                  <span>Get In Touch</span>
-                </button>
-                <a 
-                  href={CvPdf}
-                  download="mr-heritage.pdf"
-                  className="newsletter-btn newsletter-btn--secondary"
-                >
-                  <FiDownload />
-                  <span>Download CV</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Footer Bottom */}
-          <div className="footer__bottom">
-            <div className="footer__bottom-content">
-              <div className="footer__copyright">
-                <p>
-                  © {currentYear} Comibyte Team <br />
-                  Made by Olayoriju Inioluwa.
-                </p>
-              </div>
-            </div>
-          </div>
-
         </div>
       </footer>
-
-      {/* Fixed Back to Top Button */}
-      <button 
-        className={`back-to-top ${showBackToTop ? 'visible' : ''}`}
-        onClick={scrollToTop}
-        aria-label="Back to top"
-      >
-        <FiArrowUp />
-      </button>
-    </>
   );
 };
 

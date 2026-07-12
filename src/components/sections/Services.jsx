@@ -60,13 +60,14 @@ const Services = () => {
       { threshold: 0.1 }
     );
 
-    if (servicesRef.current) {
-      observer.observe(servicesRef.current);
+    const currentRef = servicesRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (servicesRef.current) {
-        observer.unobserve(servicesRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -76,14 +77,26 @@ const Services = () => {
       ? services
       : services.filter((service) => service.category === activeFilter);
 
+  useEffect(() => {
+    if (selectedService) {
+      document.body.classList.add("modal-open");
+      document.documentElement.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+      document.documentElement.classList.remove("modal-open");
+    }
+    return () => {
+      document.body.classList.remove("modal-open");
+      document.documentElement.classList.remove("modal-open");
+    };
+  }, [selectedService]);
+
   const openServiceModal = (service) => {
     setSelectedService(service);
-    document.body.style.overflow = "hidden";
   };
 
   const closeServiceModal = () => {
     setSelectedService(null);
-    document.body.style.overflow = "unset";
   };
 
   const scrollToContact = () => {
@@ -105,7 +118,7 @@ const Services = () => {
       "@type": "Person",
       name: "Olayoriju Inioluwa",
       alternateName: ["Mr Heritage", "Inioluwa", "inioluwa_dev", "Comibyte"],
-      jobTitle: "Full Stack Developer",
+      jobTitle: "Systems & Product Engineer",
     },
     serviceType: "Web Development",
     areaServed: "Worldwide",

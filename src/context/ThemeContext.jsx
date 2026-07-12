@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const ThemeContext = createContext();
@@ -19,7 +20,7 @@ export const ThemeProvider = ({ children }) => {
       if (saved === 'light') return false;
       if (saved === 'true' || saved === 'false') return saved === 'true';
       return JSON.parse(saved);
-    } catch (e) {
+    } catch {
       return true;
     }
   });
