@@ -507,8 +507,9 @@
 }
 
 .status-badge--completed {
-  background: var(--text-secondary);
-  color: white;
+  background: rgba(16, 185, 129, 0.982);
+  border-color: rgba(16, 185, 129, 0.25);
+  color: var(--text-primary);
 }
 
 .status-badge--in-development {

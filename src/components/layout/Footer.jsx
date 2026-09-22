@@ -21,7 +21,6 @@ const Footer = () => {
 
   const socialLinks = [
     { name: 'GitHub',  icon: FiGithub,  href: 'https://github.com/Inioluwa-dev' },
-    { name: 'YouTube', icon: FiYoutube, href: 'https://youtube.com/@Inioluwa-dev' },
     { name: 'Email',   icon: FiMail,    href: 'mailto:misterhge@gmail.com' },
   ];
 

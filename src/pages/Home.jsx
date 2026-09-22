@@ -3,10 +3,11 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import Hero from "../components/sections/Hero";
 import About from "../components/sections/About";
+import CapabilitiesSection from "../components/sections/CapabilitiesSection";
 import SEO from "../components/seo/SEO";
 import { projects } from "../data/projects";
 import { Link } from "react-router-dom";
-import { FiArrowRight, FiCode, FiZap, FiMessageSquare } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 import "../styles/components/Home.css";
 
 const HomePage = () => {
@@ -22,18 +23,19 @@ const HomePage = () => {
     "@graph": [
       {
         "@type": "Person",
-        "name": "Olayoriju Inioluwa",
-        "alternateName": ["Mr Heritage", "Inioluwa", "inioluwa_dev", "Comibyte"],
-        "jobTitle": "Systems & Product Engineer",
-        "description": "Systems & Product Engineer specializing in mathematical optimization, distributed systems, and clean architecture.",
-        "url": "https://mr-heritage.name.ng",
-        "image": "https://mr-heritage.name.ng/images/mr_heritage.png",
-        "sameAs": [
+        name: "Olayoriju Inioluwa",
+        alternateName: ["Mr Heritage", "Inioluwa", "inioluwa_dev", "Comibyte"],
+        jobTitle: "Systems & Product Engineer",
+        description:
+          "Systems & Product Engineer specializing in mathematical optimization, distributed systems, and clean architecture.",
+        url: "https://mr-heritage.name.ng",
+        image: "https://mr-heritage.name.ng/images/mr_heritage.png",
+        sameAs: [
           "https://github.com/Inioluwa-dev",
-          "https://youtube.com/@Inioluwa-dev"
-        ]
-      }
-    ]
+          "https://youtube.com/@Inioluwa-dev",
+        ],
+      },
+    ],
   };
 
   return (
@@ -46,15 +48,15 @@ const HomePage = () => {
         structuredData={homepageStructuredData}
       />
       <Navbar />
-      
+
       <main>
-        {/* Core Hero Banner */}
+        {/* 1. Core Hero Banner */}
         <Hero />
 
-        {/* About Section */}
+        {/* 2. About Section */}
         <About />
 
-        {/* Featured Projects Preview Section */}
+        {/* 3. Featured Case Studies & Projects */}
         <section className="featured-section">
           <div className="container">
             <div className="featured-header">
@@ -62,13 +64,18 @@ const HomePage = () => {
                 Featured <span className="text-gradient">Case Studies</span>
               </h2>
               <p className="section-subtitle">
-                A selection of my best backend and full-stack software engineering works.
+                A selection of my best backend and full-stack software
+                engineering works.
               </p>
             </div>
 
             <div className="featured-grid">
               {featured.map((project, idx) => (
-                <div key={project.id} className="featured-project-card card-glass animate-scale-in" style={{ '--delay': `${idx * 0.1}s` }}>
+                <div
+                  key={project.id}
+                  className="featured-project-card card-glass animate-scale-in"
+                  style={{ "--delay": `${idx * 0.1}s` }}
+                >
                   <div className="project-image-wrapper">
                     <img src={project.image} alt={project.title} />
                     <span className="project-year-badge">{project.year}</span>
@@ -76,13 +83,18 @@ const HomePage = () => {
                   <div className="project-content-wrapper">
                     <div className="project-tech-list">
                       {project.technologies.slice(0, 3).map((tech, i) => (
-                        <span key={i} className="tech-badge-inline">{tech}</span>
+                        <span key={i} className="tech-badge-inline">
+                          {tech}
+                        </span>
                       ))}
                     </div>
                     <h3 className="project-title">{project.title}</h3>
                     <p className="project-desc">{project.shortDescription}</p>
                     <div className="project-cta-links">
-                      <Link to={`/projects/${project.id}`} className="read-case-btn">
+                      <Link
+                        to={`/projects/${project.id}`}
+                        className="read-case-btn"
+                      >
                         <span>Read Case Study</span>
                         <FiArrowRight />
                       </Link>
@@ -101,13 +113,20 @@ const HomePage = () => {
           </div>
         </section>
 
-        {/* Direct High-Converting Call To Action */}
+        {/* 4. Side-by-Side Skills & Services Section */}
+        <CapabilitiesSection />
+
+        {/* 5. Direct High-Converting Call To Action */}
         <section className="home-cta-section">
           <div className="container">
             <div className="home-cta-box card-glass">
               <div className="cta-left">
                 <h2>Have a project in mind?</h2>
-                <p>I'm available for freelance work, full-time engineering roles, and technical consulting. Let's discuss your software ideas and build something extraordinary.</p>
+                <p>
+                  I'm available for freelance work, full-time engineering roles,
+                  and technical consulting. Let's discuss your software ideas
+                  and build something extraordinary.
+                </p>
                 <div className="cta-buttons">
                   <Link to="/contact" className="btn btn-primary btn-md">
                     <span>Start a Conversation</span>

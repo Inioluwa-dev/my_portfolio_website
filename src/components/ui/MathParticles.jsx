@@ -11,25 +11,25 @@ const MathParticles = () => {
     let animationFrameId;
 
     const symbols = [
-      'e = mc²',
-      'a² + b² = c²',
-      'e^(iπ) + 1 = 0',
-      '∇ × E = -∂B/∂t',
-      'x = [-b ± √(b²-4ac)] / 2a',
-      '∫ e^x dx = e^x',
+      'e = mc\u00b2',
+      'a\u00b2 + b\u00b2 = c\u00b2',
+      'e^(i\u03c0) + 1 = 0',
+      '\u2207 \u00d7 E = -\u2202B/\u2202t',
+      'x = [-b \u00b1 \u221a(b\u00b2-4ac)] / 2a',
+      '\u222b e^x dx = e^x',
       'f(x) = sin(x) + cos(x)',
-      '∫_a^b f(x)dx = F(b) - F(a)',
-      'F = G(m₁m₂)/r²',
+      '\u222b_a^b f(x)dx = F(b) - F(a)',
+      'F = G(m\u2081m\u2082)/r\u00b2',
       'd/dx(ln x) = 1/x',
-      'Hψ = Eψ',
+      'H\u03c8 = E\u03c8',
       'PV = nRT',
-      '∑_{i=1}^n x_i',
-      'lim_{x→∞} (1 + 1/x)^x = e',
-      '∑', '∫', 'π', '√', '∞', '∂', '∆', 'Ω', 'f(x)', 'dy/dx', 'ℝ', 'ℂ'
+      '\u2211_{i=1}^n x_i',
+      'lim_{x\u2192\u221e} (1 + 1/x)^x = e',
+      '\u2211', '\u222b', '\u03c0', '\u221a', '\u221e', '\u2202', '\u2206', '\u03a9', 'f(x)', 'dy/dx', '\u211d', '\u2102'
     ];
 
     let particles = [];
-    const particleCount = 35; // slightly lower count to account for larger sizes and avoid clutter
+    const particleCount = 35;
 
     const resizeCanvas = () => {
       const rect = canvas.parentNode.getBoundingClientRect();
@@ -40,26 +40,40 @@ const MathParticles = () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Initialize particles
     particles = Array.from({ length: particleCount }, () => {
-      const size = Math.floor(Math.random() * 26) + 16; // 16px to 42px (a bit smaller)
+      const size = Math.floor(Math.random() * 26) + 16;
       return {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         symbol: symbols[Math.floor(Math.random() * symbols.length)],
         fontSize: size,
-        vx: (Math.random() - 0.5) * 1.3, // Faster drift movement
+        vx: (Math.random() - 0.5) * 1.3,
         vy: (Math.random() - 0.5) * 1.3,
         alpha: Math.random() * 0.45 + 0.25,
-        spin: Math.random() * 0.008 - 0.004, // Slightly faster rotation
-        angle: Math.random() * 0.5 - 0.25, // Slight angle deviation (-15 to 15 deg) to keep formulas readable
-        blur: size > 32 ? Math.floor((size - 32) / 3) : 0 // Depth-of-field blur on larger elements
+        spin: Math.random() * 0.008 - 0.004,
+        angle: Math.random() * 0.5 - 0.25,
       };
     });
 
+    let isVisible = true;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible && !animationFrameId) {
+          animationFrameId = requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(canvas);
+
     const animate = () => {
+      if (!isVisible) {
+        animationFrameId = null;
+        return;
+      }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.filter = 'none'; // reset filter at start of frame
 
       const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
 
@@ -67,12 +81,6 @@ const MathParticles = () => {
         ctx.save();
         ctx.translate(p.x, p.y);
         ctx.rotate(p.angle);
-        
-        if (p.blur > 0) {
-          ctx.filter = `blur(${p.blur}px)`;
-        } else {
-          ctx.filter = 'none';
-        }
 
         ctx.fillStyle = isDark 
           ? `rgba(255, 255, 255, ${p.alpha * 0.26})` 
@@ -81,12 +89,10 @@ const MathParticles = () => {
         ctx.fillText(p.symbol, 0, 0);
         ctx.restore();
 
-        // Update positions
         p.x += p.vx;
         p.y += p.vy;
         p.angle += p.spin;
 
-        // Wrap around boundaries (adjusted for larger text sizes)
         if (p.x < -250) p.x = canvas.width + 250;
         if (p.x > canvas.width + 250) p.x = -250;
         if (p.y < -100) p.y = canvas.height + 100;
@@ -96,11 +102,12 @@ const MathParticles = () => {
       animationFrameId = requestAnimationFrame(animate);
     };
 
-    animate();
+    animationFrameId = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
-      cancelAnimationFrame(animationFrameId);
+      observer.disconnect();
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
   }, []);
 

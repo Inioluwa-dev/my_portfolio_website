@@ -44,6 +44,7 @@
   align-items: center;
   gap: var(--space-3);
   margin-bottom: var(--space-6);
+  color: var(--text-primary);
 }
 
 .timeline-block-header svg {
@@ -106,6 +107,7 @@
   font-size: var(--text-md);
   font-family: 'Outfit', sans-serif;
   margin-bottom: 2px;
+  color: var(--text-primary);
 }
 
 .node-company {
@@ -169,6 +171,7 @@
   border-bottom: 1px solid var(--border-primary);
   padding-bottom: var(--space-2);
   margin-bottom: var(--space-4);
+  color: var(--text-primary);
 }
 
 .matrix-skills-list {
@@ -235,6 +238,7 @@
   font-size: var(--text-sm);
   font-weight: var(--font-semibold);
   margin-bottom: 2px;
+  color: var(--text-primary);
 }
 
 .cert-info span {

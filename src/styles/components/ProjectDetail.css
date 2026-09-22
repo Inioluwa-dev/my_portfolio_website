@@ -47,12 +47,6 @@
   color: var(--text-primary);
 }
 
-.status-badge {
-  background: rgba(16, 185, 129, 0.15);
-  border-color: rgba(16, 185, 129, 0.25);
-  color: var(--color-success);
-}
-
 .detail-title {
   font-size: clamp(var(--text-4xl), 5vw, var(--text-6xl));
   font-family: 'Outfit', sans-serif;

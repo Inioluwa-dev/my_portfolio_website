@@ -27,11 +27,6 @@ const Hero = () => {
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(120);
 
-  const socialLinks = [
-    { name: "GitHub",  icon: FiGithub,  url: "https://github.com/Inioluwa-dev" },
-    { name: "YouTube", icon: FiYoutube, url: "https://youtube.com/@Inioluwa-dev" },
-    { name: "Email",   icon: FiMail,    url: "mailto:misterhge@gmail.com" },
-  ];
 
   useEffect(() => {
     setIsVisible(true);
@@ -150,6 +145,11 @@ const Hero = () => {
         <div className={`hero__footer-row ${isVisible ? 'hero__footer-row--visible' : ''}`}>
           <div className="hero__stats">
             <div className="hero__stat">
+              <span className="hero__stat-number">8+</span>
+              <span className="hero__stat-label">Years Learning</span>
+            </div>
+            <div className="hero__stat-divider" />
+             <div className="hero__stat">
               <span className="hero__stat-number">3+</span>
               <span className="hero__stat-label">Years Building</span>
             </div>
@@ -158,30 +158,7 @@ const Hero = () => {
               <span className="hero__stat-number">50+</span>
               <span className="hero__stat-label">Projects Shipped</span>
             </div>
-            <div className="hero__stat-divider" />
-            <div className="hero__stat">
-              <span className="hero__stat-number">100%</span>
-              <span className="hero__stat-label">Dedication</span>
             </div>
-          </div>
-
-          <div className="hero__social">
-            {socialLinks.map((social) => {
-              const IconComponent = social.icon;
-              return (
-                <a
-                  key={social.name}
-                  href={social.url}
-                  className="hero__social-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Visit my ${social.name} profile`}
-                >
-                  <IconComponent />
-                </a>
-              );
-            })}
-          </div>
         </div>
 
         {/* Scroll hint */}

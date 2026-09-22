@@ -16,6 +16,7 @@ const Navbar = () => {
     { id: "projects", label: "Projects", path: "/projects" },
     { id: "blog",     label: "Blog",     path: "/blog" },
     { id: "contact",  label: "Contact",  path: "/contact" },
+    { id: "resume",   label: "Resume",   path: "/resume" },
   ];
 
   useEffect(() => {

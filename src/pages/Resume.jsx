@@ -36,7 +36,7 @@ const ResumePage = () => {
             </div>
             <a href={CvPdf} download="mr-heritage.pdf" className="btn btn-primary download-cv-btn">
               <FiDownload />
-              <span>Download PDF CV</span>
+              <span> Download PDF CV</span>
             </a>
           </div>
 

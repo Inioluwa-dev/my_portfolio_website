@@ -1,19 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   FiMail, 
-  FiPhone,
-  FiGithub,
-  FiSend,
-  FiUser,
-  FiAlertCircle,
-  FiCheckCircle,
-  FiMessageSquare,
-  FiCheck,
-  FiClock,
-  FiCoffee,
+  FiPhone, 
+  FiGithub, 
+  FiSend, 
+  FiUser, 
+  FiAlertCircle, 
+  FiCheckCircle, 
+  FiMessageSquare, 
+  FiClock, 
   FiArrowRight,
-  FiYoutube
+  FiLayers
 } from 'react-icons/fi';
+import { services } from '../../data/services';
 import '../../styles/components/Contact.css';
 
 const Contact = () => {
@@ -24,6 +23,7 @@ const Contact = () => {
     email: '',
     phone: '',
     company: '',
+    service: '',
     subject: '',
     message: '',
   });
@@ -46,7 +46,7 @@ const Contact = () => {
     {
       icon: FiPhone,
       title: 'Call Me',
-      description: 'Let\'s have a conversation',
+      description: "Let's have a conversation",
       value: '+234 9133770970',
       link: 'tel:+2349133770970',
       color: '#10b981',
@@ -151,7 +151,7 @@ const Contact = () => {
       if (response.ok) {
         setStatus('');
         setFormSubmitted(true);
-        setFormData({ name: '', email: '', phone: '', company: '', subject: '', message: '' });
+        setFormData({ name: '', email: '', phone: '', company: '', service: '', subject: '', message: '' });
         setErrors({});
       } else {
         const responseData = await response.json();
@@ -272,21 +272,45 @@ const Contact = () => {
       <div className="form-section">
         <h4 className="form-section__title">Project Information</h4>
 
-        <div className="form-group">
-          <label htmlFor="subject" className="form-label">
-            Subject *
-          </label>
-          <input
-            type="text"
-            id="subject"
-            name="subject"
-            className={`form-input ${errors.subject ? 'is-invalid' : ''}`}
-            placeholder="Brief project summary"
-            maxLength="100"
-            value={formData.subject}
-            onChange={handleChange}
-          />
-          {errors.subject && <span className="form-error">{errors.subject}</span>}
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="service" className="form-label">
+              <FiLayers />
+              Interested Service
+            </label>
+            <select
+              id="service"
+              name="service"
+              className="form-select"
+              value={formData.service}
+              onChange={handleChange}
+            >
+              <option value="">Select a service (Optional)</option>
+              {services.map((s) => (
+                <option key={s.id} value={s.title}>
+                  {s.title}
+                </option>
+              ))}
+              <option value="Custom Project">Custom Project / Other</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="subject" className="form-label">
+              Subject *
+            </label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              className={`form-input ${errors.subject ? 'is-invalid' : ''}`}
+              placeholder="Brief project summary"
+              maxLength="100"
+              value={formData.subject}
+              onChange={handleChange}
+            />
+            {errors.subject && <span className="form-error">{errors.subject}</span>}
+          </div>
         </div>
       </div>
 
@@ -361,7 +385,6 @@ const Contact = () => {
             </p>
           </div>
 
-        
           {/* Main Contact Section */}
           <div className="contact__main">
             
@@ -427,8 +450,8 @@ const Contact = () => {
               </div>
 
               {formSubmitted ? renderSuccessMessage() : renderContactForm()}
-              </div>
             </div>
+          </div>
         </div>
       </div>
     </section>
