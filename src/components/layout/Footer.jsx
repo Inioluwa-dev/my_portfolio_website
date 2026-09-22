@@ -1,10 +1,9 @@
 import React from 'react';
 import { 
   FiMail, 
-  FiPhone,
-  FiMapPin,
-  FiGithub,
-  FiYoutube
+  FiPhone, 
+  FiMapPin, 
+  FiGithub 
 } from 'react-icons/fi';
 import '../../styles/layout/Footer.css';
 import { Link } from 'react-router-dom';

@@ -2,9 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { 
   FiDownload, 
   FiArrowRight, 
-  FiGithub, 
-  FiMail,
-  FiYoutube
+  FiMail 
 } from 'react-icons/fi';
 import '../../styles/components/Hero.css';
 import CvPdf from '../../assets/mr-heritage.pdf';
