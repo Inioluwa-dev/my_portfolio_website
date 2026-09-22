@@ -9,7 +9,6 @@ import {
   FiSmartphone,
   FiUsers,
   FiLayers,
-  FiCheckCircle,
 } from "react-icons/fi";
 import "../../styles/components/CapabilitiesSection.css";
 

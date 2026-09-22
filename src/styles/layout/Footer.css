@@ -186,8 +186,7 @@
   flex-wrap: wrap;
 }
 
-.footer__copyright,
-.footer__made-with {
+.footer__copyright {
   font-size: var(--text-xs);
   color: var(--text-tertiary);
   font-weight: var(--font-medium);

@@ -283,7 +283,6 @@ code, pre, kbd, samp {
 /* ── Standardized Section Headers ── */
 .section-header,
 .projects__header,
-.skills__header,
 .about__header,
 .contact__header,
 .blog__header,
@@ -297,7 +296,6 @@ code, pre, kbd, samp {
 
 .section-title,
 .projects__title,
-.skills__title,
 .about__title,
 .contact__title,
 .blog__title,
@@ -313,7 +311,6 @@ code, pre, kbd, samp {
 
 .section-subtitle,
 .projects__subtitle,
-.skills__subtitle,
 .about__subtitle,
 .contact__subtitle,
 .blog__subtitle,

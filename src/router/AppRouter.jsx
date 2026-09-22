@@ -36,10 +36,8 @@ const AppRouter = () => {
         <Route path="/about" element={<Navigate to="/#about" replace />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/projects/:id" element={<ProjectDetailPage />} />
-        <Route path="/chat" element={<Navigate to="/" replace />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogPostPage />} />
-        <Route path="/playground" element={<Navigate to="/" replace />} />
         <Route path="/resume" element={<ResumePage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
