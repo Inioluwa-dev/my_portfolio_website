@@ -2,62 +2,51 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 20px;
-  height: 20px;
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  width: 10px;
+  height: 10px;
+  background: var(--accent-primary);
   border-radius: 50%;
   pointer-events: none;
-  z-index: 9998;
-  /* Do NOT transition transform to prevent mouse lag. Only transition dimensions and colors. */
-  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
-  mix-blend-mode: difference;
+  z-index: 9999;
+  will-change: transform;
+  transition: width 0.15s ease, height 0.15s ease, background-color 0.15s ease;
 }
 
 .cursor-trail {
   position: fixed;
   top: 0;
   left: 0;
-  width: 40px;
-  height: 40px;
-  border: 2px solid rgba(99, 102, 241, 0.3);
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid rgba(99, 102, 241, 0.4);
   border-radius: 50%;
   pointer-events: none;
-  z-index: 9997;
-  /* Transition transform on the trail to create a smooth trailing effect */
-  transition: transform 0.08s ease-out, width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
+  z-index: 9998;
+  will-change: transform;
+  transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .custom-cursor.hovering {
-  width: 40px;
-  height: 40px;
-  background: rgba(99, 102, 241, 0.2);
-  border: 2px solid var(--accent-primary);
-}
-
-.custom-cursor.clicking {
-  width: 15px;
-  height: 15px;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-primary);
 }
 
 .cursor-trail.hovering {
-  width: 60px;
-  height: 60px;
-  border-color: rgba(99, 102, 241, 0.5);
+  width: 48px;
+  height: 48px;
+  border-color: var(--accent-primary);
+  background: rgba(99, 102, 241, 0.08);
 }
 
-/* Hide default cursor on interactive elements */
-a, button, .cursor-hover, [role="button"] {
-  cursor: none;
+.custom-cursor.clicking {
+  transform: scale(0.6);
 }
 
-/* Hide custom cursor on mobile */
-@media (max-width: 768px) {
+/* Hide custom cursor on mobile / touch devices */
+@media (pointer: coarse), (max-width: 768px) {
   .custom-cursor,
   .cursor-trail {
-    display: none;
-  }
-  
-  a, button, .cursor-hover, [role="button"] {
-    cursor: pointer;
+    display: none !important;
   }
 }

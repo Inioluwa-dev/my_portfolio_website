@@ -101,24 +101,16 @@ const HomePage = () => {
           </div>
         </section>
 
-        {/* Conversational Call To Action */}
+        {/* Direct High-Converting Call To Action */}
         <section className="home-cta-section">
           <div className="container">
             <div className="home-cta-box card-glass">
               <div className="cta-left">
-                <h2>Have questions about my workflow?</h2>
-                <p>Chat with my virtual clone directly and get instant answers about my programming skills, stack, and availability.</p>
+                <h2>Have a project in mind?</h2>
+                <p>I'm available for freelance work, full-time engineering roles, and technical consulting. Let's discuss your software ideas and build something extraordinary.</p>
                 <div className="cta-buttons">
-                  <button
-                    onClick={() => window.dispatchEvent(new CustomEvent("open-digital-twin"))}
-                    className="btn btn-primary"
-                  >
-                    <FiMessageSquare />
-                    <span>Talk with my Twin</span>
-                  </button>
-                  <Link to="/contact" className="btn btn-secondary">
-                    <span>Get in Touch</span>
-                    <FiZap />
+                  <Link to="/contact" className="btn btn-primary btn-md">
+                    <span>Start a Conversation</span>
                   </Link>
                 </div>
               </div>

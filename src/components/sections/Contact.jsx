@@ -31,8 +31,7 @@ const Contact = () => {
   const [status, setStatus] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  // Formspree form ID - replace with your actual Formspree form ID
-  const formspreeFormId = 'xyzdyoan'; // TODO: Add your Formspree form ID here
+  const formspreeFormId = 'xjykwpel';
 
   const contactMethods = [
     {
@@ -48,10 +47,10 @@ const Contact = () => {
       icon: FiPhone,
       title: 'Call Me',
       description: 'Let\'s have a conversation',
-      value: '+234 9053949077',
-      link: 'tel:+2349053949077',
+      value: '+234 9133770970',
+      link: 'tel:+2349133770970',
       color: '#10b981',
-      available: '9 AM - 6 PM WAT'
+      available: '10 AM - 6 PM WAT'
     },
     {
       icon: FiGithub,
@@ -60,17 +59,8 @@ const Contact = () => {
       value: '@Inioluwa-dev',
       link: 'https://github.com/Inioluwa-dev',
       color: '#afaeae',
-      available: 'Daily commits'
+      available: 'Weekly commits'
     },
-    {
-      icon: FiYoutube,
-      title: 'YouTube',
-      description: 'Watch my tutorials',
-      value: '@Inioluwa-dev',
-      link: 'https://youtube.com/@Inioluwa-dev',
-      color: '#ff0000',
-      available: 'Weekly content'
-    }
   ];
 
   const workingHours = [
@@ -186,7 +176,7 @@ const Contact = () => {
       <p>
         Thank you for reaching out. I've received your message and will get back to you as soon as possible.
       </p>
-      <button onClick={handleResetForm} className="form-submit">
+      <button className="form-submit bg-primary" onClick={handleResetForm} >
         Send Another Message
       </button>
     </div>
@@ -439,39 +429,6 @@ const Contact = () => {
               {formSubmitted ? renderSuccessMessage() : renderContactForm()}
               </div>
             </div>
-
-          {/* CTA Section */}
-          <div className="contact__cta">
-            <div className="cta-card">
-              <div className="cta-card__content">
-                <h3 className="cta-card__title">
-                  Ready to Start Something <span className="text-gradient">Amazing</span>?
-                </h3>
-                <p className="cta-card__description">
-                  Whether you have a clear vision or just an idea, I'm here to help bring it to life. 
-                  Let's create something that makes a difference together.
-                </p>
-                <div className="cta-card__features">
-                  <div className="cta-feature">
-                    <FiCheck />
-                    <span>Free initial consultation</span>
-                  </div>
-                  <div className="cta-feature">
-                    <FiCheck />
-                    <span>24-hour response guarantee</span>
-                  </div>
-                  <div className="cta-feature">
-                    <FiCheck />
-                    <span>Transparent pricing</span>
-                  </div>
-                </div>
-              </div>
-              <div className="cta-card__coffee">
-                <FiCoffee />
-                <span>Let's grab a virtual coffee and discuss your ideas!</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>

@@ -6,6 +6,7 @@
   padding: 8rem 0;
 }
 
+
 /* Background Elements */
 .about__background {
   position: absolute;
@@ -25,7 +26,7 @@
 .about__gradient--1 {
   width: 500px;
   height: 500px;
-  background: var(--radial-gradient-1);
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
   top: 10%;
   left: -15%;
   animation-delay: 0s;
@@ -34,7 +35,7 @@
 .about__gradient--2 {
   width: 400px;
   height: 400px;
-  background: var(--radial-gradient-2);
+  background: radial-gradient(circle, rgba(129, 140, 248, 0.05) 0%, transparent 70%);
   bottom: 10%;
   right: -15%;
   animation-delay: 6s;
@@ -58,37 +59,6 @@
 .about__content--visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-/* ===== SECTION HEADER ===== */
-.about__header {
-  text-align: center;
-  margin-bottom: 4rem;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.about__title {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 800;
-  margin-bottom: 1.5rem;
-  color: var(--text-primary);
-}
-
-.text-gradient {
-  background: var(--text-gradient-bg);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.about__subtitle {
-  font-size: 1.25rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  max-width: 600px;
-  margin: 0 auto;
 }
 
 /* ===== TAB CONTENT / OVERVIEW ===== */
@@ -180,12 +150,13 @@
 }
 
 .about__coordinates-title {
-  font-size: 0.78rem;
-  font-weight: 700;
+  font-size: 0.75rem;
+  font-weight: var(--font-semibold);
   color: var(--text-tertiary);
   letter-spacing: 0.08em;
   margin-bottom: 1rem;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
 }
 
 .about__coordinates-list {
@@ -219,9 +190,9 @@
 }
 
 .about__math-quote-header {
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: 700;
-  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  font-weight: var(--font-semibold);
+  font-size: 0.875rem;
   color: var(--accent-primary);
   margin-bottom: 0.75rem;
 }
@@ -290,30 +261,33 @@
 }
 
 .about__code-pre {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.825rem;
   padding: 1.5rem;
   color: var(--text-primary);
-  background: var(--bg-primary);
+  background: var(--bg-code);
   margin: 0;
   overflow-x: auto;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 .about__intro-title {
-  font-size: clamp(2.25rem, 5vw, 3rem);
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: var(--font-extrabold);
   margin-bottom: 0.5rem;
   color: var(--text-primary);
-  line-height: 1.2;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
 }
 
 .about__intro-role {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--accent-secondary);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  color: var(--accent-primary);
   margin-bottom: 1.5rem;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.01em;
 }
 
 .about__intro-text {

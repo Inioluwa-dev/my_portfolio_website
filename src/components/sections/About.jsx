@@ -91,14 +91,11 @@ const About = () => {
                   </div>
                 </div>
 
-                {/* Right Column: Monospace Headers, Narrative, Formula snippet */}
+                {/* Right Column: Narrative, Formula snippet */}
                 <div className="about__right-column">
-                  <div className="about__math-formula-header">
-                    <span>f(x)</span> = Olayoriju(Logic) + Code(Design)
-                  </div>
                   
                   <h3 className="about__intro-title">
-                    Hi, I'm <span className="text-gradient">Olayoriju Inioluwa</span>
+                    Hi, I'm <span className="text-gradient">Inioluwa Olayoriju</span>
                   </h3>
                   <h4 className="about__intro-role">Systems & Product Engineer | Mathematician</h4>
                   

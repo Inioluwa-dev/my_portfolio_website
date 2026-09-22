@@ -1,65 +1,90 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../../styles/components/CustomCursor.css';
 
 const CustomCursor = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const dotRef = useRef(null);
+  const trailRef = useRef(null);
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
 
   useEffect(() => {
-    const updatePosition = (e) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+    // Only run custom cursor on fine pointer devices (desktop/mouse)
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+
+    let mouseX = -100;
+    let mouseY = -100;
+    let trailX = -100;
+    let trailY = -100;
+    let animationFrameId;
+
+    const handleMouseMove = (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
     };
 
     const handleMouseDown = () => setIsClicking(true);
     const handleMouseUp = () => setIsClicking(false);
 
-    const handleMouseEnter = (e) => {
-      // Fix: Check if target exists and has matches method
-      if (e.target && typeof e.target.matches === 'function') {
-        if (e.target.matches('a, button, .cursor-hover, [role="button"]')) {
+    const handleOver = (e) => {
+      if (e.target && typeof e.target.closest === 'function') {
+        if (e.target.closest('a, button, input, textarea, select, .btn, [role="button"]')) {
           setIsHovering(true);
         }
       }
     };
 
-    const handleMouseLeave = (e) => {
-      // Fix: Check if target exists and has matches method
-      if (e.target && typeof e.target.matches === 'function') {
-        if (e.target.matches('a, button, .cursor-hover, [role="button"]')) {
+    const handleOut = (e) => {
+      if (e.target && typeof e.target.closest === 'function') {
+        if (e.target.closest('a, button, input, textarea, select, .btn, [role="button"]')) {
           setIsHovering(false);
         }
       }
     };
 
-    document.addEventListener('mousemove', updatePosition);
-    document.addEventListener('mousedown', handleMouseDown);
-    document.addEventListener('mouseup', handleMouseUp);
-    document.addEventListener('mouseenter', handleMouseEnter, true);
-    document.addEventListener('mouseleave', handleMouseLeave, true);
+    const render = () => {
+      // Main dot updates instantly without React re-renders
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+      }
+
+      // Trail lerps smoothly
+      trailX += (mouseX - trailX) * 0.25;
+      trailY += (mouseY - trailY) * 0.25;
+
+      if (trailRef.current) {
+        trailRef.current.style.transform = `translate3d(${trailX}px, ${trailY}px, 0) translate(-50%, -50%)`;
+      }
+
+      animationFrameId = requestAnimationFrame(render);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('mousedown', handleMouseDown, { passive: true });
+    window.addEventListener('mouseup', handleMouseUp, { passive: true });
+    document.addEventListener('mouseover', handleOver, { passive: true });
+    document.addEventListener('mouseout', handleOut, { passive: true });
+
+    animationFrameId = requestAnimationFrame(render);
 
     return () => {
-      document.removeEventListener('mousemove', updatePosition);
-      document.removeEventListener('mousedown', handleMouseDown);
-      document.removeEventListener('mouseup', handleMouseUp);
-      document.removeEventListener('mouseenter', handleMouseEnter, true);
-      document.removeEventListener('mouseleave', handleMouseLeave, true);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mousedown', handleMouseDown);
+      window.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('mouseover', handleOver);
+      document.removeEventListener('mouseout', handleOut);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
   return (
     <>
       <div
+        ref={dotRef}
         className={`custom-cursor ${isHovering ? 'hovering' : ''} ${isClicking ? 'clicking' : ''}`}
-        style={{
-          transform: `translate3d(${position.x}px, ${position.y}px, 0) translate(-50%, -50%)`
-        }}
       />
       <div
+        ref={trailRef}
         className={`cursor-trail ${isHovering ? 'hovering' : ''}`}
-        style={{
-          transform: `translate3d(${position.x}px, ${position.y}px, 0) translate(-50%, -50%)`
-        }}
       />
     </>
   );

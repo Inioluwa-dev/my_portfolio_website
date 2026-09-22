@@ -6,7 +6,6 @@ import LoadingScreen from './components/layout/LoadingScreen';
 import CustomCursor from './components/ui/CustomCursor';
 import ScrollProgress from './components/layout/ScrollProgress';
 import SEO from './components/seo/SEO';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/global.css';
 
 function App() {

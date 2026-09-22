@@ -35,7 +35,9 @@
 
 .post-title {
   font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-display);
+  font-weight: var(--font-extrabold);
+  color: var(--text-primary);
   line-height: var(--leading-tight);
   margin-bottom: var(--space-3);
   letter-spacing: -0.03em;
@@ -126,7 +128,8 @@
 
 .post-body h2 {
   font-size: var(--text-2xl);
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-display);
+  font-weight: var(--font-extrabold);
   margin-top: var(--space-8);
   margin-bottom: var(--space-4);
   color: var(--text-primary);

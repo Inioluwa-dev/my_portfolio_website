@@ -23,27 +23,27 @@
 }
 
 .skills__gradient--1 {
-  width: 600px;
-  height: 600px;
-  background: var(--radial-gradient-1);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
   top: -10%;
   left: -15%;
   animation-delay: 0s;
 }
 
 .skills__gradient--2 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, var(--text-secondary) 0%, var(--text-secondary) 70%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(129, 140, 248, 0.05) 0%, transparent 70%);
   top: 50%;
   right: -20%;
   animation-delay: 5s;
 }
 
 .skills__gradient--3 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, #f59e0b 0%, #ef4444 70%);
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
   bottom: -15%;
   left: 30%;
   animation-delay: 10s;
@@ -67,37 +67,6 @@
 .skills__content--visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-/* ===== SECTION HEADER ===== */
-.skills__header {
-  text-align: center;
-  margin-bottom: 4rem;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.skills__title {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 800;
-  margin-bottom: 1.5rem;
-  color: var(--text-primary);
-}
-
-.text-gradient {
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.skills__subtitle {
-  font-size: 1.25rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  max-width: 600px;
-  margin: 0 auto;
 }
 
 /* ===== OVERALL STATS ===== */
@@ -131,17 +100,17 @@
 }
 
 .stat-card__icon {
-  width: 64px;
-  height: 64px;
-  background: var(--accent-gradient);
-  border-radius: 16px;
+  width: 56px;
+  height: 56px;
+  background: var(--accent-gradient-subtle);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-inverse);
-  font-size: 1.75rem;
+  color: var(--accent-primary);
+  font-size: 1.5rem;
   flex-shrink: 0;
-  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);
 }
 
 .stat-card__content {
@@ -150,11 +119,13 @@
 }
 
 .stat-card__value {
-  font-size: 2rem;
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: var(--font-extrabold);
   color: var(--text-primary);
   line-height: 1;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.04em;
 }
 
 .stat-card__label {

@@ -10,7 +10,9 @@
 
 .blog-title {
   font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-display);
+  font-weight: var(--font-extrabold);
+  color: var(--text-primary);
   margin-bottom: var(--space-2);
 }
 
@@ -134,8 +136,10 @@
 }
 
 .blog-card-title {
-  font-size: var(--text-md);
-  font-family: 'Outfit', sans-serif;
+  font-size: var(--text-lg);
+  font-family: var(--font-display);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
   margin-bottom: var(--space-2);
   line-height: var(--leading-snug);
 }

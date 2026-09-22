@@ -344,47 +344,10 @@ const Projects = () => {
             </div>
           )}
 
-          {/* CTA Section */}
-          <div className="projects__cta">
-            <div className="cta-card">
-              <h3 className="cta-card__title">
-                Interested in{" "}
-                <span className="text-gradient">Working Together</span>?
-              </h3>
-              <p className="cta-card__description">
-                I'm always excited to take on new challenges and create amazing
-                digital experiences. Let's discuss your next project and bring
-                your ideas to life.
-              </p>
-              <div className="cta-card__actions">
-                <button
-                  className="cta-btn cta-btn--primary"
-                  onClick={() => {
-                    const contactSection = document.getElementById("contact");
-                    if (contactSection) {
-                      contactSection.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }}
-                >
-                  <span>Start a Project</span>
-                  <FiZap />
-                </button>
-                <a
-                  href="https://github.com/Inioluwa-dev"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cta-btn cta-btn--secondary"
-                >
-                  <span>View All Work</span>
-                  <FiGithub />
-                </a>
-              </div>
-            </div>
+
           </div>
         </div>
-      </div>
-
-      {/* Project Modal */}
+       {/* Project Modal */}
       {selectedProject && (
         <div className="project-modal-overlay">
           <div className="project-modal">

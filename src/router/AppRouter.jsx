@@ -7,14 +7,11 @@ import BlogPage from '../pages/Blog';
 import BlogPostPage from '../pages/BlogPost';
 import ResumePage from '../pages/Resume';
 import ContactPage from '../pages/Contact';
-import DigitalTwinWidget from '../components/ui/DigitalTwinWidget';
-
 const ScrollToHashElement = () => {
   const { hash, pathname } = useLocation();
 
   useEffect(() => {
     if (hash) {
-      // Allow DOM to render before searching
       const element = document.getElementById(hash.slice(1));
       if (element) {
         const timer = setTimeout(() => {
@@ -47,7 +44,6 @@ const AppRouter = () => {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      <DigitalTwinWidget />
     </BrowserRouter>
   );
 };

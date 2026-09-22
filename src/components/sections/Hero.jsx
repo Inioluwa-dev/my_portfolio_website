@@ -3,11 +3,7 @@ import {
   FiDownload, 
   FiArrowRight, 
   FiGithub, 
-  FiLinkedin, 
   FiMail,
-  FiMapPin,
-  FiCalendar,
-  FiCoffee,
   FiYoutube
 } from 'react-icons/fi';
 import '../../styles/components/Hero.css';
@@ -31,31 +27,10 @@ const Hero = () => {
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(120);
 
-  const stats = [
-    { number: "8+", label: "Years Learning", icon: FiCoffee },
-    { number: "3+", label: "Years Working", icon: FiCalendar },
-    { number: "100%", label: "Dedication", icon: FiArrowRight }
-  ];
-
   const socialLinks = [
-    {
-      name: "GitHub",
-      icon: FiGithub,
-      url: "https://github.com/Inioluwa-dev",
-      color: "#333"
-    },
-    {
-      name: "YouTube",
-      icon: FiYoutube,
-      url: "https://youtube.com/@Inioluwa-dev",
-      color: "#ff0000"
-    },
-    {
-      name: "Email",
-      icon: FiMail,
-      url: "mailto:misterhge@gmail.com",
-      color: "#ea4335"
-    }
+    { name: "GitHub",  icon: FiGithub,  url: "https://github.com/Inioluwa-dev" },
+    { name: "YouTube", icon: FiYoutube, url: "https://youtube.com/@Inioluwa-dev" },
+    { name: "Email",   icon: FiMail,    url: "mailto:misterhge@gmail.com" },
   ];
 
   useEffect(() => {
@@ -69,19 +44,18 @@ const Hero = () => {
 
       if (isDeleting) {
         setTypedText(fullText.substring(0, typedText.length - 1));
-        setTypingSpeed(25); // faster deletion
+        setTypingSpeed(25);
       } else {
         setTypedText(fullText.substring(0, typedText.length + 1));
-        setTypingSpeed(70); // standard typing speed
+        setTypingSpeed(70);
       }
 
       if (!isDeleting && typedText === fullText) {
-        // Pause at end of typing
-        setTimeout(() => setIsDeleting(true), 1200);
+        setTimeout(() => setIsDeleting(true), 1600);
       } else if (isDeleting && typedText === "") {
         setIsDeleting(false);
         setLoopNum(loopNum + 1);
-        setTypingSpeed(250); // pause before starting next word
+        setTypingSpeed(300);
       }
     };
 
@@ -95,238 +69,127 @@ const Hero = () => {
       const headerHeight = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
     }
   };
 
-
-
   return (
     <section id="home" className="hero" ref={heroRef}>
-      {/* Background Elements */}
+
+      {/* Background — single clean gradient, no noise */}
       <div className="hero__background">
         <MathParticles />
-        <div className="hero__gradient hero__gradient--1"></div>
-        <div className="hero__gradient hero__gradient--2"></div>
-        <div className="hero__gradient hero__gradient--3"></div>
+        <div className="hero__bg-glow hero__bg-glow--1" />
+        <div className="hero__bg-glow hero__bg-glow--2" />
       </div>
 
       <div className="hero__container">
-        <div className="hero__content">
-          
-          {/* Main Content */}
-          <div className={`hero__main ${isVisible ? 'hero__main--visible' : ''}`}>
-            
-            {/* Greeting */}
-            <div className="hero__greeting">
-              <div className="hero__welcome">
-                <span className="hero__welcome-text">Hello, I'm</span>
-                <div className="hero__welcome-wave">👋</div>
-              </div>
+
+        {/* Top badge */}
+        <div className={`hero__badge ${isVisible ? 'hero__badge--visible' : ''}`}>
+          <span className="hero__badge-dot" />
+          <span>Available for projects</span>
+        </div>
+
+        {/* MASSIVE Name Display */}
+        <div className={`hero__name-block ${isVisible ? 'hero__name-block--visible' : ''}`}>
+          {/* Subtle tag above name */}
+          <p className="hero__greeting">Hello, I'm</p>
+
+          <h1 className="hero__name">
+            <span className="hero__name-line hero__name-primary">Inioluwa</span>
+            <span className="hero__name-line hero__name-secondary">Olayoriju</span>
+          </h1>
+        </div>
+
+        {/* Role + description row */}
+        <div className={`hero__info ${isVisible ? 'hero__info--visible' : ''}`}>
+          <div className="hero__role">
+            <span className="hero__role-prefix">I'm a </span>
+            <span className="hero__role-text">{typedText}</span>
+            <span className="hero__role-cursor" aria-hidden="true">|</span>
+          </div>
+
+          <p className="hero__description">
+            I design and build robust, high-performance systems and products.
+            Applying mathematical optimization and clean engineering principles —
+            scalable backends, efficient data pipelines, and highly responsive UIs.
+          </p>
+        </div>
+
+        {/* CTA Row */}
+        <div className={`hero__actions ${isVisible ? 'hero__actions--visible' : ''}`}>
+          <button 
+            className="hero__cta hero__cta--primary"
+            onClick={() => scrollToSection('projects')}
+          >
+            <span>View My Work</span>
+            <FiArrowRight />
+          </button>
+
+          <button 
+            className="hero__cta hero__cta--secondary"
+            onClick={() => scrollToSection('contact')}
+          >
+            <span>Get In Touch</span>
+            <FiMail />
+          </button>
+
+          <a 
+            href={CvPdf}
+            className="hero__cta hero__cta--outline"
+            download="mr-heritage.pdf"
+            aria-label="Download CV"
+          >
+            <FiDownload />
+            <span>Download CV</span>
+          </a>
+        </div>
+
+        {/* Stats + Socials */}
+        <div className={`hero__footer-row ${isVisible ? 'hero__footer-row--visible' : ''}`}>
+          <div className="hero__stats">
+            <div className="hero__stat">
+              <span className="hero__stat-number">3+</span>
+              <span className="hero__stat-label">Years Building</span>
             </div>
-
-            {/* Name & Title */}
-            <div className="hero__identity">
-              <h1 className="hero__name">
-                <span className="hero__name-line">
-                  <span className="hero__name-text">Olayoriju</span>
-                </span>
-                <span className="hero__name-line">
-                  <span className="hero__name-text hero__name-text--accent">Inioluwa</span>
-                </span>
-              </h1>
-              
-              <div className="hero__role">
-                <span className="hero__role-prefix">I'm a </span>
-                <span className="hero__role-text">
-                  {typedText}
-                </span>
-                <span className="hero__role-cursor">|</span>
-              </div>
+            <div className="hero__stat-divider" />
+            <div className="hero__stat">
+              <span className="hero__stat-number">50+</span>
+              <span className="hero__stat-label">Projects Shipped</span>
             </div>
-
-            <p className="hero__description">
-              I design and build robust, high-performance systems and products. 
-              Applying mathematical optimization and clean engineering principles, 
-              I develop scalable backend architectures, efficient data pipelines, 
-              and highly responsive user interfaces.
-            </p>
-
-            {/* Stats */}
-            <div className="hero__stats">
-              {stats.map((stat, index) => {
-                const IconComponent = stat.icon;
-                return (
-                  <div key={index} className="hero__stat">
-                    <div className="hero__stat-icon">
-                      <IconComponent />
-                    </div>
-                    <div className="hero__stat-content">
-                      <span className="hero__stat-number">{stat.number}</span>
-                      <span className="hero__stat-label">{stat.label}</span>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Actions */}
-            <div className="hero__actions">
-              <button 
-                className="hero__cta hero__cta--primary"
-                onClick={() => scrollToSection('projects')}
-              >
-                <span className="hero__cta-text">View My Work</span>
-                <FiArrowRight className="hero__cta-icon" />
-              </button>
-              
-              <button 
-                className="hero__cta hero__cta--secondary"
-                onClick={() => scrollToSection('contact')}
-              >
-                <span className="hero__cta-text">Get In Touch</span>
-                <FiMail className="hero__cta-icon" />
-              </button>
-              
-              <a 
-                href={CvPdf}
-                className="hero__cta hero__cta--outline"
-                download="mr-heritage.pdf"
-                aria-label="Download CV"
-              >
-                <FiDownload className="hero__cta-icon" />
-                <span className="hero__cta-text">Download CV</span>
-              </a>
-            </div>
-
-            {/* Social Links */}
-            <div className="hero__social">
-              <span className="hero__social-label">Connect with me</span>
-              <div className="hero__social-links">
-                {socialLinks.map((social) => {
-                  const IconComponent = social.icon;
-                  return (
-                    <a
-                      key={social.name}
-                      href={social.url}
-                      className="hero__social-link"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Visit my ${social.name} profile`}
-                      style={{ '--social-color': social.color }}
-                    >
-                      <IconComponent />
-                    </a>
-                  );
-                })}
-              </div>
+            <div className="hero__stat-divider" />
+            <div className="hero__stat">
+              <span className="hero__stat-number">100%</span>
+              <span className="hero__stat-label">Dedication</span>
             </div>
           </div>
 
-          {/* Visual Content */}
-          <div className={`hero__visual ${isVisible ? 'hero__visual--visible' : ''}`}>
-            
-            {/* Code Preview */}
-            <div className="hero__code">
-              <div className="hero__code-header">
-                <div className="hero__code-controls">
-                  <span className="hero__code-dot hero__code-dot--red"></span>
-                  <span className="hero__code-dot hero__code-dot--yellow"></span>
-                  <span className="hero__code-dot hero__code-dot--green"></span>
-                </div>
-                <span className="hero__code-title">portfolio.js</span>
-              </div>
-              
-              <div className="hero__code-content">
-                <div className="hero__code-line">
-                  <span className="hero__code-number">1</span>
-                  <span className="hero__code-text">
-                    <span className="hero__code-keyword">const</span>
-                    <span className="hero__code-variable"> developer</span>
-                    <span className="hero__code-operator"> = </span>
-                    <span className="hero__code-punctuation">{'{'}</span>
-                  </span>
-                </div>
-                
-                <div className="hero__code-line">
-                  <span className="hero__code-number">2</span>
-                  <span className="hero__code-text">
-                    <span className="hero__code-property">  name</span>
-                    <span className="hero__code-punctuation">: </span>
-                    <span className="hero__code-string">'Olayoriju Inioluwa'</span>
-                    <span className="hero__code-punctuation">,</span>
-                  </span>
-                </div>
-                
-                <div className="hero__code-line">
-                  <span className="hero__code-number">3</span>
-                  <span className="hero__code-text">
-                    <span className="hero__code-property">  role</span>
-                    <span className="hero__code-punctuation">: </span>
-                    <span className="hero__code-string">'Systems & Product Engineer'</span>
-                    <span className="hero__code-punctuation">,</span>
-                  </span>
-                </div>
-                
-                <div className="hero__code-line">
-                  <span className="hero__code-number">4</span>
-                  <span className="hero__code-text">
-                    <span className="hero__code-property">  skills</span>
-                    <span className="hero__code-punctuation">: [</span>
-                    <span className="hero__code-string">'Python'</span>
-                    <span className="hero__code-punctuation">, </span>
-                    <span className="hero__code-string">'Django'</span>
-                    <span className="hero__code-punctuation">, </span>
-                    <span className="hero__code-string">'React'</span>
-                    <span className="hero__code-punctuation">],</span>
-                  </span>
-                </div>
-                
-                <div className="hero__code-line">
-                  <span className="hero__code-number">5</span>
-                  <span className="hero__code-text">
-                    <span className="hero__code-property">  passion</span>
-                    <span className="hero__code-punctuation">: </span>
-                    <span className="hero__code-string">'Distributed Systems & Math Optimization'</span>
-                  </span>
-                </div>
-                
-                <div className="hero__code-line">
-                  <span className="hero__code-number">6</span>
-                  <span className="hero__code-text">
-                    <span className="hero__code-punctuation">{'}'}</span>
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Tech Stack */}
-            <div className="hero__tech">
-              <div className="hero__tech-label">Tech Stack</div>
-              <div className="hero__tech-items">
-                {['Python', 'Django', 'React', 'JavaScript', 'MySQL', 'MongoDB'].map((tech, index) => (
-                  <span 
-                    key={tech} 
-                    className="hero__tech-item"
-                    style={{ '--delay': `${index * 0.1}s` }}
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
+          <div className="hero__social">
+            {socialLinks.map((social) => {
+              const IconComponent = social.icon;
+              return (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  className="hero__social-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit my ${social.name} profile`}
+                >
+                  <IconComponent />
+                </a>
+              );
+            })}
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="hero__scroll">
-          <div className="hero__scroll-line"></div>
-          <span className="hero__scroll-text">Scroll to explore</span>
+        {/* Scroll hint */}
+        <div className="hero__scroll-hint">
+          <div className="hero__scroll-line" />
+          <span>Scroll</span>
         </div>
+
       </div>
     </section>
   );
