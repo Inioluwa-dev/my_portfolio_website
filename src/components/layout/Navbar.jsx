@@ -113,7 +113,7 @@ const Navbar = () => {
 
           {/* Mobile Header */}
           <div className="mobile-menu__header">
-            <span className="mobile-menu__title">Navigation</span>
+            <span className=""></span>
             <button className="mobile-menu__close" onClick={closeMobile} aria-label="Close menu">
               <span />
               <span />

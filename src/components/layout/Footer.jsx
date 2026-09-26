@@ -3,7 +3,9 @@ import {
   FiMail, 
   FiPhone, 
   FiMapPin, 
-  FiGithub 
+  FiGithub,
+  FiArrowUp,
+  FiArrowUpRight
 } from 'react-icons/fi';
 import '../../styles/layout/Footer.css';
 import { Link } from 'react-router-dom';
@@ -24,15 +26,33 @@ const Footer = () => {
   ];
 
   const contactInfo = [
-    { icon: FiMail,   label: 'Email',    value: 'misterhge@gmail.com', href: 'mailto:misterhge@gmail.com' },
-    { icon: FiPhone,  label: 'Phone',    value: '+234 913 377 0970',   href: 'tel:+2349133770970' },
-    { icon: FiMapPin, label: 'Location', value: 'Lagos, Nigeria',      href: 'https://maps.google.com/?q=Lagos,Nigeria' },
+    { 
+      icon: FiMail,   
+      label: 'Email',    
+      value: 'misterhge@gmail.com', 
+      href: 'mailto:misterhge@gmail.com' 
+    },
+    { 
+      icon: FiPhone,  
+      label: 'Phone',    
+      value: '+234 913 377 0970',   
+      href: 'tel:+2349133770970' 
+    },
+    { 
+      icon: FiMapPin, 
+      label: 'Location', 
+      value: 'Lagos, Nigeria (WAT)',      
+      href: 'https://maps.google.com/?q=Lagos,Nigeria' 
+    },
   ];
 
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
-    <footer className="footer">
+    <footer className="footer" role="contentinfo">
+      <div className="footer__glow-effect" aria-hidden="true" />
       <div className="footer__top-line" />
 
       <div className="footer__container">
@@ -42,13 +62,15 @@ const Footer = () => {
           
           {/* Brand */}
           <div className="footer__brand">
+
             <Link to="/" className="footer__wordmark" onClick={scrollToTop}>
               Inioluwa<span className="footer__wordmark-dot">.</span>
             </Link>
+            
             <p className="footer__tagline">
-              Building robust systems and beautiful products.<br />
-              Based in Lagos, Nigeria.
+              Software engineer crafting scalable backends and intuitive digital experiences.
             </p>
+
             <div className="footer__social">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
@@ -61,7 +83,8 @@ const Footer = () => {
                     className="footer__social-link"
                     aria-label={social.name}
                   >
-                    <Icon />
+                    <Icon className="footer__social-icon" />
+                    <span className="footer__social-name">{social.name}</span>
                   </a>
                 );
               })}
@@ -69,22 +92,26 @@ const Footer = () => {
           </div>
 
           {/* Navigation */}
-          <div className="footer__section">
+          <div className="footer__section footer__section--nav">
             <h4 className="footer__section-title">Navigation</h4>
-            <ul className="footer__links">
+            <div className="footer__links-grid">
               {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <Link to={link.path} className="footer__link" onClick={scrollToTop}>
-                    {link.name}
-                  </Link>
-                </li>
+                <Link 
+                  key={link.name} 
+                  to={link.path} 
+                  className="footer__link-card" 
+                  onClick={scrollToTop}
+                >
+                  <span className="footer__link-name">{link.name}</span>
+                  <FiArrowUpRight className="footer__link-arrow" />
+                </Link>
               ))}
-            </ul>
+            </div>
           </div>
 
           {/* Contact Info */}
-          <div className="footer__section">
-            <h4 className="footer__section-title">Get In Touch</h4>
+          <div className="footer__section footer__section--contact">
+            <h4 className="footer__section-title">Direct Connect</h4>
             <div className="footer__contact">
               {contactInfo.map((contact) => {
                 const Icon = contact.icon;
@@ -96,8 +123,13 @@ const Footer = () => {
                     target={contact.href.startsWith('http') ? '_blank' : '_self'}
                     rel={contact.href.startsWith('http') ? 'noopener noreferrer' : ''}
                   >
-                    <span className="footer__contact-icon"><Icon /></span>
-                    <span className="footer__contact-value">{contact.value}</span>
+                    <span className="footer__contact-icon">
+                      <Icon />
+                    </span>
+                    <div className="footer__contact-details">
+                      <span className="footer__contact-label">{contact.label}</span>
+                      <span className="footer__contact-value">{contact.value}</span>
+                    </div>
                   </a>
                 );
               })}
@@ -108,9 +140,21 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="footer__bottom">
-          <span className="footer__copyright">
-            © {currentYear} Olayoriju Inioluwa. All rights reserved.
-          </span>
+          <div className="footer__bottom-left">
+            <span className="footer__copyright">
+              &copy; {currentYear} Olayoriju Inioluwa. All rights reserved.
+            </span>
+          </div>
+
+          <button 
+            type="button" 
+            className="footer__back-to-top"
+            onClick={scrollToTop}
+            aria-label="Back to top of page"
+          >
+            <span>Back to top</span>
+            <FiArrowUp className="footer__back-to-top-icon" />
+          </button>
         </div>
 
       </div>

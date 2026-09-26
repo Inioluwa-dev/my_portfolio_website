@@ -7,7 +7,7 @@ import CapabilitiesSection from "../components/sections/CapabilitiesSection";
 import SEO from "../components/seo/SEO";
 import { projects } from "../data/projects";
 import { Link } from "react-router-dom";
-import { FiArrowRight } from "react-icons/fi";
+import { FiArrowRight, FiMail } from "react-icons/fi";
 import "../styles/components/Home.css";
 
 const HomePage = () => {
@@ -120,31 +120,31 @@ const HomePage = () => {
         {/* 4. Side-by-Side Skills & Services Section */}
         <CapabilitiesSection />
 
-        {/* 5. Direct High-Converting Call To Action */}
+        {/* 5. Direct Call To Action */}
         <section className="home-cta-section">
           <div className="container">
             <div className="home-cta-box card-glass">
-              <div className="cta-left">
-                <h2>Have a project in mind?</h2>
-                <p>
-                  I'm available for freelance work, full-time engineering roles,
-                  and technical consulting. Let's discuss your software ideas
-                  and build something extraordinary.
-                </p>
-                <div className="cta-buttons">
-                  <Link to="/contact" className="btn btn-primary btn-md">
-                    <span>Start a Conversation</span>
-                  </Link>
+              <div className="home-cta-glow" aria-hidden="true" />
+              
+              <div className="home-cta-content">
+                <div className="home-cta-text">
+                  <h2 className="home-cta-title">
+                    Have an ambitious project <span className="text-gradient">in mind?</span>
+                  </h2>
+
+                  <p className="home-cta-desc">
+                    I'm available for freelance engineering, full-time roles,
+                    and backend architecture consulting. Let's discuss your software ideas
+                    and build something extraordinary.
+                  </p>
                 </div>
-              </div>
-              <div className="cta-right">
-                <div className="interactive-avatar-glow">
-                  <img 
-                    src="/images/mr_heritage.png" 
-                    alt="Olayoriju Inioluwa avatar" 
-                    loading="lazy" 
-                    decoding="async" 
-                  />
+
+                <div className="home-cta-actions">
+                  <Link to="/contact" className="btn btn-primary btn-lg">
+                    <FiMail />
+                    <span>Start a Conversation</span>
+                    <FiArrowRight />
+                  </Link>
                 </div>
               </div>
             </div>
