@@ -75,21 +75,23 @@ const About = () => {
                     />
                   </div>
 
-                  <div className="about__coordinates card-glass">
-                    <h4 className="about__coordinates-title">PROFILE COORDINATES</h4>
-                    <ul className="about__coordinates-list">
-                      <li><strong>Location:</strong> Lagos, Nigeria</li>
-                      <li><strong>Studies:</strong> B.Sc. Mathematics</li>
-                      <li><strong>Focus:</strong> Systems & Product Engineer</li>
-                      <li><strong>Core:</strong> Python, Django, React</li>
-                    </ul>
-                  </div>
+                  <div className="about__meta-cards">
+                    <div className="about__coordinates card-glass">
+                      <h4 className="about__coordinates-title">PROFILE COORDINATES</h4>
+                      <ul className="about__coordinates-list">
+                        <li><strong>Location:</strong> <span>Lagos, Nigeria</span></li>
+                        <li><strong>Studies:</strong> <span>B.Sc. Mathematics</span></li>
+                        <li><strong>Focus:</strong> <span>Systems &amp; Product Engineer</span></li>
+                        <li><strong>Core:</strong> <span>Python, Django, React</span></li>
+                      </ul>
+                    </div>
 
-                  <div className="about__math-quote card-glass">
-                    <div className="about__math-quote-header">f(x) = Logic</div>
-                    <p className="about__math-quote-text">
-                      "In mathematics, we find patterns. In code, we build them."
-                    </p>
+                    <div className="about__math-quote card-glass">
+                      <div className="about__math-quote-header">f(x) = Logic</div>
+                      <p className="about__math-quote-text">
+                        "In mathematics, we find patterns. In code, we build them."
+                      </p>
+                    </div>
                   </div>
                 </div>
 
