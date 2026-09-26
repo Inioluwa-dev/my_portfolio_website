@@ -327,15 +327,19 @@
 
 @media (max-width: 1024px) {
   .about {
-    padding: 6rem 0;
+    padding: 5rem 0;
   }
   
+  .about__tab-content {
+    min-height: auto;
+  }
+
   .about__header {
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
   }
   
   .about__overview {
-    gap: 3rem;
+    gap: 2.5rem;
   }
   
   .about__grid-layout {
@@ -344,13 +348,13 @@
   }
   
   .about__photo-wrapper {
-    max-width: 320px;
+    max-width: 280px;
     margin: 0 auto;
   }
   
   .about__coordinates,
   .about__math-quote {
-    max-width: 320px;
+    max-width: 600px;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -363,18 +367,33 @@
 }
 
 @media (max-width: 768px) {
+  .about {
+    padding: 4rem 0;
+  }
+
   .about__container {
-    padding: 0 1rem;
+    padding: 0 1.25rem;
+  }
+
+  .about__intro-text {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .about__coordinates-list li {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    font-size: 0.825rem;
   }
 }
 
 @media (max-width: 480px) {
   .about {
-    padding: 4rem 0;
+    padding: 3rem 0;
   }
   
   .about__container {
-    padding: 0 0.75rem;
+    padding: 0 1rem;
   }
   
   .about__header {
@@ -382,6 +401,29 @@
   }
   
   .about__overview {
-    gap: 2rem;
+    gap: 1.75rem;
+  }
+
+  .about__photo-wrapper {
+    max-width: 220px;
+  }
+
+  .about__coordinates,
+  .about__math-quote {
+    padding: 1.15rem;
+  }
+
+  .about__code-pre {
+    padding: 1rem;
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .about__intro-title {
+    font-size: 2rem;
+  }
+
+  .about__intro-role {
+    font-size: 1rem;
   }
 }

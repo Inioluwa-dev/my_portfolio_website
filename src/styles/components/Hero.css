@@ -407,26 +407,69 @@
 }
 
 @media (max-width: 768px) {
-  .hero__container { padding: 3rem 1.25rem 3rem; }
+  .hero {
+    min-height: auto;
+    padding-top: 80px;
+    padding-bottom: 40px;
+  }
 
-  .hero__name-primary  { font-size: clamp(3rem, 14vw, 5rem); }
+  .hero__container { padding: 2rem 1.25rem 2rem; }
+
+  .hero__name-primary  { font-size: clamp(2.75rem, 13vw, 4.5rem); }
   .hero__name-secondary { font-size: clamp(1.25rem, 5vw, 2rem); }
 
-  .hero__description { font-size: var(--text-base); }
+  .hero__description { font-size: var(--text-base); line-height: 1.6; }
 
-  .hero__actions { gap: var(--space-2); }
+  .hero__actions { gap: var(--space-2); width: 100%; }
   .hero__cta { padding: var(--space-3) var(--space-5); font-size: var(--text-sm); }
 
-  .hero__footer-row { flex-direction: column; align-items: flex-start; gap: var(--space-5); }
-  .hero__stats { gap: var(--space-4); }
+  .hero__footer-row { flex-direction: column; align-items: flex-start; gap: var(--space-5); width: 100%; }
 
   .hero__scroll-hint { display: none; }
 }
 
+@media (max-width: 540px) {
+  .hero__stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    gap: var(--space-2);
+    text-align: center;
+  }
+  .hero__stat-divider {
+    display: none;
+  }
+  .hero__stat {
+    align-items: center;
+  }
+  .hero__stat-number {
+    font-size: 1.5rem;
+  }
+  .hero__stat-label {
+    font-size: 10px;
+    letter-spacing: 0.04em;
+  }
+}
+
 @media (max-width: 480px) {
-  .hero__container { padding: 2rem 1rem 2.5rem; }
-  .hero__name-primary  { font-size: clamp(2.75rem, 16vw, 4rem); }
+  .hero__container { padding: 1.5rem 1rem 2rem; }
+  .hero__name-primary  { 
+    font-size: clamp(2.2rem, 13vw, 3.25rem); 
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
   .hero__name-secondary { font-size: clamp(1.1rem, 5.5vw, 1.5rem); }
   .hero__badge { margin-bottom: var(--space-5); }
   .hero__name-block { margin-bottom: var(--space-6); }
+  .hero__info { margin-bottom: var(--space-6); }
+  .hero__actions {
+    flex-direction: column;
+    width: 100%;
+    gap: var(--space-3);
+  }
+  .hero__cta {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
 }

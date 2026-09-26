@@ -47,14 +47,62 @@ const BlogPostPage = () => {
     }
   };
 
+  const blogStructuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://inioluwa-dev.vercel.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Blog",
+            "item": "https://inioluwa-dev.vercel.app/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": post.title,
+            "item": `https://inioluwa-dev.vercel.app/blog/${post.id}`
+          }
+        ]
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": post.title,
+        "description": post.summary,
+        "image": post.coverImage.startsWith("http") ? post.coverImage : `https://inioluwa-dev.vercel.app${post.coverImage}`,
+        "author": {
+          "@type": "Person",
+          "name": "Olayoriju Inioluwa",
+          "url": "https://inioluwa-dev.vercel.app"
+        },
+        "publisher": {
+          "@type": "Person",
+          "name": "Olayoriju Inioluwa",
+          "url": "https://inioluwa-dev.vercel.app"
+        },
+        "datePublished": post.date,
+        "keywords": post.tags.join(", ")
+      }
+    ]
+  };
+
   return (
     <div className="page page--blog-post animate-fade-in-up">
       <SEO
-        title={`${post.title} | Mr Heritage`}
+        title={`${post.title} | Inioluwa Olayoriju`}
         description={post.summary}
         keywords={post.tags.join(", ")}
-        url={`https://mr-heritage.name.ng/blog/${post.id}`}
+        url={`https://inioluwa-dev.vercel.app/blog/${post.id}`}
         image={post.coverImage}
+        structuredData={blogStructuredData}
       />
       <Navbar />
 
@@ -88,7 +136,12 @@ const BlogPostPage = () => {
             
             <div className="post-author-box">
               <div className="author-info">
-                <img src="/images/mr_heritage.png" alt="Olayoriju Inioluwa" />
+                <img 
+                  src="/images/mr_heritage.png" 
+                  alt="Olayoriju Inioluwa profile" 
+                  loading="lazy" 
+                  decoding="async" 
+                />
                 <div>
                   <h4>Olayoriju Inioluwa</h4>
                   <span>Full Stack Engineer</span>
@@ -103,7 +156,12 @@ const BlogPostPage = () => {
 
           {/* Featured Image */}
           <div className="post-featured-image card-glass">
-            <img src={post.coverImage} alt={post.title} />
+            <img 
+              src={post.coverImage} 
+              alt={post.title} 
+              loading="lazy" 
+              decoding="async" 
+            />
           </div>
 
           {/* Body Content */}

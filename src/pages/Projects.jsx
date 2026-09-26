@@ -9,13 +9,32 @@ const ProjectsPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const projectsStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://inioluwa-dev.vercel.app/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Projects",
+        "item": "https://inioluwa-dev.vercel.app/projects"
+      }
+    ]
+  };
+
   return (
     <div className="page page--projects animate-fade-in-up">
       <SEO
-        title="Software Engineering Projects - Mr Heritage Portfolio"
+        title="Software Engineering Projects & Case Studies | Inioluwa Olayoriju"
         description="Explore detailed case studies of my software projects including Kefi social media, Serguo AI OCR, and FastAPI background remover."
-        keywords="Inioluwa Projects, Mr Heritage Case Studies, Python Django Projects, React Portfolios"
-        url="https://mr-heritage.name.ng/projects"
+        url="https://inioluwa-dev.vercel.app/projects"
+        structuredData={projectsStructuredData}
       />
       <Navbar />
       <main style={{ minHeight: '80vh' }}>

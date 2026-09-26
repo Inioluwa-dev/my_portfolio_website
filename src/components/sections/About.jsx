@@ -70,6 +70,8 @@ const About = () => {
                       src={mrHPhoto}
                       alt="Olayoriju Inioluwa (Mr Heritage)"
                       className="about__photo-img"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
 

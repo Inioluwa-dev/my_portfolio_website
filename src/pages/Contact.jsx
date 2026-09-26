@@ -9,13 +9,32 @@ const ContactPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const contactStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://inioluwa-dev.vercel.app/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Contact",
+        "item": "https://inioluwa-dev.vercel.app/contact"
+      }
+    ]
+  };
+
   return (
     <div className="page page--contact animate-fade-in-up">
       <SEO
-        title="Contact Me - Olayoriju Inioluwa | Mr Heritage"
+        title="Contact & Engineering Inquiries | Inioluwa Olayoriju"
         description="Get in touch with me for custom software development projects, technical consulting, or coding instruction inquiries."
-        keywords="Contact Inioluwa, Contact Mr Heritage, Hire Python Developer, Full Stack Freelancer Lagos"
-        url="https://mr-heritage.name.ng/contact"
+        url="https://inioluwa-dev.vercel.app/contact"
+        structuredData={contactStructuredData}
       />
       <Navbar />
       <main style={{ minHeight: '80vh' }}>

@@ -1,11 +1,10 @@
 import { useEffect } from "react";
 
 const SEO = ({
-  title = "Olayoriju Inioluwa | Mr Heritage - Systems & Product Engineer",
+  title = "Inioluwa Olayoriju | Systems & Product Engineer",
   description = "Systems & Product Engineer specializing in mathematical optimization, distributed backend systems, and clean architecture.",
-  keywords = "Olayoriju Inioluwa, Inioluwa, inioluwa_dev, Comibyte, Olayoriju, Mr Heritage, Systems Engineer, Product Engineer, Tech Instructor, Python, Django, React, Backend Developer, Portfolio, Web Development, Lagos Nigeria",
   image = "/images/mr_heritage.png",
-  url = "https://mr-heritage.name.ng",
+  url = "https://inioluwa-dev.vercel.app",
   structuredData = null,
   canonical = null,
 }) => {
@@ -31,10 +30,6 @@ const SEO = ({
       setMetaTag("name", "twitter:description", description);
     }
 
-    if (keywords) {
-      setMetaTag("name", "keywords", keywords);
-    }
-
     setMetaTag("property", "og:title", fullTitle);
     setMetaTag("name", "twitter:title", fullTitle);
 
@@ -50,7 +45,12 @@ const SEO = ({
       linkCanonical.setAttribute("href", fullUrl);
     }
 
-    const fullImage = image?.startsWith("http") ? image : `${url}${image}`;
+    const baseUrl = "https://inioluwa-dev.vercel.app";
+    const fullImage = !image 
+      ? `${baseUrl}/images/mr_heritage.png` 
+      : image.startsWith("http") 
+        ? image 
+        : `${baseUrl}${image.startsWith("/") ? "" : "/"}${image}`;
     if (fullImage) {
       setMetaTag("property", "og:image", fullImage);
       setMetaTag("name", "twitter:image", fullImage);
@@ -67,7 +67,7 @@ const SEO = ({
       }
       script.textContent = JSON.stringify(structuredData);
     }
-  }, [title, description, keywords, image, url, structuredData, canonical]);
+  }, [title, description, image, url, structuredData, canonical]);
 
   return null;
 };

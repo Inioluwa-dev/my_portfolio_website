@@ -34,14 +34,56 @@ const ProjectDetailPage = () => {
     );
   }
 
+  const projectStructuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://inioluwa-dev.vercel.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Projects",
+            "item": "https://inioluwa-dev.vercel.app/projects"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": project.title,
+            "item": `https://inioluwa-dev.vercel.app/projects/${project.id}`
+          }
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": project.title,
+        "description": project.shortDescription,
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Web, Cross-platform",
+        "image": project.image.startsWith("http") ? project.image : `https://inioluwa-dev.vercel.app${project.image}`,
+        "author": {
+          "@type": "Person",
+          "name": "Olayoriju Inioluwa",
+          "url": "https://inioluwa-dev.vercel.app"
+        }
+      }
+    ]
+  };
+
   return (
     <div className="page page--project-detail animate-fade-in-up">
       <SEO
-        title={`${project.title} - Case Study`}
+        title={`${project.title} - Case Study | Inioluwa Olayoriju`}
         description={project.shortDescription}
-        keywords={`${project.title}, Case Study, ${project.technologies.join(", ")}`}
-        url={`https://mr-heritage.name.ng/projects/${project.id}`}
+        url={`https://inioluwa-dev.vercel.app/projects/${project.id}`}
         image={project.image}
+        structuredData={projectStructuredData}
       />
       <Navbar />
 

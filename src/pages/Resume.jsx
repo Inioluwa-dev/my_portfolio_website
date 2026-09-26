@@ -12,13 +12,32 @@ const ResumePage = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const resumeStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://inioluwa-dev.vercel.app/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Résumé",
+        "item": "https://inioluwa-dev.vercel.app/resume"
+      }
+    ]
+  };
+
   return (
     <div className="page page--resume animate-fade-in-up">
       <SEO
-        title="Resume & Professional Experience - Olayoriju Inioluwa"
+        title="Résumé & Professional Timeline | Inioluwa Olayoriju"
         description="View my detailed resume containing full stack web development roles, Python backend engineering skills, and certificates."
-        keywords="Inioluwa CV, Inioluwa Resume, Python Engineer Skills, React Development experience"
-        url="https://mr-heritage.name.ng/resume"
+        url="https://inioluwa-dev.vercel.app/resume"
+        structuredData={resumeStructuredData}
       />
       <Navbar />
 

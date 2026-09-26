@@ -84,9 +84,9 @@ const Projects = () => {
         >
           {/* Section Header */}
           <div className="projects__header">
-            <h2 className="projects__title">
+            <h1 className="projects__title">
               Featured <span className="text-gradient">Projects</span>
-            </h2>
+            </h1>
             <p className="projects__subtitle">
               A showcase of my backend development expertise with Python/Django,
               featuring real projects like Kefi and Konverter
@@ -104,7 +104,12 @@ const Projects = () => {
                   style={{ "--delay": `${index * 0.2}s` }}
                 >
                   <div className="featured-card__image">
-                    <img src={project.image} alt={project.title} />
+                    <img 
+                      src={project.image} 
+                      alt={`${project.title} preview screenshot`} 
+                      loading="lazy" 
+                      decoding="async" 
+                    />
                     <div className="featured-card__overlay">
                       <div className="featured-card__links">
                         {project.github && (
@@ -226,7 +231,12 @@ const Projects = () => {
                 style={{ "--delay": `${index * 0.1}s` }}
               >
                 <div className="project-card__image">
-                  <img src={project.image} alt={project.title} />
+                  <img 
+                    src={project.image} 
+                    alt={`${project.title} preview screenshot`} 
+                    loading="lazy" 
+                    decoding="async" 
+                  />
                   <div className="project-card__status">
                     <span
                       className={`status-badge status-badge--${project.status

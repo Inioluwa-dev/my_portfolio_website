@@ -376,9 +376,9 @@ const Contact = () => {
           
           {/* Section Header */}
           <div className="contact__header">
-            <h2 className="contact__title">
+            <h1 className="contact__title">
               Let's Work <span className="text-gradient">Together</span>
-            </h2>
+            </h1>
             <p className="contact__subtitle">
               Ready to bring your ideas to life? I'm here to help you create something amazing. 
               Let's discuss your project and make it happen.

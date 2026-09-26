@@ -28,8 +28,8 @@ const HomePage = () => {
         jobTitle: "Systems & Product Engineer",
         description:
           "Systems & Product Engineer specializing in mathematical optimization, distributed systems, and clean architecture.",
-        url: "https://mr-heritage.name.ng",
-        image: "https://mr-heritage.name.ng/images/mr_heritage.png",
+        url: "https://inioluwa-dev.vercel.app",
+        image: "https://inioluwa-dev.vercel.app/images/mr_heritage.png",
         sameAs: [
           "https://github.com/Inioluwa-dev",
           "https://youtube.com/@Inioluwa-dev",
@@ -41,10 +41,9 @@ const HomePage = () => {
   return (
     <div className="page page--home">
       <SEO
-        title="Olayoriju Inioluwa | Mr Heritage - Systems & Product Engineer"
+        title="Olayoriju Inioluwa | Systems & Product Engineer"
         description="Building optimized software systems and products. Systems & Product Engineer specializing in Python, Django, distributed backends, and React."
-        keywords="Olayoriju Inioluwa, Mr Heritage, Systems Engineer, Product Engineer, Tech Instructor, Python Developer, FastAPI, Django, React, Portfolio"
-        url="https://mr-heritage.name.ng"
+        url="https://inioluwa-dev.vercel.app"
         structuredData={homepageStructuredData}
       />
       <Navbar />
@@ -77,7 +76,12 @@ const HomePage = () => {
                   style={{ "--delay": `${idx * 0.1}s` }}
                 >
                   <div className="project-image-wrapper">
-                    <img src={project.image} alt={project.title} />
+                    <img 
+                      src={project.image} 
+                      alt={`${project.title} screenshot`} 
+                      loading="lazy" 
+                      decoding="async" 
+                    />
                     <span className="project-year-badge">{project.year}</span>
                   </div>
                   <div className="project-content-wrapper">
@@ -135,7 +139,12 @@ const HomePage = () => {
               </div>
               <div className="cta-right">
                 <div className="interactive-avatar-glow">
-                  <img src="/images/mr_heritage.png" alt="Inioluwa Avatar" />
+                  <img 
+                    src="/images/mr_heritage.png" 
+                    alt="Olayoriju Inioluwa avatar" 
+                    loading="lazy" 
+                    decoding="async" 
+                  />
                 </div>
               </div>
             </div>

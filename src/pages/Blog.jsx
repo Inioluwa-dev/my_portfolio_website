@@ -21,13 +21,32 @@ const BlogPage = () => {
       ? blogPosts
       : blogPosts.filter((post) => post.category === activeCategory);
 
+  const blogStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://inioluwa-dev.vercel.app/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://inioluwa-dev.vercel.app/blog"
+      }
+    ]
+  };
+
   return (
     <div className="page page--blog animate-fade-in-up">
       <SEO
-        title="Technical Articles - Mr Heritage Blog"
+        title="Technical Articles & Engineering Guides | Inioluwa Olayoriju"
         description="Read technical guides on building OCR tools, Python FastAPI thread optimization, Redis caching patterns, and database scaling."
-        keywords="Inioluwa Blog, Mr Heritage Blog, FastAPI Tutorials, Caching Patterns Redis, Software Engineering Nigeria"
-        url="https://mr-heritage.name.ng/blog"
+        url="https://inioluwa-dev.vercel.app/blog"
+        structuredData={blogStructuredData}
       />
       <Navbar />
 
@@ -63,7 +82,12 @@ const BlogPage = () => {
             {filteredPosts.map((post, idx) => (
               <article key={post.id} className="blog-card card-glass animate-scale-in" style={{ '--delay': `${idx * 0.1}s` }}>
                 <div className="blog-card-image">
-                  <img src={post.coverImage} alt={post.title} />
+                  <img 
+                    src={post.coverImage} 
+                    alt={`${post.title} cover`} 
+                    loading="lazy" 
+                    decoding="async" 
+                  />
                   <span className="blog-category-tag">{post.category}</span>
                 </div>
                 <div className="blog-card-content">
